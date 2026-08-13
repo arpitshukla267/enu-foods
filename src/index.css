@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --color-enu-green: #284C38;
+  --color-enu-green-dark: #1E3A2B;
+  --color-enu-green-light: #38634B;
+  --color-enu-gold: #D6A146;
+  --color-enu-gold-light: #E8BF73;
+  --color-enu-cream: #F7F5EF;
+  --color-enu-cream-dark: #EFECE1;
+  --color-enu-orange: #C86D39;
+  --color-enu-dark: #1D1D1D;
+  --color-enu-gray: #6B7280;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-button: 'Poppins', system-ui, sans-serif;
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-serif);
+  }
+  .font-body {
+    font-family: var(--font-sans);
+  }
+  .font-btn {
+    font-family: var(--font-button);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(214, 161, 70, 0.2);
+  }
+
+  .glass-card-dark {
+    background: rgba(40, 76, 56, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(214, 161, 70, 0.25);
+  }
+
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #D6A146 0%, #F5D38A 50%, #C86D39 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .green-gradient-bg {
+    background: linear-gradient(135deg, #284C38 0%, #1E3A2B 100%);
+  }
+
+  .cream-gradient-bg {
+    background: linear-gradient(180deg, #F7F5EF 0%, #EFECE1 100%);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F5EF;
+}
+::-webkit-scrollbar-thumb {
+  background: #284C38;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D6A146;
+}
+
+/* ─── Hero Cinematic Enhancements ─── */
+
+/* Cinematic vignette overlay for full-bleed banners */
+.hero-vignette {
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%),
+    linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 40%),
+    linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+/* Subtle floating sparkle keyframes */
+@keyframes sparkle-float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50% { transform: translateY(-18px) scale(1.3); opacity: 1; }
+}
+
+@keyframes sparkle-drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+  25% { transform: translate(10px, -12px) rotate(90deg); opacity: 0.7; }
+  50% { transform: translate(-5px, -20px) rotate(180deg); opacity: 1; }
+  75% { transform: translate(8px, -8px) rotate(270deg); opacity: 0.5; }
+}
+
+/* Gold pulse glow for active timeline dot */
+@keyframes gold-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(214, 161, 70, 0.5); }
+  50% { box-shadow: 0 0 12px 4px rgba(214, 161, 70, 0.3); }
+}
+
+.timeline-dot-active {
+  animation: gold-pulse 2s ease-in-out infinite;
+}
+
+/* Gradient border animation for product card */
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(214, 161, 70, 0.3); }
+  50% { border-color: rgba(214, 161, 70, 0.7); }
+}
+
+.hero-product-card {
+  animation: border-glow 3s ease-in-out infinite;
+}
+
+/* Smooth Ken Burns effect for background images */
+@keyframes ken-burns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+.hero-bg-kenburns {
+  animation: ken-burns 12s ease-in-out alternate infinite;
+}
+

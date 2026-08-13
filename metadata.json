@@ -1,0 +1,6 @@
+{
+  "name": "ENU Foods",
+  "description": "Pure By Nature. Trusted By You. Premium Indian Masala & Spice Brand Website",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
