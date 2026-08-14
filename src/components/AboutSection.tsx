@@ -11,6 +11,7 @@ import { NavigationPage } from "../types";
 
 interface AboutSectionProps {
   onNavigate: (page: NavigationPage) => void;
+  isStoryPage: boolean;
 }
 
 /**
@@ -62,13 +63,14 @@ const BULLET_ITEMS = [
   "NABL Lab Tested Every Batch",
 ];
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, isStoryPage }) => {
   const [badgeRef, badgeInView] = useInView<HTMLDivElement>();
   const [headingRef, headingInView] = useInView<HTMLHeadingElement>();
   const [para1Ref, para1InView] = useInView<HTMLParagraphElement>();
   const [para2Ref, para2InView] = useInView<HTMLParagraphElement>();
   const [bulletsRef, bulletsInView] = useInView<HTMLDivElement>();
   const [ctaRef, ctaInView] = useInView<HTMLDivElement>();
+ 
 
   return (
     <section
@@ -219,19 +221,23 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
               carefully chosen at peak harvest.
             </p>
 
-            <p
-              ref={para2Ref}
-              style={{ transitionDelay: "300ms" }}
-              className={`font-body text-base font-light leading-relaxed text-gray-700 ${getAnimClasses(
-                para2InView,
-              )}`}
-            >
-              We reject high-speed industrial milling that scorches delicate
-              aroma oils. Instead, our spices are ground using state-of-the-art
-              Cold Grinding Technology below 35&deg;C — locking in rich natural
-              colors, medicinal antioxidants, and unforgettable traditional
-              taste.
-            </p>
+            {isStoryPage && (
+              <>
+                <p
+                  ref={para2Ref}
+                  style={{ transitionDelay: "300ms" }}
+                  className={`font-body text-base font-light leading-relaxed text-gray-700 ${getAnimClasses(
+                    para2InView,
+                  )}`}
+                >
+                  We reject high-speed industrial milling that scorches delicate
+                  aroma oils. Instead, our spices are ground using
+                  state-of-the-art Cold Grinding Technology below 35&deg;C —
+                  locking in rich natural colors, medicinal antioxidants, and
+                  unforgettable traditional taste.
+                </p>
+              </>
+            )}
 
             {/* Key Bullet Highlights — each item animates in one by one */}
             <div
@@ -254,23 +260,27 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
               ))}
             </div>
 
-            {/* Action CTA Button */}
-            <div
-              ref={ctaRef}
-              style={{
-                transitionDelay: `${400 + BULLET_ITEMS.length * 150}ms`,
-              }}
-              className={`pt-4 ${getAnimClasses(ctaInView)}`}
-            >
-              <button
-                id="about-learn-more-btn"
-                onClick={() => onNavigate("story")}
-                className="text-xs md:text-md text-nowrap gap-1 group inline-flex w-full items-center justify-center md:gap-2 rounded-full bg-[#284C38] px-4 md:px-7 py-3 md:py-3.5 font-btn font-medium text-white shadow-md transition-all duration-300 hover:bg-[#1E3A2B] hover:shadow-xl sm:w-auto"
-              >
-                <span>Discover Our Manufacturing Process</span>
-                <ArrowRight className="h-4 w-4 text-[#D6A146] transition-transform group-hover:translate-x-1" />
-              </button>
-            </div>
+            {!isStoryPage && (
+              <>
+                {/* Action CTA Button */}
+                <div
+                  ref={ctaRef}
+                  style={{
+                    transitionDelay: `${400 + BULLET_ITEMS.length * 150}ms`,
+                  }}
+                  className={`pt-4 ${getAnimClasses(ctaInView)}`}
+                >
+                  <button
+                    id="about-learn-more-btn"
+                    onClick={() => onNavigate("story")}
+                    className="text-xs md:text-md text-nowrap gap-1 group inline-flex w-full items-center justify-center md:gap-2 rounded-full bg-[#284C38] px-4 md:px-7 py-3 md:py-3.5 font-btn font-medium text-white shadow-md transition-all duration-300 hover:bg-[#1E3A2B] hover:shadow-xl sm:w-auto"
+                  >
+                    <span>Discover Our Manufacturing Process</span>
+                    <ArrowRight className="h-4 w-4 text-[#D6A146] transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

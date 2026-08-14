@@ -402,7 +402,10 @@ export default function App() {
             <div className="relative z-10 bg-[#F7F5EF]">
               <TrustSection />
 
-              <AboutSection onNavigate={handleNavigate} />
+              <AboutSection
+                onNavigate={handleNavigate}
+                isStoryPage={currentPage === "story"}
+              />
 
               <ProductCategories
                 onSelectCategory={(catName) => {
@@ -480,7 +483,10 @@ export default function App() {
 
         {currentPage === "story" && (
           <div className="pt-24 pb-20">
-            <AboutSection onNavigate={handleNavigate} />
+            <AboutSection
+              onNavigate={handleNavigate}
+              isStoryPage={currentPage === "story"}
+            />
 
             <ManufacturingJourney />
 
@@ -501,10 +507,7 @@ export default function App() {
         =================================================== */}
 
         {currentPage === "checkout" && (
-          <CheckoutWizard
-            cartItems={cartItems}
-            onClearCart={handleClearCart}
-          />
+          <CheckoutWizard cartItems={cartItems} onClearCart={handleClearCart} />
         )}
       </main>
 
