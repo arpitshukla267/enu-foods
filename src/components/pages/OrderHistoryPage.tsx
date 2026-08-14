@@ -63,12 +63,12 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
   };
 
   return (
-    <div className="pt-28 pb-20 bg-[#F7F5EF] min-h-screen text-left">
+    <div className="pt-32 pb-20 bg-[#F7F5EF] min-h-screen text-left">
       <div className="max-w-4xl mx-auto px-4">
         {/* Page Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="font-heading text-3xl font-bold text-[#1D1D1D] flex items-center gap-3">
+            <h1 className="font-heading text-3xl font-semibold text-[#1D1D1D] flex items-center gap-3">
               <Package className="w-8 h-8 text-[#284C38]" />
               Order History
             </h1>
@@ -78,7 +78,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
           </div>
           <button
             onClick={() => onNavigate("products")}
-            className="self-start md:self-auto inline-flex items-center gap-2 bg-[#284C38] hover:bg-[#1E3A2B] text-white text-xs font-bold font-btn py-3 px-5 rounded-xl shadow-md transition-all transform hover:-translate-y-[1px]"
+            className="self-start md:self-auto inline-flex items-center gap-2 bg-[#284C38] hover:bg-[#1E3A2B] text-white text-xs font-semibold font-btn py-3 px-5 rounded-xl shadow-md transition-all transform hover:-translate-y-[1px]"
           >
             <span>Browse More Spices</span>
             <ArrowRight className="w-4 h-4 text-[#D6A146]" />
@@ -92,7 +92,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
               <ShoppingBag className="w-10 h-10 text-[#284C38]" />
             </div>
             <div className="space-y-2">
-              <h2 className="font-heading text-2xl font-bold text-[#1D1D1D]">
+              <h2 className="font-heading text-2xl font-semibold text-[#1D1D1D]">
                 No Orders Yet
               </h2>
               <p className="font-body text-gray-500 max-w-sm mx-auto font-light leading-relaxed">
@@ -101,7 +101,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
             </div>
             <button
               onClick={() => onNavigate("products")}
-              className="inline-flex items-center gap-2 bg-[#D6A146] hover:bg-[#c3913c] text-white font-btn font-bold text-xs py-3.5 px-8 rounded-xl shadow-lg transition-all"
+              className="inline-flex items-center gap-2 bg-[#D6A146] hover:bg-[#c3913c] text-white font-btn font-semibold text-xs py-3.5 px-8 rounded-xl shadow-lg transition-all"
             >
               Shop Spice Catalog
             </button>
@@ -130,7 +130,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
                         <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
                           Order ID
                         </div>
-                        <div className="text-sm font-bold text-[#1D1D1D] font-mono">
+                        <div className="text-sm font-semibold text-[#1D1D1D] font-mono">
                           {order.orderId}
                         </div>
                       </div>
@@ -141,7 +141,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
                         <Calendar className="w-3.5 h-3.5 shrink-0" />
                         Placed On
                       </div>
-                      <div className="text-sm font-bold text-[#1D1D1D]">
+                      <div className="text-sm font-semibold text-[#1D1D1D]">
                         {order.date}
                       </div>
                     </div>
@@ -150,7 +150,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
                       <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
                         Total Amount
                       </div>
-                      <div className="text-sm font-bold text-[#284C38] font-sans">
+                      <div className="text-sm font-semibold text-[#284C38] font-sans">
                         ₹{order.total.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                       </div>
                     </div>
@@ -181,12 +181,12 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Shipping Details */}
                             <div className="bg-white p-5 rounded-2xl border border-gray-100 space-y-3">
-                              <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1.5 border-b border-gray-100 pb-2">
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-1.5 border-b border-gray-100 pb-2">
                                 <MapPin className="w-4 h-4 text-[#D6A146]" />
                                 Shipping Address
                               </h3>
                               <div className="text-sm space-y-1">
-                                <div className="font-bold text-[#1D1D1D]">
+                                <div className="font-semibold text-[#1D1D1D]">
                                   {order.shippingAddress.fullName}
                                 </div>
                                 <div className="text-gray-600 font-light">
@@ -203,14 +203,14 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
 
                             {/* Payment Details */}
                             <div className="bg-white p-5 rounded-2xl border border-gray-100 space-y-3">
-                              <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1.5 border-b border-gray-100 pb-2">
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-1.5 border-b border-gray-100 pb-2">
                                 <CreditCard className="w-4 h-4 text-[#D6A146]" />
                                 Payment details
                               </h3>
                               <div className="text-sm space-y-2">
                                 <div className="flex justify-between">
                                   <span className="text-gray-500 font-light">Method:</span>
-                                  <span className="font-bold text-gray-700 uppercase">{order.paymentMethod}</span>
+                                  <span className="font-semibold text-gray-700 uppercase">{order.paymentMethod}</span>
                                 </div>
                                 <div className="flex justify-between">
                                   <span className="text-gray-500 font-light">Subtotal:</span>
@@ -222,7 +222,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
                                     <span>-₹{order.discount.toFixed(2)}</span>
                                   </div>
                                 )}
-                                <div className="flex justify-between border-t border-dashed border-gray-100 pt-2 font-bold text-[#284C38]">
+                                <div className="flex justify-between border-t border-dashed border-gray-100 pt-2 font-semibold text-[#284C38]">
                                   <span>Total Paid:</span>
                                   <span>₹{order.total.toFixed(2)}</span>
                                 </div>
@@ -232,7 +232,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
 
                           {/* Order Items */}
                           <div className="bg-white p-5 rounded-2xl border border-gray-100 space-y-4">
-                            <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100 pb-2">
+                            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-100 pb-2">
                               Items Ordered ({order.items.reduce((sum, item) => sum + item.quantity, 0)})
                             </h3>
                             <div className="divide-y divide-gray-100">
@@ -248,7 +248,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
                                       className="w-12 h-12 rounded-xl object-cover border border-gray-100 bg-[#F7F5EF]/50 shrink-0"
                                     />
                                     <div>
-                                      <div className="text-sm font-bold text-[#1D1D1D]">
+                                      <div className="text-sm font-semibold text-[#1D1D1D]">
                                         {item.product.name}
                                       </div>
                                       <div className="text-xs text-gray-400">
@@ -256,7 +256,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="text-sm font-bold text-gray-700">
+                                  <div className="text-sm font-semibold text-gray-700">
                                     ₹{(item.product.price * item.quantity).toFixed(2)}
                                   </div>
                                 </div>

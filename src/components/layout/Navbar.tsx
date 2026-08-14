@@ -36,6 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isDiscoverOpen, setIsDiscoverOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={i}
                   className="flex items-center gap-1 md:gap-1.5 whitespace-nowrap shrink-0 px-4 md:px-6"
                 >
-                  <span className="text-[#D6A146] md:font-medium">{offer}</span>
+                  <span className="text-white md:font-medium">{offer}</span>
                 </span>
               ))}
             </div>
@@ -199,7 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span className="font-heading text-lg font-semibold text-[#D6A146]">
                         Spice Categories
                       </span>
-                      <div className="flex items-center gap-2.5">
+                      {/* <div className="flex items-center gap-2.5">
                         <button
                           onClick={() => handleNavClick("bestsellers")}
                           className="text-xs text-[#D6A146] hover:underline font-medium"
@@ -213,7 +214,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         >
                           New Arrivals
                         </button>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                       {CATEGORIES.slice(0, 8).map((cat) => (
@@ -263,20 +264,85 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            <button
-              id="nav-link-combos"
-              onClick={() => handleNavClick("combos")}
-              className={`text-sm font-medium transition-colors relative py-1 font-body ${
-                currentPage === "combos"
-                  ? "text-[#D6A146]"
-                  : "text-white/90 hover:text-[#D6A146]"
-              }`}
+            {/* Discover Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsDiscoverOpen(true)}
+              onMouseLeave={() => setIsDiscoverOpen(false)}
             >
-              Super Savers
-              {currentPage === "combos" && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D6A146] rounded-full" />
+              <button
+                id="nav-link-discover"
+                className={`text-sm font-medium transition-colors flex items-center gap-1 relative py-1 font-body ${
+                  currentPage === "combos" ||
+                  currentPage === "bestsellers" ||
+                  currentPage === "new-arrivals"
+                    ? "text-[#D6A146]"
+                    : "text-white/90 hover:text-[#D6A146]"
+                }`}
+              >
+                Discover
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    isDiscoverOpen ? "rotate-180 text-[#D6A146]" : ""
+                  }`}
+                />
+                {(currentPage === "combos" ||
+                  currentPage === "bestsellers" ||
+                  currentPage === "new-arrivals") && (
+                  <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-[#D6A146] rounded-full" />
+                )}
+              </button>
+
+              {/* Discover Dropdown */}
+              {isDiscoverOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-52 bg-[#1E3A2B] border border-[#D6A146]/30 rounded-xl shadow-2xl overflow-hidden z-50">
+                  {/* Best Sellers */}
+                  <button
+                    onClick={() => {
+                      handleNavClick("bestsellers");
+                      setIsDiscoverOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-3 text-sm font-body transition-colors ${
+                      currentPage === "bestsellers"
+                        ? "bg-[#284C38] text-[#D6A146]"
+                        : "text-white/90 hover:bg-[#284C38] hover:text-[#D6A146]"
+                    }`}
+                  >
+                    Best Sellers
+                  </button>
+
+                  {/* New Arrivals */}
+                  <button
+                    onClick={() => {
+                      handleNavClick("new-arrivals");
+                      setIsDiscoverOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-3 text-sm font-body transition-colors border-t border-white/5 ${
+                      currentPage === "new-arrivals"
+                        ? "bg-[#284C38] text-[#D6A146]"
+                        : "text-white/90 hover:bg-[#284C38] hover:text-[#D6A146]"
+                    }`}
+                  >
+                    New Arrivals
+                  </button>
+
+                  {/* Combos / Super Saver */}
+                  <button
+                    onClick={() => {
+                      handleNavClick("combos");
+                      setIsDiscoverOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-3 text-sm font-body transition-colors border-t border-white/5 ${
+                      currentPage === "combos"
+                        ? "bg-[#284C38] text-[#D6A146]"
+                        : "text-white/90 hover:bg-[#284C38] hover:text-[#D6A146]"
+                    }`}
+                  >
+                    Super Saver
+                  </button>
+                </div>
               )}
-            </button>
+            </div>
 
             <button
               id="nav-link-recipes"
@@ -288,7 +354,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               Recipes
-              {(currentPage === "recipes" || currentPage === "recipe-detail") && (
+              {(currentPage === "recipes" ||
+                currentPage === "recipe-detail") && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D6A146] rounded-full" />
               )}
             </button>
@@ -348,7 +415,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </button>
               ) : (
                 <button
-                  onClick={() => onOpenAuth ? onOpenAuth() : handleNavClick("login")}
+                  onClick={() =>
+                    onOpenAuth ? onOpenAuth() : handleNavClick("login")
+                  }
                   className="p-2 rounded-full text-white/90 hover:text-[#D6A146] hover:bg-white/10 transition-colors"
                   title="Sign In"
                 >

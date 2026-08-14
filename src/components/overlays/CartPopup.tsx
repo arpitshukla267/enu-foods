@@ -110,6 +110,7 @@ export function CartPopup({
     "/privacy-policy",
     "/terms-of-service",
     "/story",
+    "/orders",
   ];
   
   const isDynamicExcludedPage =

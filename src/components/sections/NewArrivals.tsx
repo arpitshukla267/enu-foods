@@ -14,7 +14,7 @@ interface NewArrivalsProps {
 
 /* base: 2, sm: 3, md: 4, lg: 5, xl: 6 whole cards per row (gap-5 = 20px) */
 const CARD_WIDTH_CLASSES =
-  "w-[calc((100%-20px)/2)] sm:w-[calc((100%-40px)/3)] md:w-[calc((100%-60px)/4)] lg:w-[calc((100%-80px)/5)] xl:w-[calc((100%-100px)/6)]";
+  "w-[calc((100%-20px)/2.2)] sm:w-[calc((100%-40px)/3)] md:w-[calc((100%-60px)/4)] lg:w-[calc((100%-80px)/5)] xl:w-[calc((100%-100px)/6)]";
 
 export const NewArrivals: React.FC<NewArrivalsProps> = ({
   onNavigate,

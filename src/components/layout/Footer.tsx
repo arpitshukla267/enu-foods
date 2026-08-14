@@ -9,11 +9,11 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
-    <footer className="bg-[#1D1D1D] text-white font-body pt-16 pb-8 border-t border-[#D6A146]/30">
+    <footer className="bg-[#1D1D1D] text-white font-body pt-6 lg:pt-16 pb-8 border-t border-[#D6A146]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-10 pb-6 lg:pb-12 border-b border-white/10 text-left">
           
           {/* Col 1: Company Profile */}
           <div className="lg:col-span-2 space-y-4">
@@ -64,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
 
           {/* Col 2: Quick Links */}
-          <div className="space-y-3">
+          <div className="space-y-3 hidden lg:block">
             <h3 className="font-heading text-lg font-bold text-[#D6A146]">Quick Links</h3>
             <ul className="space-y-2 text-sm text-gray-400 font-light">
               <li>
@@ -106,7 +106,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
 
           {/* Col 3: Products */}
-          <div className="space-y-3">
+          {/* <div className="space-y-3">
             <h3 className="font-heading text-lg font-bold text-[#D6A146]">Our Categories</h3>
             <ul className="space-y-2 text-sm text-gray-400 font-light">
               {CATEGORIES.slice(0, 5).map((cat) => (
@@ -120,7 +120,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Col 4: Contact Us */}
           <div className="space-y-3">
@@ -144,14 +144,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Copyright Footer Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-light gap-4">
+        <div className="pt-4 lg:pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-light gap-4">
           <div>
-            © {new Date().getFullYear()} <strong className="text-white font-medium">ENU Foods</strong>. All rights reserved. Pure By Nature. Trusted By You.
+            © {new Date().getFullYear()} <strong className="text-white font-medium">ENU Foods</strong>. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <button onClick={() => onNavigate('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
-            <button onClick={() => onNavigate('terms')} className="hover:text-white transition-colors">Terms of Service</button>
-            <span className="text-gray-600">FSSAI License #10021021000542</span>
+            <button onClick={() => onNavigate('privacy')} className="hover:text-white transition-colors text-nowrap">Privacy Policy</button>
+            <button onClick={() => onNavigate('terms')} className="hover:text-white transition-colors text-nowrap">Terms of Service</button>
           </div>
         </div>
 

@@ -36,10 +36,6 @@ export const SuperSaverCombos: React.FC<SuperSaverCombosProps> = ({ onNavigate, 
         {/* Section label */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-6 mt-4 lg:mb-14">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#D6A146] uppercase tracking-wider mb-2 font-btn">
-              <Sparkles className="w-4 h-4" />
-              <span>Curated Value Sets</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] text-white font-semibold leading-tight">
               Super Saver Combos
             </h2>
@@ -75,8 +71,8 @@ export const SuperSaverCombos: React.FC<SuperSaverCombosProps> = ({ onNavigate, 
 
                 {/* Savings stamp */}
                 <div className="absolute top-4 left-4 w-16 h-16 rounded-full border-2 border-dashed border-[#D6A146] flex flex-col items-center justify-center bg-[#1E3A2B]/90 rotate-[-12deg] shadow-lg">
-                  <span className="text-[#D6A146] text-[10px] font-bold uppercase leading-none">Save</span>
-                  <span className="text-white text-lg font-bold leading-none">{active.discountPercent}%</span>
+                  <span className="text-[#D6A146] text-[10px] font-semibold uppercase leading-none">Save</span>
+                  <span className="text-white text-lg font-semibold leading-none">{active.discountPercent}%</span>
                 </div>
 
                 <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-[#D6A146] text-xs font-semibold px-3 py-1 rounded-md">
@@ -92,7 +88,7 @@ export const SuperSaverCombos: React.FC<SuperSaverCombosProps> = ({ onNavigate, 
                   </p>
                   <h3
                     onClick={() => onNavigate('combos', undefined, active.id)}
-                    className="font-heading text-2xl text-white font-bold mb-2 cursor-pointer hover:text-[#D6A146] transition-colors"
+                    className="font-heading text-2xl text-white font-semibold mb-2 cursor-pointer hover:text-[#D6A146] transition-colors"
                   >
                     {active.title}
                   </h3>
@@ -101,7 +97,7 @@ export const SuperSaverCombos: React.FC<SuperSaverCombosProps> = ({ onNavigate, 
                   </p>
 
                   <div className="bg-black/20 rounded-xl p-3 border border-white/10 mb-6">
-                    <p className="text-[11px] font-bold text-[#D6A146] uppercase tracking-wider mb-2 flex items-center gap-1">
+                    <p className="text-[11px] font-semibold text-[#D6A146] uppercase tracking-wider mb-2 flex items-center gap-1">
                       <Package className="w-3.5 h-3.5" />
                       <span>Every Masala Included:</span>
                     </p>
@@ -124,7 +120,7 @@ export const SuperSaverCombos: React.FC<SuperSaverCombosProps> = ({ onNavigate, 
                 <div>
                   <div className="flex items-baseline justify-between mb-4">
                     <div>
-                      <span className="text-3xl font-bold text-white">₹{comboPrice}</span>
+                      <span className="text-3xl font-semibold text-white">₹{comboPrice}</span>
                       <span className="text-white/40 line-through text-base ml-2">₹{originalTotal}</span>
                     </div>
                     <span className="text-[#D6A146] text-xs font-semibold bg-[#D6A146]/15 px-2.5 py-1 rounded-lg">
@@ -135,7 +131,7 @@ export const SuperSaverCombos: React.FC<SuperSaverCombosProps> = ({ onNavigate, 
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => addComboToCart(active)}
-                      className="w-full bg-[#D6A146] hover:bg-[#E8BF73] text-[#1D1D1D] font-bold text-xs sm:text-sm py-3 rounded-xl transition-all shadow-md font-btn"
+                      className="w-full bg-[#D6A146] hover:bg-[#E8BF73] text-[#1D1D1D] font-semibold text-xs sm:text-sm py-3 rounded-xl transition-all shadow-md font-btn"
                     >
                       Add Bundle to Cart
                     </button>
@@ -187,7 +183,7 @@ export const SuperSaverCombos: React.FC<SuperSaverCombosProps> = ({ onNavigate, 
                     </p>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="text-white font-bold text-xs sm:text-sm">₹{price}</p>
+                    <p className="text-white font-semibold text-xs sm:text-sm">₹{price}</p>
                     <p className="text-white/40 line-through text-[10px]">₹{original}</p>
                   </div>
                 </button>

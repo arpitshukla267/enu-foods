@@ -58,7 +58,7 @@ export const CombosPage: React.FC<CombosPageProps> = ({
     <div className="min-h-screen bg-[#F7F5EF] pt-28 pb-20 text-left">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         {/* Banner Section */}
-        <div className="relative bg-[#1E3A2B] text-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl p-5 sm:p-8 mb-6 border border-[#D6A146]/30">
+        {/* <div className="relative bg-[#1E3A2B] text-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl p-5 sm:p-8 mb-6 border border-[#D6A146]/30">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#D6A146]/10 rounded-full blur-2xl pointer-events-none" />
           <div className="relative z-10 max-w-2xl">
             <div className="inline-flex items-center gap-1.5 bg-[#D6A146]/20 border border-[#D6A146]/40 text-[#D6A146] text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 font-btn">
@@ -74,10 +74,10 @@ export const CombosPage: React.FC<CombosPageProps> = ({
               Save up to 25% with chef-curated recipe combos. Click any bundle to see every masala included, full flavor notes, and recipe pairings.
             </p>
           </div>
-        </div>
+        </div> */}
 
         {/* Value Highlights Strip - Compact */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-6">
+        {/* <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-6">
           <div className="bg-white rounded-xl p-2.5 sm:p-3 border border-[#D6A146]/20 flex items-center gap-2.5 shadow-xs">
             <div className="w-8 h-8 rounded-lg bg-[#284C38]/10 flex items-center justify-center shrink-0">
               <Tag className="w-4 h-4 text-[#284C38]" />
@@ -117,7 +117,7 @@ export const CombosPage: React.FC<CombosPageProps> = ({
               <p className="text-[9px] sm:text-[10px] text-gray-500">Zero artificial dyes</p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Category Filter Tabs */}
         <div className="flex items-center justify-between gap-3 mb-5">

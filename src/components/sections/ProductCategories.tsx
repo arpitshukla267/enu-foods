@@ -36,17 +36,17 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({
     >
       <div className="max-w-[95vw] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-4 lg:mb-6 gap-4">
+        <div className="flex flex-row sm:flex-row sm:items-end justify-between mb-4 lg:mb-6 gap-4">
           <div className="text-left">
           
-            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#1F5136] mt-1.5 leading-snug">
+            <h2 className="text-lg sm:text-3xl lg:text-[34px] font-semibold text-[#1F5136] md:mt-1.5 leading-snug">
               Shop by Category
             </h2>
           </div>
 
           <button
             onClick={() => onNavigate("products")}
-            className="inline-flex items-center gap-1.5 text-[#1F5136] hover:text-[#D6A146] font-medium text-sm transition-colors self-start sm:self-auto group"
+            className="inline-flex items-center gap-0.5 md:gap-1.5 text-[#1F5136] hover:text-[#D6A146] font-medium text-xs md:text-sm transition-colors self-end sm:self-auto group"
           >
             <span className="border-b border-transparent group-hover:border-[#D6A146] transition-colors">
               View all categories
@@ -66,7 +66,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({
 
           <div
             ref={trackRef}
-            className="flex gap-5 sm:gap-6 lg:gap-7 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-3 px-1 no-scrollbar"
+            className="flex gap-3 sm:gap-4 lg:gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-3 px-1 no-scrollbar"
           >
             {CATEGORIES.map((category) => (
               <button
@@ -77,8 +77,8 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({
                 className="group shrink-0 snap-start w-[84px] sm:w-[100px] lg:w-[112px] flex flex-col items-center gap-3 focus-visible:outline-none"
               >
                 <span
-                  className="relative w-[84px] h-[84px] sm:w-[100px] sm:h-[100px] lg:w-[112px] lg:h-[112px] rounded-full overflow-hidden bg-white
-                             p-[3px] ring-1 ring-[#D6A146]/30 group-hover:ring-2 group-hover:ring-[#D6A146]
+                  className="relative w-[87px] h-[87px] sm:w-[100px] sm:h-[100px] lg:w-[120px] lg:h-[120px] rounded-full overflow-hidden bg-white
+                             p-[1px]
                              shadow-[0_4px_14px_rgba(31,81,54,0.08)] group-hover:shadow-[0_8px_20px_rgba(214,161,70,0.25)]
                              transition-all duration-300 group-hover:-translate-y-1"
                 >
