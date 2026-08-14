@@ -190,11 +190,7 @@ export const BestsellersPage: React.FC<BestsellersPageProps> = ({
                       loading="lazy"
                     />
 
-                    {/* Rank Badge */}
-                    <div className="absolute top-2 left-2 bg-[#D6A146] text-[#1D1D1D] text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs font-btn flex items-center gap-1">
-                      <Star className="w-2.5 h-2.5 fill-[#1D1D1D]" />
-                      <span>#{idx + 1} Best Seller</span>
-                    </div>
+
 
                     {/* Discount Badge */}
                     {discount > 0 && (

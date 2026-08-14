@@ -141,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </div>
             <div>
-              <div className="font-heading text-2xl sm:text-3xl font-bold tracking-wide text-white flex items-center gap-1">
+              <div className=" text-2xl sm:text-3xl font-semibold tracking-wide text-white flex items-center gap-1">
                 ENU <span className="text-[#D6A146] font-light">FOODS</span>
               </div>
               <div className="text-[10px] tracking-widest uppercase text-[#D6A146] font-body font-medium -mt-1">
@@ -310,7 +310,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Right Action Icons & CTA Button */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 md:gap-3">
             {/* Quick Search */}
             <button
               id="nav-search-button"

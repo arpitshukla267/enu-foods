@@ -88,10 +88,7 @@ export const ProductCatalogPage: React.FC<ProductCatalogPageProps> = ({
       {/* Banner */}
       <div className="bg-[#1E3A2B] text-white py-10 sm:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10 text-center max-w-3xl">
-          <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-[#D6A146] font-btn bg-[#D6A146]/20 px-3 py-1 rounded-full border border-[#D6A146]/30 mb-3">
-            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> 100% Pure Cold
-            Ground Masalas
-          </span>
+          
           <h1 className="font-heading text-3xl sm:text-5xl font-bold">
             Our Authentic Spice Range
           </h1>

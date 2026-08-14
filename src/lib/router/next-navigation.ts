@@ -66,5 +66,17 @@ export function useParams<T extends Record<string, string | string[]>>(): T {
     return { productId: productMatch[1] } as unknown as T;
   }
 
+  // Extract params for /recipes/[recipeId]
+  const recipeMatch = pathname.match(/^\/recipes\/([^/]+)/);
+  if (recipeMatch) {
+    return { recipeId: recipeMatch[1] } as unknown as T;
+  }
+
+  // Extract params for /combos/[comboId]
+  const comboMatch = pathname.match(/^\/combos\/([^/]+)/);
+  if (comboMatch) {
+    return { comboId: comboMatch[1] } as unknown as T;
+  }
+
   return {} as T;
 }

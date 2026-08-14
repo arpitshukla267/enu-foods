@@ -42,7 +42,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
     <section className="py-8 lg:py-20 bg-[#F2ECDD] text-left">
       <div className="max-w-[95vw] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-10 lg:mb-12">
+        <div className="text-center mb-6 lg:mb-12">
           <h2
             className="text-3xl sm:text-4xl lg:text-[2.75rem] text-[#1F5136] mt-2 font-semibold">
             New Arrivals

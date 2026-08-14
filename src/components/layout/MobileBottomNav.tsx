@@ -1,6 +1,13 @@
 import React from 'react';
 import { NavigationPage } from '../../types';
-import { Home, Flame, ChefHat, Tag, User } from 'lucide-react';
+import {
+  Home,
+  Flame,
+  Tag,
+  ChefHat,
+  PackagePlus,
+  TrendingUp,
+} from 'lucide-react';
 
 interface MobileBottomNavProps {
   currentPage: NavigationPage;
@@ -13,73 +20,94 @@ interface MobileBottomNavProps {
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   currentPage,
   onNavigate,
-  onOpenAuth,
 }) => {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#1E3A2B] text-white border-t border-[#D6A146]/30 shadow-2xl px-2 py-1.5 flex items-center justify-around font-btn">
-      
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#1E3A2B] text-white border-t border-[#D6A146]/30 shadow-2xl px-1 py-1.5 flex items-center justify-around">
+
       {/* Home */}
-      <button 
+      <button
         onClick={() => onNavigate('home')}
-        className={`flex flex-col items-center py-1 px-2.5 rounded-xl transition-colors ${
-          currentPage === 'home' ? 'text-[#D6A146] font-bold bg-white/10' : 'text-gray-300 hover:text-white'
+        className={`flex flex-col items-center py-1.5 px-2 rounded-lg transition-colors ${
+          currentPage === 'home'
+            ? 'text-[#D6A146] font-bold bg-white/10'
+            : 'text-gray-300 hover:text-white'
         }`}
       >
         <Home className="w-5 h-5" />
-        <span className="text-[10px] mt-0.5">Home</span>
+        <span className="text-[9px] mt-0.5">Home</span>
       </button>
 
       {/* Spices */}
-      <button 
+      <button
         onClick={() => onNavigate('products')}
-        className={`flex flex-col items-center py-1 px-2.5 rounded-xl transition-colors ${
-          currentPage === 'products' || currentPage === 'product-detail' ? 'text-[#D6A146] font-bold bg-white/10' : 'text-gray-300 hover:text-white'
+        className={`flex flex-col items-center py-1.5 px-2 rounded-lg transition-colors ${
+          currentPage === 'products' ||
+          currentPage === 'product-detail'
+            ? 'text-[#D6A146] font-bold bg-white/10'
+            : 'text-gray-300 hover:text-white'
         }`}
       >
         <Flame className="w-5 h-5" />
-        <span className="text-[10px] mt-0.5">Spices</span>
+        <span className="text-[9px] mt-0.5">Spices</span>
       </button>
 
       {/* Super Saver */}
-      <button 
+      <button
         onClick={() => onNavigate('combos')}
-        className={`flex flex-col items-center py-1 px-2.5 rounded-xl transition-colors ${
-          currentPage === 'combos' ? 'text-[#D6A146] font-bold bg-white/10' : 'text-gray-300 hover:text-white'
+        className={`flex flex-col items-center py-1.5 px-2 rounded-lg transition-colors ${
+          currentPage === 'combos'
+            ? 'text-[#D6A146] font-bold bg-white/10'
+            : 'text-gray-300 hover:text-white'
         }`}
       >
         <Tag className="w-5 h-5" />
-        <span className="text-[10px] mt-0.5 whitespace-nowrap">Super Saver</span>
+        <span className="text-[9px] mt-0.5 whitespace-nowrap">
+          Super Saver
+        </span>
       </button>
 
       {/* Recipes */}
-      <button 
+      <button
         onClick={() => onNavigate('recipes')}
-        className={`flex flex-col items-center py-1 px-2.5 rounded-xl transition-colors ${
-          currentPage === 'recipes' || currentPage === 'recipe-detail' ? 'text-[#D6A146] font-bold bg-white/10' : 'text-gray-300 hover:text-white'
+        className={`flex flex-col items-center py-1.5 px-2 rounded-lg transition-colors ${
+          currentPage === 'recipes' ||
+          currentPage === 'recipe-detail'
+            ? 'text-[#D6A146] font-bold bg-white/10'
+            : 'text-gray-300 hover:text-white'
         }`}
       >
         <ChefHat className="w-5 h-5" />
-        <span className="text-[10px] mt-0.5">Recipes</span>
+        <span className="text-[9px] mt-0.5">Recipes</span>
       </button>
 
-      {/* Account */}
-      <button 
-        onClick={() => {
-          const storedUser = localStorage.getItem("enu_user");
-          if (storedUser) {
-            onNavigate('orders');
-          } else if (onOpenAuth) {
-            onOpenAuth();
-          } else {
-            onNavigate('login');
-          }
-        }}
-        className={`flex flex-col items-center py-1 px-2.5 rounded-xl transition-colors ${
-          currentPage === 'login' || currentPage === 'signup' || currentPage === 'orders' ? 'text-[#D6A146] font-bold bg-white/10' : 'text-gray-300 hover:text-white'
+      {/* New Arrival */}
+      <button
+        onClick={() => onNavigate('new-arrivals')}
+        className={`flex flex-col items-center py-1.5 px-2 rounded-lg transition-colors ${
+          currentPage === 'new-arrivals'
+            ? 'text-[#D6A146] font-bold bg-white/10'
+            : 'text-gray-300 hover:text-white'
         }`}
       >
-        <User className="w-5 h-5" />
-        <span className="text-[10px] mt-0.5">Account</span>
+        <PackagePlus className="w-5 h-5" />
+        <span className="text-[9px] mt-0.5 whitespace-nowrap">
+          New Arrival
+        </span>
+      </button>
+
+      {/* Best Seller */}
+      <button
+        onClick={() => onNavigate('bestsellers')}
+        className={`flex flex-col items-center py-1.5 px-2 rounded-lg transition-colors ${
+          currentPage === 'best-sellers'
+            ? 'text-[#D6A146] font-bold bg-white/10'
+            : 'text-gray-300 hover:text-white'
+        }`}
+      >
+        <TrendingUp className="w-5 h-5" />
+        <span className="text-[9px] mt-0.5 whitespace-nowrap">
+          Best Seller
+        </span>
       </button>
 
     </nav>

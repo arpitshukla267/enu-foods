@@ -41,6 +41,8 @@ import { PrivacyPolicyPage } from "./components/pages/PrivacyPolicyPage";
 import { TermsOfServicePage } from "./components/pages/TermsOfServicePage";
 import { RecipesPage } from "./components/pages/RecipesPage";
 import { CombosPage } from "./components/pages/CombosPage";
+import { ComboDetailPage } from "./components/pages/ComboDetailPage";
+import { COMBOS } from "./data/combosData";
 import { BestsellersPage } from "./components/pages/BestsellersPage";
 import { NewArrivalsPage } from "./components/pages/NewArrivalsPage";
 
@@ -163,9 +165,11 @@ export default function App() {
   
   let activeProductId: string | undefined = undefined;
   let activeRecipeId: string | undefined = undefined;
+  let activeComboId: string | undefined = undefined;
   
   const productMatch = routingPathname.match(/^\/products\/([^/]+)/);
   const recipeMatch = routingPathname.match(/^\/recipes\/([^/]+)/);
+  const comboMatch = routingPathname.match(/^\/combos\/([^/]+)/);
   
   if (productMatch) {
     currentPage = "product-detail";
@@ -177,6 +181,9 @@ export default function App() {
     activeRecipeId = recipeMatch[1];
   } else if (routingPathname === "/recipes") {
     currentPage = "recipes";
+  } else if (comboMatch) {
+    currentPage = "combo-detail";
+    activeComboId = comboMatch[1];
   } else if (routingPathname === "/combos") {
     currentPage = "combos";
   } else if (routingPathname === "/bestsellers") {
@@ -425,6 +432,19 @@ export default function App() {
     }
 
     if (page === "combos") {
+      if (productId) {
+        router.push(`/combos/${productId}`);
+        return;
+      }
+      router.push("/combos");
+      return;
+    }
+
+    if (page === "combo-detail") {
+      if (productId) {
+        router.push(`/combos/${productId}`);
+        return;
+      }
       router.push("/combos");
       return;
     }
@@ -631,7 +651,26 @@ export default function App() {
         {currentPage === "combos" && (
           <CombosPage
             onNavigate={handleNavigate}
+            onSelectCombo={(combo) => {
+              router.push(`/combos/${combo.id}`);
+            }}
             onAddToCart={handleAddToCart}
+          />
+        )}
+
+        {/* ===================================================
+            COMBO DETAIL
+        =================================================== */}
+
+        {currentPage === "combo-detail" && activeComboId && (
+          <ComboDetailPage
+            combo={COMBOS.find((c) => c.id === activeComboId) || COMBOS[0]}
+            onBack={() => router.push("/combos")}
+            onNavigate={handleNavigate}
+            onAddToCart={handleAddToCart}
+            onSelectRecipe={(recipeId: string) => {
+              router.push(`/recipes/${recipeId}`);
+            }}
           />
         )}
 

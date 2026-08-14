@@ -98,4 +98,29 @@ export interface ManufacturingStep {
   detailPoints: string[];
 }
 
-export type NavigationPage = 'home' | 'products' | 'product-detail' | 'recipes' | 'recipe-detail' | 'combos' | 'bestsellers' | 'new-arrivals' | 'story' | 'cart' | 'contact' | 'checkout' | 'login' | 'signup' | 'orders' | 'privacy' | 'terms';
+export interface ComboProductItem {
+  product: Product;
+  weight: string;
+  role?: string;
+  description?: string;
+  keyNotes?: string[];
+}
+
+export interface ComboItem {
+  id: string;
+  title: string;
+  subtitle?: string;
+  category: "daily" | "regional" | "feast" | "all-in-one";
+  tag: string;
+  badge?: string;
+  description: string;
+  fullStory?: string;
+  image: string;
+  items: ComboProductItem[];
+  discountPercent: number;
+  highlights?: string[];
+  idealRecipes?: string[];
+  chefTip?: string;
+}
+
+export type NavigationPage = 'home' | 'products' | 'product-detail' | 'recipes' | 'recipe-detail' | 'combos' | 'combo-detail' | 'bestsellers' | 'new-arrivals' | 'story' | 'cart' | 'contact' | 'checkout' | 'login' | 'signup' | 'orders' | 'privacy' | 'terms';
