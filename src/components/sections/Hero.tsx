@@ -175,7 +175,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
-        className="relative h-[30vh] w-full overflow-hidden md:h-[35vh] lg:h-[50vh]"
+        className="relative h-[45vh] w-full overflow-hidden md:h-[35vh] lg:h-[50vh]"
       >
         {/* ── FULL-BLEED BANNER IMAGE ── */}
         <AnimatePresence custom={direction} mode="popLayout" initial={false}>
