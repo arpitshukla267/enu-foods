@@ -16,8 +16,8 @@ export function navigate(url: string, replace = false) {
 
 export function useRouter() {
   return {
-    push: (url: string) => navigate(url, false),
-    replace: (url: string) => navigate(url, true),
+    push: (url: string, options?: { scroll?: boolean }) => navigate(url, false),
+    replace: (url: string, options?: { scroll?: boolean }) => navigate(url, true),
     back: () => {
       if (typeof window !== 'undefined') {
         window.history.back();

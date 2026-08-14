@@ -36,11 +36,11 @@ export const TrustSection: React.FC = () => {
         </div>
 
         {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 -mt-36 md:mt-0 lg:grid-cols-4 md:gap-2 lg:gap-6 max-w-[95vw] lg:max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 -mt-36 md:mt-0 lg:grid-cols-4 gap-y-12 md:gap-2 lg:gap-6 max-w-[95vw] lg:max-w-7xl mx-auto">
           {TRUST_PILLARS.map((pillar, index) => (
             <div
               key={pillar.title}
-              className="sticky top-[33.33vh] md:static bg-white rounded-2xl p-6 shadow-md hover:shadow-xl border border-[#D6A146]/20 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col items-center text-center group relative overflow-hidden"
+              className="sticky top-[36.33vh] md:static bg-white rounded-2xl p-6 shadow-md hover:shadow-xl border border-[#D6A146]/20 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col items-center text-center group relative overflow-hidden"
             >
               {/* Top Accent Gradient Border */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#284C38] via-[#D6A146] to-[#C86D39] opacity-0 group-hover:opacity-100 transition-opacity" />

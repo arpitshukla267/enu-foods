@@ -116,7 +116,7 @@ export function CartPopup({
     pathname?.startsWith("/recipes/") || pathname?.startsWith("/products/");
   
   const isExcludedPage =
-    excludedPaths.includes(pathname || "") || isDynamicExcludedPage;
+    excludedPaths.includes(pathname || "") || isDynamicExcludedPage || pathname?.endsWith("/cart");
 
   // Detect open filter/sort panels and modals
   useEffect(() => {
@@ -246,7 +246,7 @@ export function CartPopup({
     if (desktopEl) ro.observe(desktopEl);
 
     return () => ro.disconnect();
-  }, [recentItems, totalItems, newItemAdded]);
+  }, [recentItems, totalItems, newItemAdded, shouldShow]);
 
   if (!shouldShow) return null;
 

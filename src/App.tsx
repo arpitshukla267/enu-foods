@@ -77,41 +77,46 @@ export default function App() {
   // CURRENT PAGE FROM URL
   // =========================================================
 
+  // Strip trailing "/cart" if present for page routing, so the background page is preserved
+  let routingPathname = pathname || "/";
+  if (routingPathname.endsWith("/cart") && routingPathname !== "/cart") {
+    routingPathname = routingPathname.slice(0, -5); // remove "/cart"
+  } else if (routingPathname === "/cart") {
+    routingPathname = "/";
+  }
+
   let currentPage: NavigationPage = "home";
   
   let activeProductId: string | undefined = undefined;
   
-  const productMatch = pathname?.match(/^\/products\/([^/]+)/);
+  const productMatch = routingPathname.match(/^\/products\/([^/]+)/);
   
   if (productMatch) {
     currentPage = "product-detail";
     activeProductId = productMatch[1];
-  } else if (pathname === "/products") {
+  } else if (routingPathname === "/products") {
     currentPage = "products";
-  } else if (pathname === "/recipes") {
+  } else if (routingPathname === "/recipes") {
     currentPage = "recipes";
-  } else if (pathname === "/story") {
+  } else if (routingPathname === "/story") {
     currentPage = "story";
-  } else if (pathname === "/contact") {
+  } else if (routingPathname === "/contact") {
     currentPage = "contact";
+  } else if (routingPathname === "/checkout") {
+    currentPage = "checkout";
   }
 
   // =========================================================
   // CART ROUTE
   // =========================================================
 
-  const isCartRoute = pathname === "/cart";
+  const isCartRoute = pathname?.endsWith("/cart") || false;
 
   /*
-   * Whenever URL becomes /cart, open the drawer.
-   *
-   * This also handles:
-   * /cart opened directly
-   * browser refresh on /cart
-   * router.push("/cart")
+   * Whenever URL ends with /cart, open the drawer.
    */
   useEffect(() => {
-    if (pathname === "/cart") {
+    if (pathname?.endsWith("/cart")) {
       setIsCartOpen(true);
     }
   }, [pathname]);
@@ -120,7 +125,7 @@ export default function App() {
    * If URL changes away from /cart, make sure drawer is closed.
    */
   useEffect(() => {
-    if (pathname !== "/cart") {
+    if (!pathname?.endsWith("/cart")) {
       setIsCartOpen(false);
     }
   }, [pathname]);
@@ -147,9 +152,10 @@ export default function App() {
   // =========================================================
 
   const openCart = () => {
-    if (pathname !== "/cart") {
+    if (!pathname?.endsWith("/cart")) {
       previousPathRef.current = pathname;
-      router.push("/cart", { scroll: false });
+      const targetPath = pathname === "/" ? "/cart" : `${pathname}/cart`;
+      router.push(targetPath, { scroll: false });
     }
   
     setIsCartOpen(true);
@@ -162,14 +168,15 @@ export default function App() {
   const closeCart = () => {
     setIsCartOpen(false);
   
-    if (pathname === "/cart") {
+    if (pathname?.endsWith("/cart")) {
       if (previousPathRef.current) {
         const previousPath = previousPathRef.current;
         previousPathRef.current = null;
   
         router.push(previousPath, { scroll: false });
       } else {
-        router.push("/", { scroll: false });
+        const targetPath = pathname === "/cart" ? "/" : pathname.slice(0, -5);
+        router.push(targetPath, { scroll: false });
       }
     }
   };
@@ -328,6 +335,11 @@ export default function App() {
       return;
     }
 
+    if (page === "checkout") {
+      router.push("/checkout");
+      return;
+    }
+
     /*
      * Cart
      */
@@ -483,6 +495,17 @@ export default function App() {
         =================================================== */}
 
         {currentPage === "contact" && <ContactPage />}
+
+        {/* ===================================================
+            CHECKOUT
+        =================================================== */}
+
+        {currentPage === "checkout" && (
+          <CheckoutWizard
+            cartItems={cartItems}
+            onClearCart={handleClearCart}
+          />
+        )}
       </main>
 
       {/* =====================================================
@@ -535,20 +558,11 @@ export default function App() {
         onAddToCart={handleAddToCart}
         onProceedToCheckout={() => {
           setIsCartOpen(false);
-          setIsCheckoutOpen(true);
+          router.push("/checkout");
         }}
       />
 
-      {/* =====================================================
-          CHECKOUT
-      ===================================================== */}
-
-      <CheckoutWizard
-        isOpen={isCheckoutOpen}
-        onClose={() => setIsCheckoutOpen(false)}
-        cartItems={cartItems}
-        onClearCart={handleClearCart}
-      />
+      {/* Checkout modal has been moved inline to main content as a routeable page */}
     </div>
   );
 }
