@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Search, ChevronDown, Leaf, PhoneCall, Sparkles, ShoppingBag } from 'lucide-react';
-import { NavigationPage } from '../types';
-import { CATEGORIES } from '../data/mockData';
+import { Search, ChevronDown, Leaf, PhoneCall, ShoppingBag, User, LogOut } from 'lucide-react';
+import { NavigationPage } from '../../types';
+import { CATEGORIES } from '../../data/mockData';
 
 interface NavbarProps {
   currentPage: NavigationPage;
@@ -9,13 +9,33 @@ interface NavbarProps {
   onOpenSearch: () => void;
   cartCount: number;
   onOpenCart: () => void;
+  currentUser?: { name: string; email: string; phone: string } | null;
+  onLogout?: () => void;
+  onOpenAuth?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenSearch, cartCount, onOpenCart }) => {
+const OFFERS: string[] = [
+  "100% Organic & Cold Ground Spices",
+  "No Preservatives • No Artificial Colours",
+  "Flat 10% Off On First Order",
+  "Free Shipping On Orders Above ₹499",
+  "FSSAI Certified Purity Guaranteed",
+];
+
+export const Navbar: React.FC<NavbarProps> = ({
+  currentPage,
+  onNavigate,
+  onOpenSearch,
+  cartCount,
+  onOpenCart,
+  currentUser,
+  onLogout,
+  onOpenAuth,
+}) => {
 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,40 +52,38 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
 
   const handleNavClick = (page: NavigationPage, categoryId?: string, productId?: string) => {
     onNavigate(page, categoryId, productId);
-    setIsMobileMenuOpen(false);
     setIsMegaMenuOpen(false);
   };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       {/* Top Banner for Premium Identity */}
-      <div className="bg-[#1E3A2B] text-[9px] md:text-xs py-2 md:py-1.5 px-2 md:px-4 text-[#F7F5EF]/90 border-b border-[#D6A146]/20 font-body">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
-          {/* Left Content */}
-          <div className="flex items-center min-w-0 flex-1">
-            <span className="flex items-center gap-1 md:gap-1.5 text-[#D6A146] md:font-medium whitespace-nowrap">
-              <Sparkles className="hidden md:block w-3.5 h-3.5 shrink-0" />
-
-              <span className="md:hidden">100% Organic & Cold Ground</span>
-
-              <span className="hidden md:inline">
-                100% Organic & Cold Ground Spices
-              </span>
-            </span>
-
-            <span className="text-white/30 mx-2 shrink-0">|</span>
-
-            <span className="text-white/70 whitespace-nowrap truncate">
-              <span className="md:hidden">No Preservatives</span>
-
-              <span className="hidden md:inline">
-                No Preservatives • No Artificial Colours
-              </span>
-            </span>
+      <div className="bg-[#1E3A2B] text-[9px] md:text-xs py-2 md:py-3.5 px-2 md:px-4 text-[#F7F5EF]/90 border-b border-[#D6A146]/20 font-body overflow-hidden">
+        <div className="max-w-[100vw] mx-auto flex items-center justify-between gap-2">
+          {/* Left Content — infinite offers marquee */}
+          <div
+            className="flex-1 min-w-0 overflow-hidden"
+            style={{
+              maskImage:
+                "linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%)",
+            }}
+          >
+            <div className="offer-track flex items-center w-max">
+              {[...OFFERS, ...OFFERS].map((offer, i) => (
+                <span
+                  key={i}
+                  className="flex items-center gap-1 md:gap-1.5 whitespace-nowrap shrink-0 px-4 md:px-6"
+                >
+                  <span className="text-[#D6A146] md:font-medium">{offer}</span>
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Right Content */}
-          <div className="flex items-center shrink-0">
+          {/* Right Content — static */}
+          <div className="flex items-center shrink-0 pl-3">
             <span className="hidden md:inline text-[#D6A146] font-serif italic mr-4">
               Pure By Nature. Trusted By You.
             </span>
@@ -88,6 +106,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
           </div>
         </div>
       </div>
+
+      <style>{`
+        .offer-track {
+          animation: offer-scroll 22s linear infinite;
+        }
+        @keyframes offer-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
 
       {/* Main Glass Header */}
       <nav
@@ -171,12 +199,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
                       <span className="font-heading text-lg font-semibold text-[#D6A146]">
                         Spice Categories
                       </span>
-                      <button
-                        onClick={() => handleNavClick("products")}
-                        className="text-xs text-[#D6A146] hover:underline"
-                      >
-                        View All Products &rarr;
-                      </button>
+                      <div className="flex items-center gap-2.5">
+                        <button
+                          onClick={() => handleNavClick("bestsellers")}
+                          className="text-xs text-[#D6A146] hover:underline font-medium"
+                        >
+                          Bestsellers
+                        </button>
+                        <span className="text-white/30 text-xs">·</span>
+                        <button
+                          onClick={() => handleNavClick("new-arrivals")}
+                          className="text-xs text-[#D6A146] hover:underline font-medium"
+                        >
+                          New Arrivals
+                        </button>
+                      </div>
                     </div>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                       {CATEGORIES.slice(0, 8).map((cat) => (
@@ -227,16 +264,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
             </div>
 
             <button
-              id="nav-link-story"
-              onClick={() => handleNavClick("story")}
+              id="nav-link-combos"
+              onClick={() => handleNavClick("combos")}
               className={`text-sm font-medium transition-colors relative py-1 font-body ${
-                currentPage === "story"
+                currentPage === "combos"
                   ? "text-[#D6A146]"
                   : "text-white/90 hover:text-[#D6A146]"
               }`}
             >
-              Our Story
-              {currentPage === "story" && (
+              Super Savers
+              {currentPage === "combos" && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D6A146] rounded-full" />
               )}
             </button>
@@ -245,13 +282,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
               id="nav-link-recipes"
               onClick={() => handleNavClick("recipes")}
               className={`text-sm font-medium transition-colors relative py-1 font-body ${
-                currentPage === "recipes"
+                currentPage === "recipes" || currentPage === "recipe-detail"
                   ? "text-[#D6A146]"
                   : "text-white/90 hover:text-[#D6A146]"
               }`}
             >
               Recipes
-              {currentPage === "recipes" && (
+              {(currentPage === "recipes" || currentPage === "recipe-detail") && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D6A146] rounded-full" />
               )}
             </button>
@@ -299,6 +336,61 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
               )}
             </button>
 
+            {/* User Account / Profile Menu */}
+            <div className="relative">
+              {currentUser ? (
+                <button
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="w-9 h-9 rounded-full bg-[#D6A146] text-[#1D1D1D] font-bold text-sm flex items-center justify-center border border-[#D6A146]/50 shadow-md hover:scale-105 transition-transform"
+                  title="Account Menu"
+                >
+                  {currentUser.name.charAt(0).toUpperCase()}
+                </button>
+              ) : (
+                <button
+                  onClick={() => onOpenAuth ? onOpenAuth() : handleNavClick("login")}
+                  className="p-2 rounded-full text-white/90 hover:text-[#D6A146] hover:bg-white/10 transition-colors"
+                  title="Sign In"
+                >
+                  <User className="w-5 h-5" />
+                </button>
+              )}
+
+              {/* User Dropdown Menu */}
+              {isUserMenuOpen && currentUser && (
+                <div className="absolute right-0 top-full mt-2 w-48 bg-[#1E3A2B] border border-[#D6A146]/30 rounded-xl shadow-2xl overflow-hidden z-50 text-white py-1">
+                  <div className="px-4 py-2 border-b border-white/10">
+                    <p className="text-xs font-semibold text-[#D6A146] truncate">
+                      {currentUser.name}
+                    </p>
+                    <p className="text-[10px] text-gray-300 truncate">
+                      {currentUser.email}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setIsUserMenuOpen(false);
+                      handleNavClick("orders");
+                    }}
+                    className="w-full text-left px-4 py-2 text-xs font-medium hover:bg-[#284C38] hover:text-[#D6A146] transition-colors flex items-center gap-2"
+                  >
+                    <ShoppingBag className="w-3.5 h-3.5" />
+                    My Orders
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsUserMenuOpen(false);
+                      if (onLogout) onLogout();
+                    }}
+                    className="w-full text-left px-4 py-2 text-xs font-medium hover:bg-[#284C38] text-red-400 hover:text-red-300 transition-colors flex items-center gap-2 border-t border-white/5"
+                  >
+                    <LogOut className="w-3.5 h-3.5" />
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
+
             {/* Explore Products CTA */}
             <button
               id="nav-cta-button"
@@ -307,111 +399,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
             >
               <span>Explore Range</span>
             </button>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              id="mobile-menu-button"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-white hover:text-[#D6A146] hover:bg-white/10 transition-colors relative w-10 h-10 flex items-center justify-center"
-              aria-label="Toggle Navigation Menu"
-            >
-              <Menu
-                className={`w-6 h-6 absolute transition-all duration-300 ${
-                  isMobileMenuOpen
-                    ? "opacity-0 rotate-90 scale-50"
-                    : "opacity-100 rotate-0 scale-100"
-                }`}
-              />
-              <X
-                className={`w-6 h-6 absolute transition-all duration-300 ${
-                  isMobileMenuOpen
-                    ? "opacity-100 rotate-0 scale-100"
-                    : "opacity-0 -rotate-90 scale-50"
-                }`}
-              />
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Drawer */}
-        <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="bg-[#1E3A2B] border-t border-[#D6A146]/20 px-4 pt-4 pb-6 mt-3 space-y-3">
-            <button
-              onClick={() => handleNavClick("home")}
-              className={`w-full text-left py-2.5 px-3 rounded-lg text-base font-medium font-body flex items-center justify-between transition-all duration-300 ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "-translate-y-2 opacity-0"
-              } ${currentPage === "home" ? "bg-[#284C38] text-[#D6A146]" : "text-white/90 hover:bg-[#284C38]/50"}`}
-            >
-              <span>Home</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick("products")}
-              className={`w-full text-left py-2.5 px-3 rounded-lg text-base font-medium font-body flex items-center justify-between transition-all duration-300 delay-[50ms] ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "-translate-y-2 opacity-0"
-              } ${currentPage === "products" ? "bg-[#284C38] text-[#D6A146]" : "text-white/90 hover:bg-[#284C38]/50"}`}
-            >
-              <span>Our Spices & Masalas</span>
-              <span className="text-xs bg-[#D6A146]/20 text-[#D6A146] px-2 py-0.5 rounded-full">
-                All Products
-              </span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick("story")}
-              className={`w-full text-left py-2.5 px-3 rounded-lg text-base font-medium font-body flex items-center justify-between transition-all duration-300 delay-[100ms] ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "-translate-y-2 opacity-0"
-              } ${currentPage === "story" ? "bg-[#284C38] text-[#D6A146]" : "text-white/90 hover:bg-[#284C38]/50"}`}
-            >
-              <span>Our Story & Manufacturing</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick("recipes")}
-              className={`w-full text-left py-2.5 px-3 rounded-lg text-base font-medium font-body flex items-center justify-between transition-all duration-300 delay-[150ms] ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "-translate-y-2 opacity-0"
-              } ${currentPage === "recipes" ? "bg-[#284C38] text-[#D6A146]" : "text-white/90 hover:bg-[#284C38]/50"}`}
-            >
-              <span>Authentic Recipes</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick("contact")}
-              className={`w-full text-left py-2.5 px-3 rounded-lg text-base font-medium font-body flex items-center justify-between transition-all duration-300 delay-[200ms] ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "-translate-y-2 opacity-0"
-              } ${currentPage === "contact" ? "bg-[#284C38] text-[#D6A146]" : "text-white/90 hover:bg-[#284C38]/50"}`}
-            >
-              <span>Contact Us</span>
-            </button>
-
-            <div
-              className={`pt-3 border-t border-white/10 transition-all duration-300 delay-[250ms] ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "-translate-y-2 opacity-0"
-              }`}
-            >
-              <button
-                onClick={() => handleNavClick("products")}
-                className="w-full bg-[#D6A146] text-[#1D1D1D] font-semibold text-center py-3 rounded-lg font-btn shadow-md"
-              >
-                Explore Full Range
-              </button>
-            </div>
           </div>
         </div>
       </nav>

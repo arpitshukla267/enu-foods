@@ -12,8 +12,8 @@
   --color-enu-dark: #1D1D1D;
   --color-enu-gray: #6B7280;
 
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Poppins', system-ui, sans-serif;
+  --font-sans: 'Poppins', system-ui, sans-serif;
   --font-button: 'Poppins', system-ui, sans-serif;
 }
 

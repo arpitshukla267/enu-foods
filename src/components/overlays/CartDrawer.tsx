@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CartItem, Product } from "../types";
+import { CartItem, Product } from "../../types";
 import {
   X,
   Trash2,
@@ -12,7 +12,7 @@ import {
   ShieldCheck,
   Check,
 } from "lucide-react";
-import { PRODUCTS } from "../data/mockData";
+import { PRODUCTS } from "../../data/mockData";
 
 interface CartDrawerProps {
   isOpen: boolean;

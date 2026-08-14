@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Search, X, Sparkles, ArrowRight } from 'lucide-react';
-import { PRODUCTS, RECIPES, CATEGORIES } from '../data/mockData';
-import { Product, Recipe, NavigationPage } from '../types';
+import { PRODUCTS, RECIPES, CATEGORIES } from '../../data/mockData';
+import { Product, Recipe, NavigationPage } from '../../types';
 
 interface SearchOverlayModalProps {
   isOpen: boolean;

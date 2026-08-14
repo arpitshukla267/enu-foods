@@ -11,7 +11,7 @@ import {
   Utensils,
   Timer,
 } from "lucide-react";
-import { Recipe } from "../types";
+import { Recipe } from "../../types";
 
 interface RecipeDetailPageProps {
   recipe: Recipe;
@@ -51,7 +51,6 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
 
             {/* Spice Badge */}
             <div className="absolute top-5 left-5 bg-[#1E3A2B]/90 backdrop-blur-md text-[#D6A146] px-4 py-2 rounded-full border border-[#D6A146]/40 flex items-center gap-2 text-xs font-semibold font-btn">
-              <Sparkles className="w-4 h-4" />
               <span>ENU Signature Recipe</span>
             </div>
 

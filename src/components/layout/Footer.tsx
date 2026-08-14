@@ -1,7 +1,7 @@
 import React from 'react';
 import { Leaf, Phone, Mail, MapPin, Instagram, Facebook, Youtube, Twitter } from 'lucide-react';
-import { CATEGORIES, RECIPES } from '../data/mockData';
-import { NavigationPage } from '../types';
+import { CATEGORIES, RECIPES } from '../../data/mockData';
+import { NavigationPage } from '../../types';
 
 interface FooterProps {
   onNavigate: (page: NavigationPage, categoryId?: string) => void;
@@ -78,8 +78,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('story')} className="hover:text-white transition-colors">
-                  Manufacturing Story
+                <button onClick={() => onNavigate('bestsellers')} className="hover:text-white transition-colors">
+                  Bestsellers
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('new-arrivals')} className="hover:text-white transition-colors">
+                  New Arrivals
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('combos')} className="hover:text-white transition-colors">
+                  Super Saver Combos
                 </button>
               </li>
               <li>
@@ -139,9 +149,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             © {new Date().getFullYear()} <strong className="text-white font-medium">ENU Foods</strong>. All rights reserved. Pure By Nature. Trusted By You.
           </div>
           <div className="flex items-center gap-6">
-            <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#sitemap" className="hover:text-white transition-colors">FSSAI License #10021021000542</a>
+            <button onClick={() => onNavigate('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
+            <button onClick={() => onNavigate('terms')} className="hover:text-white transition-colors">Terms of Service</button>
+            <span className="text-gray-600">FSSAI License #10021021000542</span>
           </div>
         </div>
 

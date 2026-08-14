@@ -1,6 +1,6 @@
 import React from 'react';
 import { Leaf, Droplets, Sparkles, Award } from 'lucide-react';
-import { TRUST_PILLARS } from '../data/mockData';
+import { TRUST_PILLARS } from '../../data/mockData';
 
 export const TrustSection: React.FC = () => {
   const getIcon = (iconName: string) => {
@@ -30,8 +30,9 @@ export const TrustSection: React.FC = () => {
           <span className="text-xs font-semibold uppercase tracking-widest text-[#C86D39] font-btn">
             Uncompromising Standards
           </span>
-          <h2 className="font-heading text-3xl sm:text-4xl font-semibold md:font-bold text-[#1D1D1D] mt-1">
-            Why ENU Foods Is Trusted By Every Household
+          <h2 className="text-3xl sm:text-4xl font-semibold text-[#1D1D1D] mt-1">
+            Why <span className="text-[#284C38]">ENU Foods</span> Is Trusted By
+            Every Household
           </h2>
         </div>
 
@@ -51,7 +52,7 @@ export const TrustSection: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h3 className="font-heading text-xl font-bold text-[#1D1D1D] mb-2 group-hover:text-[#284C38] transition-colors">
+              <h3 className="text-xl font-semibold text-[#1D1D1D] mb-2 group-hover:text-[#284C38] transition-colors">
                 {pillar.title}
               </h3>
 

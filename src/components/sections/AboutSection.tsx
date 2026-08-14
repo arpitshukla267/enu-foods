@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { TRADITION_IMAGE } from "../data/mockData";
+import { TRADITION_IMAGE } from "../../data/mockData";
 import {
   CheckCircle2,
   Sparkles,
@@ -7,7 +7,7 @@ import {
   ArrowRight,
   Award,
 } from "lucide-react";
-import { NavigationPage } from "../types";
+import { NavigationPage } from "../../types";
 
 interface AboutSectionProps {
   onNavigate: (page: NavigationPage) => void;
@@ -120,7 +120,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, isStoryP
               </div>
 
               {/* Wax-seal badge — visible at every breakpoint now, scaled down on mobile */}
-              <div className="absolute -top-5 -right-3 flex h-16 w-16 -rotate-6 flex-col items-center justify-center rounded-full border-2 border-[#D6A146] bg-[#284C38] text-white shadow-lg sm:-top-6 sm:-right-5 sm:h-20 sm:w-20">
+              {/* <div className="absolute -top-5 -right-3 flex h-16 w-16 -rotate-6 flex-col items-center justify-center rounded-full border-2 border-[#D6A146] bg-[#284C38] text-white shadow-lg sm:-top-6 sm:-right-5 sm:h-20 sm:w-20">
                 <Award className="h-4 w-4 text-[#D6A146] sm:h-5 sm:w-5" />
                 <span className="mt-0.5 font-heading text-sm font-bold leading-none text-[#D6A146] sm:text-base">
                   100%
@@ -128,7 +128,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, isStoryP
                 <span className="text-[6px] font-medium uppercase tracking-wider text-white/85 sm:text-[7px]">
                   Purity
                 </span>
-              </div>
+              </div> */}
             </div>
 
             {/* Caption bar — sits below the frame instead of covering the photo */}
@@ -151,8 +151,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, isStoryP
           </div>
 
           {/* Column 2: Content Right */}
-          <div className="space-y-6 text-left lg:col-span-6">
-            <div
+          <div className="space-y-6 text-left lg:col-span-6 lg:space-y-10">
+            {/* <div
               ref={badgeRef}
               style={{ transitionDelay: "0ms" }}
               className={`inline-flex items-center gap-2 rounded-full border border-[#284C38]/20 bg-[#284C38]/10 px-3.5 py-1 font-btn text-xs font-semibold uppercase tracking-wider text-[#284C38] ${getAnimClasses(
@@ -161,17 +161,17 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, isStoryP
             >
               <Shield className="h-3.5 w-3.5 text-[#D6A146]" />
               <span>Authentic Spice Artisans</span>
-            </div>
+            </div> */}
 
             <h2
               ref={headingRef}
               style={{ transitionDelay: "100ms" }}
-              className={`font-heading text-3xl font-bold leading-tight text-[#1D1D1D] sm:text-4xl lg:text-5xl ${getAnimClasses(
+              className={`font-heading text-3xl font-semibold leading-tight text-[#1D1D1D] sm:text-4xl lg:text-5xl ${getAnimClasses(
                 headingInView,
               )}`}
             >
               Crafted With Tradition.{" "}
-              <span className="block text-[#284C38] sm:inline sm:whitespace-nowrap">
+              <span className="block text-[#284C38]/90 sm:inline sm:whitespace-nowrap">
                 Trusted By Every Kitchen.
               </span>
             </h2>

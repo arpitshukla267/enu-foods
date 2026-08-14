@@ -3,33 +3,46 @@
 import React, { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-import { NavigationPage, Product, Recipe, CartItem } from "./types";
-import { PRODUCTS } from "./data/mockData";
+import { NavigationPage, Product, Recipe, CartItem, OrderDetails } from "./types";
+import { PRODUCTS, RECIPES } from "./data/mockData";
 
-import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
-import { TrustSection } from "./components/TrustSection";
-import { AboutSection } from "./components/AboutSection";
-import { ProductCategories } from "./components/ProductCategories";
-import { FeaturedProducts } from "./components/FeaturedProducts";
-import { WhyChooseUs } from "./components/WhyChooseUs";
-import { ManufacturingJourney } from "./components/ManufacturingJourney";
-import { RecipesSection } from "./components/RecipesSection";
-import { Testimonials } from "./components/Testimonials";
-import { Certifications } from "./components/Certifications";
-import { Footer } from "./components/Footer";
+import { Navbar } from "./components/layout/Navbar";
+import { Footer } from "./components/layout/Footer";
+import { StartupLoader } from "./components/layout/StartupLoader";
+import { MobileBottomNav } from "./components/layout/MobileBottomNav";
 
-import { ProductCatalogPage } from "./components/ProductCatalogPage";
+import { Hero } from "./components/sections/Hero";
+import { TrustSection } from "./components/sections/TrustSection";
+import { AboutSection } from "./components/sections/AboutSection";
+import { ProductCategories } from "./components/sections/ProductCategories";
+import { FeaturedProducts } from "./components/sections/FeaturedProducts";
+import { WhyChooseUs } from "./components/sections/WhyChooseUs";
+import { ManufacturingJourney } from "./components/sections/ManufacturingJourney";
+import { RecipesSection } from "./components/sections/RecipesSection";
+import { Testimonials } from "./components/sections/Testimonials";
+import { Certifications } from "./components/sections/Certifications";
+import { NewArrivals } from "./components/sections/NewArrivals";
+import { SuperSaverCombos } from "./components/sections/SuperSaverCombos";
+
+import { AuthWelcomeModal } from "./components/overlays/AuthWelcomeModal";
+import { SearchOverlayModal } from "./components/overlays/SearchOverlayModal";
+import { CartPopup } from "./components/overlays/CartPopup";
+
+import { ProductCatalogPage } from "./components/pages/ProductCatalogPage";
 import ProductDetailPageWrapper from "../app/products/[productId]/page";
-
-import { ContactPage } from "./components/ContactPage";
-
-import { SearchOverlayModal } from "./components/SearchOverlayModal";
-import { CartDrawer } from "./components/CartDrawer";
-import { CheckoutWizard } from "./components/CheckoutWizard";
-import { StartupLoader } from "./components/StartupLoader";
-import { MobileBottomNav } from "./components/MobileBottomNav";
-import { CartPopup } from "./components/CartPopup";
+import { ContactPage } from "./components/pages/ContactPage";
+import { CheckoutWizard } from "./components/pages/CheckoutWizard";
+import { LoginPage } from "./components/pages/LoginPage";
+import { SignupPage } from "./components/pages/SignupPage";
+import { OrderHistoryPage } from "./components/pages/OrderHistoryPage";
+import { RecipeDetailPage } from "./components/pages/RecipeDetailPage";
+import { CartDrawer } from "./components/overlays/CartDrawer";
+import { PrivacyPolicyPage } from "./components/pages/PrivacyPolicyPage";
+import { TermsOfServicePage } from "./components/pages/TermsOfServicePage";
+import { RecipesPage } from "./components/pages/RecipesPage";
+import { CombosPage } from "./components/pages/CombosPage";
+import { BestsellersPage } from "./components/pages/BestsellersPage";
+import { NewArrivalsPage } from "./components/pages/NewArrivalsPage";
 
 export default function App() {
   const router = useRouter();
@@ -46,6 +59,49 @@ export default function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // =========================================================
+  // USER & ORDER STATE
+  // =========================================================
+
+  const [currentUser, setCurrentUser] = useState<{ name: string; email: string; phone: string } | null>(null);
+  const [orders, setOrders] = useState<OrderDetails[]>([]);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("enu_user");
+    if (storedUser) {
+      try {
+        setCurrentUser(JSON.parse(storedUser));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    const storedOrders = localStorage.getItem("enu_orders");
+    if (storedOrders) {
+      try {
+        setOrders(JSON.parse(storedOrders));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, []);
+
+  const handleLogin = (user: { name: string; email: string; phone: string }) => {
+    setCurrentUser(user);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("enu_user");
+    setCurrentUser(null);
+    handleNavigate("home");
+  };
+
+  const handleOrderPlaced = (order: OrderDetails) => {
+    const updatedOrders = [order, ...orders];
+    setOrders(updatedOrders);
+    localStorage.setItem("enu_orders", JSON.stringify(updatedOrders));
+  };
+
+  // =========================================================
   // CART
   // =========================================================
 
@@ -60,6 +116,24 @@ export default function App() {
   // =========================================================
 
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+
+  // =========================================================
+  // AUTH MODAL
+  // =========================================================
+
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isLoading) return;
+    const dismissed = localStorage.getItem("enu_auth_modal_dismissed");
+    const storedUser = localStorage.getItem("enu_user");
+    if (!dismissed && !storedUser) {
+      const timer = setTimeout(() => setIsAuthModalOpen(true), 800);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
+
+  const openAuthModal = () => setIsAuthModalOpen(true);
 
   // =========================================================
   // CART ROUTE HISTORY
@@ -88,22 +162,43 @@ export default function App() {
   let currentPage: NavigationPage = "home";
   
   let activeProductId: string | undefined = undefined;
+  let activeRecipeId: string | undefined = undefined;
   
   const productMatch = routingPathname.match(/^\/products\/([^/]+)/);
+  const recipeMatch = routingPathname.match(/^\/recipes\/([^/]+)/);
   
   if (productMatch) {
     currentPage = "product-detail";
     activeProductId = productMatch[1];
   } else if (routingPathname === "/products") {
     currentPage = "products";
+  } else if (recipeMatch) {
+    currentPage = "recipe-detail";
+    activeRecipeId = recipeMatch[1];
   } else if (routingPathname === "/recipes") {
     currentPage = "recipes";
+  } else if (routingPathname === "/combos") {
+    currentPage = "combos";
+  } else if (routingPathname === "/bestsellers") {
+    currentPage = "bestsellers";
+  } else if (routingPathname === "/new-arrivals") {
+    currentPage = "new-arrivals";
   } else if (routingPathname === "/story") {
     currentPage = "story";
   } else if (routingPathname === "/contact") {
     currentPage = "contact";
   } else if (routingPathname === "/checkout") {
     currentPage = "checkout";
+  } else if (routingPathname === "/login") {
+    currentPage = "login";
+  } else if (routingPathname === "/signup") {
+    currentPage = "signup";
+  } else if (routingPathname === "/orders") {
+    currentPage = "orders";
+  } else if (routingPathname === "/privacy") {
+    currentPage = "privacy";
+  } else if (routingPathname === "/terms") {
+    currentPage = "terms";
   }
 
   // =========================================================
@@ -135,6 +230,9 @@ export default function App() {
   // =========================================================
 
   useEffect(() => {
+    if (pathname?.endsWith("/cart") || pathname === "/cart") {
+      return;
+    }
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -151,8 +249,8 @@ export default function App() {
   // OPEN CART
   // =========================================================
 
-  const openCart = () => {
-    if (!pathname?.endsWith("/cart")) {
+  const openCart = (updateRoute = true) => {
+    if (updateRoute && !pathname?.endsWith("/cart")) {
       previousPathRef.current = pathname;
       const targetPath = pathname === "/" ? "/cart" : `${pathname}/cart`;
       router.push(targetPath, { scroll: false });
@@ -228,7 +326,7 @@ export default function App() {
      * Keep CartPopup behaviour.
      */
     if (typeof window !== "undefined" && window.innerWidth >= 768) {
-      openCart();
+      openCart(false);
     }
   };
 
@@ -316,12 +414,28 @@ export default function App() {
     }
 
     if (page === "products") {
+      setSelectedCategoryFilter(undefined);
       router.push("/products");
       return;
     }
 
     if (page === "recipes") {
       router.push("/recipes");
+      return;
+    }
+
+    if (page === "combos") {
+      router.push("/combos");
+      return;
+    }
+
+    if (page === "bestsellers") {
+      router.push("/bestsellers");
+      return;
+    }
+
+    if (page === "new-arrivals") {
+      router.push("/new-arrivals");
       return;
     }
 
@@ -337,6 +451,31 @@ export default function App() {
 
     if (page === "checkout") {
       router.push("/checkout");
+      return;
+    }
+
+    if (page === "login") {
+      router.push("/login");
+      return;
+    }
+
+    if (page === "signup") {
+      router.push("/signup");
+      return;
+    }
+
+    if (page === "orders") {
+      router.push("/orders");
+      return;
+    }
+
+    if (page === "privacy") {
+      router.push("/privacy");
+      return;
+    }
+
+    if (page === "terms") {
+      router.push("/terms");
       return;
     }
 
@@ -383,7 +522,10 @@ export default function App() {
         onNavigate={handleNavigate}
         onOpenSearch={() => setIsSearchOpen(true)}
         cartCount={cartCount}
-        onOpenCart={openCart}
+        onOpenCart={() => openCart(true)}
+        currentUser={currentUser}
+        onLogout={handleLogout}
+        onOpenAuth={openAuthModal}
       />
 
       {/* =====================================================
@@ -400,13 +542,6 @@ export default function App() {
             <Hero onNavigate={handleNavigate} />
 
             <div className="relative z-10 bg-[#F7F5EF]">
-              <TrustSection />
-
-              <AboutSection
-                onNavigate={handleNavigate}
-                isStoryPage={currentPage === "story"}
-              />
-
               <ProductCategories
                 onSelectCategory={(catName) => {
                   setSelectedCategoryFilter(catName);
@@ -420,10 +555,6 @@ export default function App() {
                 onAddToCart={handleAddToCart}
               />
 
-              <WhyChooseUs />
-
-              <ManufacturingJourney />
-
               <RecipesSection
                 onSelectRecipe={(recipe: Recipe) => {
                   router.push(`/recipes/${recipe.id}`);
@@ -431,9 +562,27 @@ export default function App() {
                 onNavigate={handleNavigate}
               />
 
+              <NewArrivals
+                onNavigate={handleNavigate}
+                onAddToCart={handleAddToCart}
+              />
+
+              <SuperSaverCombos
+                onNavigate={handleNavigate}
+                onAddComboToCart={handleAddToCart}
+              />
+
+              {/* <TrustSection /> */}
+
+              <AboutSection onNavigate={handleNavigate} isStoryPage={false} />
+
+              {/* <WhyChooseUs /> */}
+
+              <ManufacturingJourney />
+              <Certifications />
+
               <Testimonials />
 
-              <Certifications />
             </div>
           </>
         )}
@@ -467,14 +616,62 @@ export default function App() {
         =================================================== */}
 
         {currentPage === "recipes" && (
-          <div className="pt-24 pb-20 bg-[#F7F5EF]">
-            <RecipesSection
-              onSelectRecipe={(recipe: Recipe) => {
-                router.push(`/recipes/${recipe.id}`);
-              }}
-              onNavigate={handleNavigate}
-            />
-          </div>
+          <RecipesPage
+            onSelectRecipe={(recipe: Recipe) => {
+              router.push(`/recipes/${recipe.id}`);
+            }}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {/* ===================================================
+            SUPER SAVER COMBOS
+        =================================================== */}
+
+        {currentPage === "combos" && (
+          <CombosPage
+            onNavigate={handleNavigate}
+            onAddToCart={handleAddToCart}
+          />
+        )}
+
+        {/* ===================================================
+            BESTSELLERS
+        =================================================== */}
+
+        {currentPage === "bestsellers" && (
+          <BestsellersPage
+            onNavigate={handleNavigate}
+            onSelectProduct={(product: Product) => {
+              router.push(`/products/${product.id}`);
+            }}
+            onAddToCart={handleAddToCart}
+          />
+        )}
+
+        {/* ===================================================
+            NEW ARRIVALS
+        =================================================== */}
+
+        {currentPage === "new-arrivals" && (
+          <NewArrivalsPage
+            onNavigate={handleNavigate}
+            onSelectProduct={(product: Product) => {
+              router.push(`/products/${product.id}`);
+            }}
+            onAddToCart={handleAddToCart}
+          />
+        )}
+
+        {/* ===================================================
+            RECIPE DETAIL
+        =================================================== */}
+
+        {currentPage === "recipe-detail" && activeRecipeId && (
+          <RecipeDetailPage
+            recipe={RECIPES.find((r) => r.id === activeRecipeId)!}
+            onBack={() => router.push("/recipes")}
+          />
         )}
 
         {/* ===================================================
@@ -507,8 +704,32 @@ export default function App() {
         =================================================== */}
 
         {currentPage === "checkout" && (
-          <CheckoutWizard cartItems={cartItems} onClearCart={handleClearCart} />
+          <CheckoutWizard
+            cartItems={cartItems}
+            onClearCart={handleClearCart}
+            onOrderPlaced={handleOrderPlaced}
+          />
         )}
+
+        {/* ===================================================
+            AUTHENTICATION & ORDERS
+        =================================================== */}
+
+        {currentPage === "login" && (
+          <LoginPage onLogin={handleLogin} onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "signup" && (
+          <SignupPage onLogin={handleLogin} onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "orders" && (
+          <OrderHistoryPage orders={orders} onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "privacy" && <PrivacyPolicyPage />}
+
+        {currentPage === "terms" && <TermsOfServicePage />}
       </main>
 
       {/* =====================================================
@@ -525,7 +746,8 @@ export default function App() {
         currentPage={currentPage}
         onNavigate={handleNavigate}
         cartCount={cartCount}
-        onOpenCart={openCart}
+        onOpenCart={() => openCart(true)}
+        onOpenAuth={openAuthModal}
       />
 
       {/* =====================================================
@@ -533,7 +755,18 @@ export default function App() {
           /cart is already excluded inside CartPopup
       ===================================================== */}
 
-      <CartPopup cartItems={cartItems} onOpenCart={openCart} />
+      <CartPopup cartItems={cartItems} onOpenCart={() => openCart(true)} />
+
+      {/* =====================================================
+          AUTH WELCOME MODAL
+      ===================================================== */}
+
+      <AuthWelcomeModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onLogin={handleLogin}
+        onNavigate={handleNavigate}
+      />
 
       {/* =====================================================
           SEARCH

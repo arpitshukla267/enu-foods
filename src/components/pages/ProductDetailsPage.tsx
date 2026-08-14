@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Product } from '../types';
-import { PRODUCTS } from '../data/mockData';
+import { Product } from '../../types';
+import { PRODUCTS } from '../../data/mockData';
 import { ArrowLeft, Flame, CheckCircle2, Sparkles, Package, Leaf, ShoppingBag, Check, Plus } from 'lucide-react';
 
 interface ProductDetailsPageProps {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Sparkles, Check } from 'lucide-react';
-import { NavigationPage } from '../types';
+import { NavigationPage } from '../../types';
 
 interface CtaSectionProps {
   onNavigate: (page: NavigationPage) => void;

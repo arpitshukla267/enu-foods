@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   Sprout,
   Settings,
@@ -156,20 +156,21 @@ const DesktopJourney: React.FC<{
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 300,
-    damping: 40,
-    mass: 0.3,
+    stiffness: 500,
+    damping: 35,
+    mass: 0.15,
   });
 
-  const progressHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
+  // const progressHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
   const glowScale = useTransform(smoothProgress, [0, 1], [0.85, 1.15]);
 
   useMotionValueEvent(smoothProgress, "change", (v) => {
-    const rawIndex = v * (STEP_COUNT - 0.2);
-    const nextIndex = Math.min(
-      STEP_COUNT - 1,
-      Math.max(0, Math.floor(rawIndex)),
-    );
+    // Same spacing model as the dots (idx / (STEP_COUNT - 1)), so the
+    // active dot flips right as the line visually reaches it.
+    // The +0.35 offset (instead of +0.5) makes it switch a little early,
+    // so a light/short scroll is enough to trigger the next step.
+    const rawIndex = v * (STEP_COUNT - 1) + 0.35;
+    const nextIndex = Math.min(STEP_COUNT - 1, Math.max(0, Math.floor(rawIndex)));
     setActiveIndex((prev) => (prev === nextIndex ? prev : nextIndex));
     const pct = Math.round(v * 100);
     setProgressPct((prev) => (prev === pct ? prev : pct));
@@ -179,7 +180,7 @@ const DesktopJourney: React.FC<{
   const jumpToStep = (idx: number) => {
     const el = containerRef.current;
     if (!el) return;
-    const targetProgress = (idx + 0.5) / (STEP_COUNT - 0.2);
+    const targetProgress = idx / (STEP_COUNT - 1);
     const rect = el.getBoundingClientRect();
     const trackHeight = rect.height - window.innerHeight;
     const destination =
@@ -193,7 +194,7 @@ const DesktopJourney: React.FC<{
   const currentStep = STORY_STEPS[activeIndex];
 
   return (
-    <div className="sticky top-16 h-screen w-full hidden lg:flex flex-col justify-between overflow-hidden py-10 px-6 xl:px-8">
+    <div className="sticky top-24 h-screen w-full hidden lg:flex flex-col justify-between overflow-hidden py-10 px-6 xl:px-8">
       {/* Ambient lighting — pure transform, no re-render cost */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
         <motion.div
@@ -206,26 +207,13 @@ const DesktopJourney: React.FC<{
       {/* Header */}
       <div className="relative z-10 max-w-7xl mx-auto w-full flex items-end justify-between gap-4 border-b border-white/10 pb-4">
         <SectionTitle />
-        <div className="flex items-center gap-3">
-          <div className="text-right hidden sm:block">
-            <div className="text-[10px] text-gray-400 font-btn uppercase tracking-widest">
-              Story Progress
-            </div>
-            <div className="text-sm font-bold text-[#D6A146] font-heading tabular-nums">
-              {progressPct}% Complete
-            </div>
-          </div>
-          <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center animate-bounce motion-reduce:animate-none">
-            <ArrowDown className="w-4 h-4 text-[#D6A146]" />
-          </div>
-        </div>
       </div>
 
       {/* Stage */}
       <div className="relative z-10 max-w-7xl mx-auto w-full flex-1 my-auto grid grid-cols-12 gap-10 items-center py-4">
         <Timeline
           activeIndex={activeIndex}
-          progressHeight={progressHeight}
+          progress={smoothProgress}
           onSelect={jumpToStep}
         />
         <StageCard
@@ -239,31 +227,52 @@ const DesktopJourney: React.FC<{
 
 const Timeline: React.FC<{
   activeIndex: number;
-  progressHeight: MotionValue<string>;
+  progress: MotionValue<number>;
   onSelect: (idx: number) => void;
-}> = ({ activeIndex, progressHeight, onSelect }) => {
+}> = ({ activeIndex, progress, onSelect }) => {
   const currentStep = STORY_STEPS[activeIndex];
+
+  const listRef = useRef<HTMLDivElement>(null);
+  const firstDotRef = useRef<HTMLSpanElement>(null);
+  const lastDotRef = useRef<HTMLSpanElement>(null);
+  const [lineBounds, setLineBounds] = useState({ top: 0, height: 0 });
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      if (!listRef.current || !firstDotRef.current || !lastDotRef.current)
+        return;
+      const containerTop = listRef.current.getBoundingClientRect().top;
+      const firstRect = firstDotRef.current.getBoundingClientRect();
+      const lastRect = lastDotRef.current.getBoundingClientRect();
+      const firstCenter = firstRect.top + firstRect.height / 2 - containerTop;
+      const lastCenter = lastRect.top + lastRect.height / 2 - containerTop;
+      setLineBounds({ top: firstCenter, height: lastCenter - firstCenter });
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  const progressHeightPx = useTransform(progress, (v: number) => v * lineBounds.height);
+
+  // ... rest of your Timeline JSX (the `return (...)` part) goes here
   return (
     <div className="col-span-5 bg-[#122419]/90 backdrop-blur-2xl p-6 xl:p-8 rounded-3xl border border-[#D6A146]/30 shadow-2xl space-y-6">
-      <div className="flex items-center justify-between pb-3 border-b border-white/10">
-        <span className="text-xs font-bold uppercase tracking-wider text-[#D6A146] font-btn">
-          MILESTONES (01 – 06)
-        </span>
-        <span className="text-xs text-gray-400">
-          Phase {currentStep.number} of 06
-        </span>
-      </div>
-
-      <div className="relative pl-7 xl:pl-8 space-y-3">
-        <div className="absolute left-[21px] xl:left-[23px] top-3 bottom-3 w-0.5 bg-white/15 rounded-full" />
+      <div ref={listRef} className="relative pl-7 xl:pl-8 space-y-3">
+        <div
+          className="absolute left-[21px] xl:left-[50px] w-0.5 rounded-full"
+          style={{ top: lineBounds.top, height: lineBounds.height }}
+        />
         <motion.div
-          style={{ height: progressHeight }}
-          className="absolute left-[21px] xl:left-[23px] top-3 w-0.5 bg-gradient-to-b from-[#D6A146] via-[#E5C180] to-[#D6A146] rounded-full shadow-[0_0_10px_#D6A146]"
+          style={{ top: lineBounds.top, height: progressHeightPx }}
+          className="absolute left-[21px] xl:left-[47.5px] w-0.5 bg-gradient-to-b from-[#D6A146] via-[#E5C180] to-[#D6A146] rounded-full shadow-[0_0_10px_#D6A146]"
         />
 
         {STORY_STEPS.map((step, idx) => {
           const isCompleted = idx < activeIndex;
           const isActive = idx === activeIndex;
+          const isFirst = idx === 0;
+          const isLast = idx === STORY_STEPS.length - 1;
 
           return (
             <button
@@ -279,14 +288,19 @@ const Timeline: React.FC<{
               }`}
             >
               <span
-                className={`rounded-full shrink-0 transition-all duration-500 ${
-                  isActive
-                    ? "w-3 h-3 bg-[#D6A146] shadow-[0_0_12px_rgba(214,161,70,0.6)]"
-                    : isCompleted
-                      ? "w-2.5 h-2.5 bg-[#284C38]"
-                      : "w-2 h-2 bg-white/20"
-                }`}
-              />
+                ref={isFirst ? firstDotRef : isLast ? lastDotRef : undefined}
+                className="relative z-10 shrink-0 w-3 h-3 flex items-center justify-center"
+              >
+                <span
+                  className={`rounded-full transition-all duration-500 ${
+                    isActive
+                      ? "w-3 h-3 -ml-2 bg-[#D6A146] shadow-[0_0_12px_rgba(214,161,70,0.6)]"
+                      : isCompleted
+                        ? "w-2.5 h-2.5 bg-[#D6A146]"
+                        : "w-2 h-2 bg-white/20"
+                  }`}
+                />
+              </span>
               <span className="flex-1 min-w-0">
                 <span className="flex items-center justify-between">
                   <span

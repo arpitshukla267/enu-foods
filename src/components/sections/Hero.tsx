@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { NavigationPage } from "../types";
+import { NavigationPage } from "../../types";
 import { motion, AnimatePresence, PanInfo } from "motion/react";
 
 interface HeroProps {
@@ -160,7 +160,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
     <section
       ref={sectionRef}
-      className="mt-4 md:mt-0 sticky top-6 md:top-14 z-0 mb-6 sm:mb-8 flex min-h-screen items-center justify-center bg-green-200/30"
+      className="mt-24 md:mt-32 py-6 pt-10 flex items-center justify-center bg-[#F2ECDD]"
     >
       {/* Reliable CSS-driven autoplay timer, independent of layout animations */}
       <style>{`
@@ -175,7 +175,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
-        className="relative h-[80vh] w-full overflow-hidden sm:h-[60vh] md:h-[64vh] lg:h-[80vh]"
+        className="relative h-[30vh] w-full overflow-hidden md:h-[35vh] lg:h-[50vh]"
       >
         {/* ── FULL-BLEED BANNER IMAGE ── */}
         <AnimatePresence custom={direction} mode="popLayout" initial={false}>
@@ -211,7 +211,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         <div className="pointer-events-none absolute inset-0 z-[1] bg-linear-to-t from-black/70 via-black/25 to-black/20" />
 
         {/* ── Slide copy / CTA — vertically centered ── */}
-        <div className="absolute inset-0 z-10 flex items-baseline-last pb-12 md:pb-0 md:items-center-safe px-5 sm:px-10 md:px-14 lg:px-20">
+        <div className="absolute inset-0 z-10 flex items-baseline-last pb-12 md:pb-0 md:items-center-safe px-4 sm:px-10 md:px-14 lg:px-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={`content-${slide.id}`}
@@ -221,13 +221,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               exit="exit"
               className="max-w-[80vw] text-white sm:max-w-lg md:max-w-xl"
             >
-              <span className="mb-2 inline-block text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D6A146] sm:text-xs">
+              {/* <span className="mb-2 inline-block text-[10px] md:font-semibold uppercase tracking-[0.2em] text-[#D6A146] sm:text-xs">
                 {slide.eyebrow}
-              </span>
-              <h1 className="font-serif text-[clamp(1.5rem,4.5vw,2.75rem)] font-semibold leading-[1.08] text-white text-balance">
+              </span> */}
+              <h1 className="text-xl md:text-[clamp(1.5rem,4.5vw,2.75rem)] font-semibold leading-[1.08] text-white text-balance">
                 {slide.headline}
               </h1>
-              <p className="mt-2 max-w-sm text-[clamp(0.8rem,1.8vw,0.95rem)] text-white/85 sm:mt-3">
+              <p className="mt-2 max-w-sm text-sm md:text-[clamp(0.8rem,1.8vw,0.95rem)] text-white/85 sm:mt-3">
                 {slide.subtext}
               </p>
               <button

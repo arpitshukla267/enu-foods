@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import { PRODUCTS } from '@/src/data/mockData';
-import { ProductDetailsPage } from '@/src/components/ProductDetailsPage';
+import { ProductDetailsPage } from '@/src/components/pages/ProductDetailsPage';
 import { Search, ArrowLeft } from 'lucide-react';
 import { Product } from '@/src/types';
 

@@ -98,4 +98,4 @@ export interface ManufacturingStep {
   detailPoints: string[];
 }
 
-export type NavigationPage = 'home' | 'products' | 'product-detail' | 'recipes' |'recipe-detail' | 'story' | 'cart' | 'contact' | 'checkout';
+export type NavigationPage = 'home' | 'products' | 'product-detail' | 'recipes' | 'recipe-detail' | 'combos' | 'bestsellers' | 'new-arrivals' | 'story' | 'cart' | 'contact' | 'checkout' | 'login' | 'signup' | 'orders' | 'privacy' | 'terms';

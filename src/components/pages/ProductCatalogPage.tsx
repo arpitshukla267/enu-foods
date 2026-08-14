@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { PRODUCTS, CATEGORIES } from "../data/mockData";
-import { Product } from "../types";
+import { PRODUCTS, CATEGORIES } from "../../data/mockData";
+import { Product } from "../../types";
 import {
   Search,
   Flame,
@@ -35,6 +35,10 @@ export const ProductCatalogPage: React.FC<ProductCatalogPageProps> = ({
     "featured",
   );
   const [sortOpen, setSortOpen] = useState(false);
+
+  React.useEffect(() => {
+    setActiveCategory(selectedCategoryFilter || "All");
+  }, [selectedCategoryFilter]);
 
   const handleQuickAdd = (product: Product, e: React.MouseEvent) => {
     e.preventDefault();
@@ -229,7 +233,7 @@ export const ProductCatalogPage: React.FC<ProductCatalogPageProps> = ({
 
         {/* Product Cards Grid */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 gap-y-4 sm:gap-5 lg:gap-6">
             {filteredProducts.map((product) => {
               const discount =
                 product.originalPrice > product.price
@@ -242,11 +246,11 @@ export const ProductCatalogPage: React.FC<ProductCatalogPageProps> = ({
                 <Link
                   key={product.id}
                   href={`/products/${product.id}`}
-                  className="bg-white rounded-2xl sm:rounded-3xl overflow-visible border border-[#D6A146]/20 shadow-sm sm:shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1 sm:hover:-translate-y-2 text-left block"
+                  className="bg-white rounded-lg md:rounded-xl lg:rounded-xl overflow-visible border border-[#F2DCBC] hover:shadow-2xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1 sm:hover:-translate-y-2 text-left block"
                 >
                   {/* Image Container */}
                   <div className="relative">
-                    <div className="relative aspect-square bg-[#1E3A2B] overflow-hidden rounded-t-2xl sm:rounded-t-3xl">
+                    <div className="relative aspect-6/5 bg-[#1E3A2B] overflow-hidden rounded-t-lg sm:rounded-t-xl">
                       <img
                         src={product.image}
                         alt={product.name}
@@ -256,24 +260,25 @@ export const ProductCatalogPage: React.FC<ProductCatalogPageProps> = ({
 
                       {/* Bestseller Badge */}
                       {product.isFeatured && (
-                        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#D6A146] text-[#1E3A2B] text-[9px] sm:text-[10px] px-2 py-0.5 sm:py-1 rounded-full font-btn font-bold uppercase tracking-wide">
+                        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#D6A146] text-[#1E3A2B] text-[9px] sm:text-[10px] px-2 py-0.5 sm:py-1 rounded-full uppercase tracking-wide">
                           Bestseller
                         </div>
                       )}
 
                       {/* Discount Badge */}
                       {discount > 0 && (
-                        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-[#C86D39] text-white text-[9px] sm:text-[10px] px-2 py-0.5 sm:py-1 rounded-full font-btn font-bold flex items-center gap-0.5">
+                        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-[#284C38] text-white text-[9px] sm:text-[10px] px-2 py-0.5 sm:py-1 rounded-full flex items-center gap-0.5">
+                          {discount}
                           <Percent className="w-2.5 h-2.5" />
-                          {discount} OFF
+                          OFF
                         </div>
                       )}
 
                       {/* Heat Level */}
-                      <div className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 bg-[#1D1D1D]/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] px-2 py-0.5 sm:py-1 rounded-full flex items-center gap-1 font-body">
+                      {/* <div className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 bg-[#1D1D1D]/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] px-2 py-0.5 sm:py-1 rounded-full flex items-center gap-1 font-body">
                         <Flame className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-[#C86D39]" />
                         <span>{product.spicinessLevel}/5</span>
-                      </div>
+                      </div> */}
                     </div>
 
                     {/* Floating Quick-Add Button, overlapping image edge */}
@@ -300,17 +305,17 @@ export const ProductCatalogPage: React.FC<ProductCatalogPageProps> = ({
                   </div>
 
                   {/* Content */}
-                  <div className="p-3 pt-1 sm:p-4 sm:pt-3 flex-1 flex flex-col justify-between">
+                  <div className="p-3 pt-1 sm:p-3 sm:pt-3 flex-1 flex flex-col justify-between">
                     <div>
                       <span className="text-[9px] sm:text-[11px] text-[#284C38] uppercase tracking-wider font-semibold font-btn">
                         {product.category}
                       </span>
-                      <h3 className="font-heading text-sm sm:text-xl font-bold text-[#1D1D1D] group-hover:text-[#284C38] transition-colors mt-0.5 sm:mt-1 break-words line-clamp-2 leading-snug">
+                      <h3 className=" text-sm md:text-md lg:text-[16px] font-semibold text-gray-800 group-hover:text-[#284C38] transition-colors mt-0.5 sm:mt-1 break-words line-clamp-2 leading-snug">
                         {product.name}
                       </h3>
-                      <p className="hidden sm:block font-body text-xs text-gray-600 mt-2 font-light line-clamp-2 leading-relaxed">
+                      {/* <p className="hidden sm:block font-body text-xs text-gray-600 mt-2 font-light line-clamp-2 leading-relaxed">
                         {product.shortDescription}
-                      </p>
+                      </p> */}
                     </div>
 
                     <div className="mt-1 sm:mt-2 pt-1 sm:pt-2 border-t border-gray-100 space-y-1">

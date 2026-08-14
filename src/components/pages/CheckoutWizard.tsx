@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CartItem, ShippingAddress, PaymentMethod, OrderDetails } from '../types';
+import { CartItem, ShippingAddress, PaymentMethod, OrderDetails } from '../../types';
 import { 
   Check, 
   ShieldCheck, 
@@ -20,11 +20,13 @@ import { useRouter } from 'next/navigation';
 interface CheckoutWizardProps {
   cartItems: CartItem[];
   onClearCart: () => void;
+  onOrderPlaced?: (order: OrderDetails) => void;
 }
 
 export const CheckoutWizard: React.FC<CheckoutWizardProps> = ({
   cartItems,
-  onClearCart
+  onClearCart,
+  onOrderPlaced
 }) => {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
@@ -99,6 +101,9 @@ export const CheckoutWizard: React.FC<CheckoutWizardProps> = ({
     };
     
     setCompletedOrder(newOrder);
+    if (onOrderPlaced) {
+      onOrderPlaced(newOrder);
+    }
     onClearCart();
     // Scroll to top to see confirmation
     window.scrollTo({ top: 0, behavior: 'smooth' });

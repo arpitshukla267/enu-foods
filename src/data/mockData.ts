@@ -452,6 +452,120 @@ export const RECIPES: Recipe[] = [
       'Add rice, dal, 4 cups water, and salt. Pressure cook for 4 whistles.',
       'Serve warm topped with extra Desi Ghee and roasted papad.'
     ]
+  },
+  {
+    id: 'mumbai-pav-bhaji',
+    title: 'Chowpatty Special Pav Bhaji',
+    subtitle: 'Street-style buttery mashed vegetable curry with ENU Pav Bhaji Masala',
+    prepTime: '15 Mins',
+    cookTime: '25 Mins',
+    difficulty: 'Easy',
+    servings: '4 Persons',
+    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
+    description: 'Iconic Mumbai street delicacy made with mashed potatoes, peas, bell peppers, tomatoes, and generous dollops of butter seasoned with ENU Pav Bhaji Masala.',
+    enuSpicesUsed: ['ENU Pav Bhaji Masala', 'ENU Red Chilli Powder', 'ENU Kasuri Methi'],
+    ingredientsList: [
+      '3 Boiled Potatoes, peeled and mashed',
+      '1 Cup Boiled Green Peas & Cauliflower',
+      '2 tbsp ENU Pav Bhaji Masala',
+      '1 tsp ENU Red Chilli Powder',
+      '1/2 tsp ENU Kasuri Methi',
+      '2 Onions & 3 Tomatoes, finely minced',
+      '1 Capsicum, finely diced',
+      '3 tbsp Butter',
+      'Fresh Coriander & Lemon wedges'
+    ],
+    instructions: [
+      'Heat butter on a tawa or large pan, sauté onions, capsicum, and ginger garlic paste until soft.',
+      'Add tomatoes and cook till oil separates.',
+      'Add boiled veggies, water, and mash vigorously with a potato masher.',
+      'Stir in ENU Pav Bhaji Masala, red chilli powder, and salt. Simmer for 10 minutes.',
+      'Garnish with fresh butter, crushed ENU Kasuri Methi, and serve with toasted pav.'
+    ]
+  },
+  {
+    id: 'kadai-paneer-delight',
+    title: 'Dhabawala Kadai Paneer',
+    subtitle: 'Wok-tossed paneer cubes and crunchy bell peppers in robust spiced gravy',
+    prepTime: '15 Mins',
+    cookTime: '20 Mins',
+    difficulty: 'Medium',
+    servings: '3-4 Persons',
+    image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80',
+    description: 'Fresh paneer tossed with crunchy onions and capsicum in a freshly pounded Kadai masala gravy made with ENU Coriander, Garam Masala, and Ginger Garlic Paste.',
+    enuSpicesUsed: ['ENU Garam Masala', 'ENU Coriander Powder', 'ENU Ginger Garlic Paste', 'ENU Kasuri Methi'],
+    ingredientsList: [
+      '250g Paneer cubes',
+      '1 Onion & 1 Capsicum cubed',
+      '1 tbsp ENU Ginger Garlic Paste',
+      '1.5 tbsp ENU Coriander Powder',
+      '1 tsp ENU Garam Masala',
+      '1/2 tsp ENU Kasuri Methi',
+      '3 Fresh Tomatoes puréed',
+      '2 tbsp Ghee'
+    ],
+    instructions: [
+      'In a hot kadai, flash fry capsicum and onion petals in ghee for 2 minutes and set aside.',
+      'Sauté ENU Ginger Garlic Paste and tomato purée until oil edges appear.',
+      'Add ENU Coriander Powder, salt, and half cup water.',
+      'Add paneer cubes, tossed peppers, and simmer for 3 minutes.',
+      'Finish with aromatic ENU Garam Masala and palm-crushed ENU Kasuri Methi.'
+    ]
+  },
+  {
+    id: 'amritsari-pindi-chole',
+    title: 'Authentic Amritsari Pindi Chole',
+    subtitle: 'Dark, tangy, slow-simmered chickpea curry seasoned with ENU Kitchen King',
+    prepTime: '20 Mins',
+    cookTime: '30 Mins',
+    difficulty: 'Medium',
+    servings: '4 Persons',
+    image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80',
+    description: 'Traditional Punjabi chickpea curry steeped in tea bag infusion and tossed with aromatic ENU Kitchen King and roasted spices.',
+    enuSpicesUsed: ['ENU Kitchen King', 'ENU Garam Masala', 'ENU Red Chilli Powder', 'ENU Ginger Garlic Paste'],
+    ingredientsList: [
+      '2 Cups Boiled Kabuli Chana',
+      '2 tbsp ENU Kitchen King',
+      '1 tsp ENU Garam Masala',
+      '1 tsp ENU Red Chilli Powder',
+      '1.5 tbsp ENU Ginger Garlic Paste',
+      '2 Onions & 2 Tomatoes puréed',
+      '2 tbsp Mustard Oil or Ghee'
+    ],
+    instructions: [
+      'Boil soaked chana with whole spices and tea bag for deep authentic color.',
+      'Heat oil, fry ginger garlic paste, onions, and tomato masala until deep brown.',
+      'Add ENU Kitchen King and red chilli powder.',
+      'Add boiled chickpeas with cooking stock and mash a few for thick gravy body.',
+      'Simmer for 15 minutes, finish with hot ghee cumin tadka and ENU Garam Masala.'
+    ]
+  },
+  {
+    id: 'chettinad-vegetable-curry',
+    title: 'Spicy Chettinad Veg Kurma',
+    subtitle: 'Fiery Tamil Nadu coastal curry with coconut and stone-ground spices',
+    prepTime: '20 Mins',
+    cookTime: '25 Mins',
+    difficulty: 'Advanced',
+    servings: '4 Persons',
+    image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80',
+    description: 'A fragrant, spicy South Indian specialty infused with coconut paste, curry leaves, ENU Turmeric, and roasted coriander.',
+    enuSpicesUsed: ['ENU Sambhar Masala', 'ENU Turmeric Powder', 'ENU Coriander Powder'],
+    ingredientsList: [
+      '2 Cups Mixed Diced Vegetables (Carrots, Beans, Potatoes)',
+      '1.5 tbsp ENU Sambhar Masala',
+      '1/2 tsp ENU Turmeric Powder',
+      '1 tsp ENU Coriander Powder',
+      '1/2 Cup Fresh Grated Coconut ground to paste',
+      'Fresh Curry Leaves, Mustard & Fennel seeds'
+    ],
+    instructions: [
+      'Sauté mustard seeds, curry leaves, and fennel in coconut oil.',
+      'Add diced vegetables, ENU Turmeric, and ENU Coriander Powder.',
+      'Cook veggies in 1.5 cups water until tender.',
+      'Stir in fresh coconut paste and ENU Sambhar Masala.',
+      'Simmer on gentle heat for 5 minutes and serve with flaky Malabar Parottas.'
+    ]
   }
 ];
 
