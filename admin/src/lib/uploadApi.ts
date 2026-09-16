@@ -1,11 +1,11 @@
-import { apiRequest } from "./apiClient";
+import { apiRequest, API_URL } from "./apiClient";
 
 export const uploadProductImage = async (file: File) => {
   const formData = new FormData();
   formData.append("image", file);
 
   const token = localStorage.getItem("enu_admin_token");
-  const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+  const baseUrl = API_URL;
 
   const response = await fetch(`${baseUrl}/v1/admin/uploads/image`, {
     method: "POST",

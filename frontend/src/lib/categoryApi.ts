@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+import { API_URL } from "./apiClient";
 
 export interface ApiCategory {
   id: string;
@@ -47,5 +47,3 @@ export const fetchCategories = async (): Promise<ApiCategory[]> => {
 
   return data.data?.categories ?? [];
 };
-
-export { API_URL };
