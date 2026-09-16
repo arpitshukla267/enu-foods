@@ -1,0 +1,6 @@
+{
+  "name": "ENU Foods Admin CMS",
+  "description": "Premium e-commerce admin CMS and operations dashboard for ENU Foods authentic spices, products, combos, orders, categories, and customer CRM.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
