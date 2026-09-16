@@ -363,10 +363,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                         referrerPolicy="no-referrer"
                       />
                       <div className="truncate">
-                        <div className="text-xs font-semibold text-[#1D1D1D] truncate">
+                        <div className="text-xs font-medium text-[#1D1D1D] truncate">
                           {prod.name}
                         </div>
-                        <div className="text-[11px] text-[#284C38] font-semibold">
+                        <div className="text-[11px] text-[#284C38] font-medium">
                           ₹{prod.price}{" "}
                           <span className="text-gray-400 font-normal line-through text-[10px]">
                             ₹{prod.originalPrice}
