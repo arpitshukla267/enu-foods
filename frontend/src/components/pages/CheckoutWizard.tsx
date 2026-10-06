@@ -614,44 +614,6 @@ export const CheckoutWizard: React.FC<CheckoutWizardProps> = ({
                         </label>
 
                         <label 
-                          className={`p-4 rounded-2xl border-2 flex items-center justify-between transition-all ${
-                            !onlinePaymentsEnabled
-                              ? 'opacity-50 cursor-not-allowed border-gray-200'
-                              : paymentMethod === 'card'
-                                ? 'border-[#284C38] bg-[#284C38]/5 shadow-sm cursor-pointer'
-                                : 'border-gray-200 hover:border-gray-300 cursor-pointer'
-                          }`}
-                          onClick={() => onlinePaymentsEnabled && setPaymentMethod('card')}
-                        >
-                          <div className="flex items-center gap-3">
-                            <input type="radio" checked={paymentMethod === 'card'} readOnly disabled={!onlinePaymentsEnabled} className="text-[#284C38]" />
-                            <div className="text-left">
-                              <div className="text-xs font-semibold text-[#1D1D1D]">Credit / Debit Card</div>
-                              <div className="text-[11px] text-gray-500">Visa, Mastercard, RuPay, Amex</div>
-                            </div>
-                          </div>
-                        </label>
-
-                        <label 
-                          className={`p-4 rounded-2xl border-2 flex items-center justify-between transition-all ${
-                            !onlinePaymentsEnabled
-                              ? 'opacity-50 cursor-not-allowed border-gray-200'
-                              : paymentMethod === 'netbanking'
-                                ? 'border-[#284C38] bg-[#284C38]/5 shadow-sm cursor-pointer'
-                                : 'border-gray-200 hover:border-gray-300 cursor-pointer'
-                          }`}
-                          onClick={() => onlinePaymentsEnabled && setPaymentMethod('netbanking')}
-                        >
-                          <div className="flex items-center gap-3">
-                            <input type="radio" checked={paymentMethod === 'netbanking'} readOnly disabled={!onlinePaymentsEnabled} className="text-[#284C38]" />
-                            <div className="text-left">
-                              <div className="text-xs font-semibold text-[#1D1D1D]">Net Banking</div>
-                              <div className="text-[11px] text-gray-500">All major Indian banks</div>
-                            </div>
-                          </div>
-                        </label>
-
-                        <label 
                           className={`p-4 rounded-2xl border-2 cursor-pointer flex items-center justify-between transition-all ${
                             paymentMethod === 'cod' ? 'border-[#284C38] bg-[#284C38]/5 shadow-sm' : 'border-gray-200 hover:border-gray-300'
                           }`}

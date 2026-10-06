@@ -412,7 +412,7 @@ export const createOrderFromCart = async (userId, payload) => {
   const discountPaise = cartSummary.discountPaise || 0;
   const taxablePaise = Math.max(0, subtotalPaise - discountPaise);
   const taxPaise = Math.round(taxablePaise * taxRate);
-  const totalPaise = Math.max(0, taxablePaise + shippingPaise);
+  const totalPaise = Math.max(0, taxablePaise + taxPaise + shippingPaise);
   const isCod = parsed.paymentMethod === "cod";
 
   if (!isCod && !isRazorpayConfigured()) {

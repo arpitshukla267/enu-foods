@@ -118,16 +118,15 @@ export const openRazorpayCheckout = async (options: {
     },
   };
 
-  if (options.preferredMethod) {
-    checkoutOptions.method = {
-      upi: options.preferredMethod === "upi",
-      card: options.preferredMethod === "card",
-      netbanking: options.preferredMethod === "netbanking",
-      wallet: false,
-      emi: false,
-      paylater: false,
-    };
-  }
+  // Don't pass a `method` filter — let Razorpay Checkout show every method
+  // enabled on the merchant dashboard (Cards, Netbanking, Wallets, UPI, etc.).
+  //
+  // The old code set e.g. { upi: true, card: false, … } which blocked every
+  // working method and caused "No appropriate payment method found".
+  //
+  // Note: if UPI doesn't appear, it must be enabled in the Razorpay Dashboard
+  // under Settings → Payment Methods → UPI (test-key API confirms upi_intent
+  // is available even when upi-collect is off).
 
   const razorpay = new window.Razorpay(checkoutOptions);
   razorpay.open();

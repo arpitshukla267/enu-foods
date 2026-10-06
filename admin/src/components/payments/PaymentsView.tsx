@@ -241,8 +241,6 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({ payments }) => {
           >
             <option value="all">All Methods</option>
             <option value="UPI">UPI (GPay/PhonePe)</option>
-            <option value="Credit Card">Credit / Debit Card</option>
-            <option value="Net Banking">Net Banking</option>
             <option value="Cash on Delivery">Cash on Delivery</option>
           </select>
 
