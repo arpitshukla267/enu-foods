@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { CartItem, Product } from "../../types";
+import { CartItem, Product, NavigationPage } from "../../types";
+import { AuthWelcomeModal } from "./AuthWelcomeModal";
 import {
   X,
   Trash2,
@@ -31,12 +32,22 @@ interface CartDrawerProps {
   isCouponLoading?: boolean;
   couponError?: string | null;
   error?: string | null;
-  onUpdateQuantity: (productId: string, weight: string, newQty: number) => void | Promise<void>;
+  onUpdateQuantity: (
+    productId: string,
+    weight: string,
+    newQty: number,
+  ) => void | Promise<void>;
   onRemoveItem: (productId: string, weight: string) => void | Promise<void>;
-  onAddToCart: (product: Product, weight?: string, qty?: number) => void | Promise<void>;
+  onAddToCart: (
+    product: Product,
+    weight?: string,
+    qty?: number,
+  ) => void | Promise<void>;
   onApplyCoupon: (code: string) => void | Promise<void>;
   onRemoveCoupon: () => void | Promise<void>;
   onProceedToCheckout: () => void;
+  /** Used by the auth modal (Terms / Privacy links). */
+  onNavigate: (page: NavigationPage) => void;
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({
@@ -59,8 +70,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   onApplyCoupon,
   onRemoveCoupon,
   onProceedToCheckout,
+  onNavigate,
 }) => {
   const [couponCode, setCouponCode] = useState("");
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  // Reset the login modal whenever the drawer closes
+  useEffect(() => {
+    if (!isOpen) setShowLoginModal(false);
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -70,7 +88,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        onClose();
+        // Close the login modal first; a second Escape closes the drawer
+        if (showLoginModal) {
+          setShowLoginModal(false);
+        } else {
+          onClose();
+        }
       }
     };
 
@@ -80,7 +103,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleEscape);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, showLoginModal]);
 
   const computedSubtotal = cartItems.reduce((acc, item) => {
     const { price } = getVariantPricing(item.product, item.selectedWeight);
@@ -89,17 +112,20 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const subtotal = serverSubtotal ?? computedSubtotal;
   const couponDiscount = serverDiscount;
   const finalTotal = serverTotal ?? Math.max(0, subtotal - couponDiscount);
-  
+
   // Free Gift Threshold (₹999)
   const freeGiftGoal = 999;
   const remainingForGift = Math.max(0, freeGiftGoal - subtotal);
   const giftProgress = Math.min(100, (subtotal / freeGiftGoal) * 100);
-  
+
   const originalSubtotal = cartItems.reduce((acc, item) => {
-    const { originalPrice } = getVariantPricing(item.product, item.selectedWeight);
+    const { originalPrice } = getVariantPricing(
+      item.product,
+      item.selectedWeight,
+    );
     return acc + originalPrice * item.quantity;
   }, 0);
-  
+
   const totalSavings = originalSubtotal - subtotal + couponDiscount;
   const handleApplyCoupon = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -115,6 +141,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     }
   };
 
+  const handleCheckoutClick = () => {
+    if (!isAuthenticated) {
+      setShowLoginModal(true);
+      return;
+    }
+    onProceedToCheckout();
+  };
+
   const { products: suggestedProducts } = useProductBatch({
     isFeatured: true,
     limit: 6,
@@ -122,9 +156,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   });
 
   const cartProductIds = cartItems.map((item) => item.product.id);
-  const hasUnavailableItems = cartItems.some((item) => item.isAvailable === false);
+  const hasUnavailableItems = cartItems.some(
+    (item) => item.isAvailable === false,
+  );
   const crossSellProducts = useMemo(
-    () => suggestedProducts.filter((product) => !cartProductIds.includes(product.id)).slice(0, 3),
+    () =>
+      suggestedProducts
+        .filter((product) => !cartProductIds.includes(product.id))
+        .slice(0, 3),
     [suggestedProducts, cartProductIds],
   );
 
@@ -247,97 +286,103 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               const isUnavailable = item.isAvailable === false;
 
               return (
-              <div
-                key={item.id || `${item.product.id}-${item.selectedWeight}-${index}`}
-                className={`pt-3 first:pt-0 flex gap-3 items-center ${isUnavailable ? "opacity-70" : ""}`}
-              >
-                {/* Product Image */}
-                <div className="w-16 h-16 rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shrink-0">
-                  <img
-                    src={item.product.image}
-                    alt={item.product.name}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-
-                {/* Details */}
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-heading text-sm font-semibold text-[#1D1D1D] truncate">
-                    {item.product.name}
-                  </h4>
-                  <div className="text-xs text-gray-500 font-body">
-                    Pack:{" "}
-                    <span className="font-bold text-gray-700">
-                      {item.selectedWeight}
-                    </span>
+                <div
+                  key={
+                    item.id ||
+                    `${item.product.id}-${item.selectedWeight}-${index}`
+                  }
+                  className={`pt-3 first:pt-0 flex gap-3 items-center ${isUnavailable ? "opacity-70" : ""}`}
+                >
+                  {/* Product Image */}
+                  <div className="w-16 h-16 rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shrink-0">
+                    <img
+                      src={item.product.image}
+                      alt={item.product.name}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
                   </div>
 
-                  {item.statusMessage && (
-                    <p className="text-[11px] text-amber-700 mt-1">{item.statusMessage}</p>
-                  )}
-
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="font-semibold text-sm text-[#284C38]">
-                      ₹{unitPrice}
-                    </span>
-                    {originalPrice > unitPrice && (
-                      <span className="text-xs text-gray-400 font-semibold line-through">
-                        ₹{originalPrice}
+                  {/* Details */}
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-heading text-sm font-semibold text-[#1D1D1D] truncate">
+                      {item.product.name}
+                    </h4>
+                    <div className="text-xs text-gray-500 font-body">
+                      Pack:{" "}
+                      <span className="font-bold text-gray-700">
+                        {item.selectedWeight}
                       </span>
+                    </div>
+
+                    {item.statusMessage && (
+                      <p className="text-[11px] text-amber-700 mt-1">
+                        {item.statusMessage}
+                      </p>
                     )}
-                  </div>
-                </div>
 
-                {/* Quantity Buttons */}
-                <div className="flex flex-col items-end gap-1 shrink-0">
-                  <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-white">
-                    <button
-                      disabled={isMutating || isUnavailable}
-                      onClick={() =>
-                        onUpdateQuantity(
-                          item.product.id,
-                          item.selectedWeight,
-                          item.quantity - 1,
-                        )
-                      }
-                      className="p-1 hover:bg-gray-100 text-gray-600 transition-colors"
-                    >
-                      <Minus className="w-3.5 h-3.5" />
-                    </button>
-                    <span className="px-2 text-xs font-semibold text-gray-800 font-btn">
-                      {item.quantity}
-                    </span>
-                    <button
-                      disabled={
-                        isMutating ||
-                        isUnavailable ||
-                        (item.stock !== undefined && item.quantity >= item.stock)
-                      }
-                      onClick={() =>
-                        onUpdateQuantity(
-                          item.product.id,
-                          item.selectedWeight,
-                          item.quantity + 1,
-                        )
-                      }
-                      className="p-1 hover:bg-gray-100 text-gray-600 transition-colors disabled:opacity-40"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                    </button>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="font-semibold text-sm text-[#284C38]">
+                        ₹{unitPrice}
+                      </span>
+                      {originalPrice > unitPrice && (
+                        <span className="text-xs text-gray-400 font-semibold line-through">
+                          ₹{originalPrice}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
-                  <button
-                    onClick={() =>
-                      onRemoveItem(item.product.id, item.selectedWeight)
-                    }
-                    className="text-red-500 hover:text-red-700 p-1 text-xs font-semibold"
-                    title="Remove item"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
+                  {/* Quantity Buttons */}
+                  <div className="flex flex-col items-end gap-1 shrink-0">
+                    <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-white">
+                      <button
+                        disabled={isMutating || isUnavailable}
+                        onClick={() =>
+                          onUpdateQuantity(
+                            item.product.id,
+                            item.selectedWeight,
+                            item.quantity - 1,
+                          )
+                        }
+                        className="p-1 hover:bg-gray-100 text-gray-600 transition-colors"
+                      >
+                        <Minus className="w-3.5 h-3.5" />
+                      </button>
+                      <span className="px-2 text-xs font-semibold text-gray-800 font-btn">
+                        {item.quantity}
+                      </span>
+                      <button
+                        disabled={
+                          isMutating ||
+                          isUnavailable ||
+                          (item.stock !== undefined &&
+                            item.quantity >= item.stock)
+                        }
+                        onClick={() =>
+                          onUpdateQuantity(
+                            item.product.id,
+                            item.selectedWeight,
+                            item.quantity + 1,
+                          )
+                        }
+                        className="p-1 hover:bg-gray-100 text-gray-600 transition-colors disabled:opacity-40"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={() =>
+                        onRemoveItem(item.product.id, item.selectedWeight)
+                      }
+                      className="text-red-500 hover:text-red-700 p-1 text-xs font-semibold"
+                      title="Remove item"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
-              </div>
               );
             })
           )}
@@ -397,21 +442,32 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 placeholder="Enter coupon code"
                 value={couponCode}
                 onChange={(e) => setCouponCode(e.target.value)}
-                disabled={!isAuthenticated || isCouponLoading || Boolean(appliedCoupon)}
+                disabled={
+                  !isAuthenticated || isCouponLoading || Boolean(appliedCoupon)
+                }
                 className="flex-1 px-3 py-2 text-xs border border-gray-300 rounded-lg focus:outline-none focus:border-[#284C38] uppercase disabled:bg-gray-100 disabled:cursor-not-allowed"
               />
               <button
                 type="submit"
-                disabled={!isAuthenticated || isCouponLoading || !couponCode.trim() || Boolean(appliedCoupon)}
+                disabled={
+                  !isAuthenticated ||
+                  isCouponLoading ||
+                  !couponCode.trim() ||
+                  Boolean(appliedCoupon)
+                }
                 className="bg-[#1E3A2B] text-[#D6A146] text-xs font-semibold px-4 py-2 rounded-lg font-btn hover:bg-[#284C38] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
               >
-                {isCouponLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : null}
+                {isCouponLoading ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : null}
                 Apply
               </button>
             </form>
 
             {!isAuthenticated && (
-              <p className="text-[11px] text-gray-500">Sign in to apply coupon codes.</p>
+              <p className="text-[11px] text-gray-500">
+                Sign in to apply coupon codes.
+              </p>
             )}
 
             {couponError && (
@@ -424,7 +480,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             {appliedCoupon && (
               <div className="text-xs text-emerald-700 bg-emerald-50 p-2 rounded-lg font-medium flex items-center justify-between">
                 <span>
-                  Coupon {appliedCoupon.code} applied (-₹{appliedCoupon.discount})
+                  Coupon {appliedCoupon.code} applied (-₹
+                  {appliedCoupon.discount})
                 </span>
                 <button
                   onClick={() => onRemoveCoupon()}
@@ -469,8 +526,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
             {/* Checkout Action Button */}
             <button
-              onClick={onProceedToCheckout}
-              disabled={isMutating || hasUnavailableItems || cartItems.length === 0}
+              onClick={handleCheckoutClick}
+              disabled={
+                isMutating || hasUnavailableItems || cartItems.length === 0
+              }
               className="w-full bg-[#284C38] hover:bg-[#1E3A2B] disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold text-sm py-3.5 rounded-xl font-btn shadow-xl transition-all flex items-center justify-center gap-2 group"
             >
               <span>PROCEED TO CHECKOUT</span>
@@ -484,6 +543,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           </div>
         )}
       </div>
+
+      {/* Auth modal (opens when a guest tries to check out) */}
+      <AuthWelcomeModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onNavigate={onNavigate}
+        initialTab="login"
+      />
     </div>
   );
 };

@@ -48,7 +48,11 @@ interface CartContextType {
   couponError: string | null;
   error: string | null;
   addToCart: (product: Product, weight?: string, qty?: number) => Promise<void>;
-  updateQuantity: (productId: string, weight: string, newQty: number) => Promise<void>;
+  updateQuantity: (
+    productId: string,
+    weight: string,
+    newQty: number,
+  ) => Promise<void>;
   removeItem: (productId: string, weight: string) => Promise<void>;
   clearCart: () => Promise<void>;
   applyCoupon: (code: string) => Promise<void>;
@@ -91,7 +95,10 @@ const writeGuestCart = (items: GuestCartStoredItem[]) => {
 
 const mapGuestItemsToCartItems = (items: GuestCartStoredItem[]): CartItem[] =>
   items.map((item) => {
-    const { price, originalPrice } = getVariantPricing(item.product, item.weight);
+    const { price, originalPrice } = getVariantPricing(
+      item.product,
+      item.weight,
+    );
 
     return {
       product: item.product,
@@ -113,14 +120,18 @@ const mapGuestItemsToCartItems = (items: GuestCartStoredItem[]): CartItem[] =>
   });
 
 const calculateGuestSubtotal = (items: CartItem[]) =>
-  items.reduce((total, item) => total + (item.unitPrice || 0) * item.quantity, 0);
+  items.reduce(
+    (total, item) => total + (item.unitPrice || 0) * item.quantity,
+    0,
+  );
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const { isAuthenticated, isLoading: authLoading, token } = useAuth();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [subtotal, setSubtotal] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  const [appliedCoupon, setAppliedCoupon] = useState<CartSummary["coupon"]>(null);
+  const [appliedCoupon, setAppliedCoupon] =
+    useState<CartSummary["coupon"]>(null);
   const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -183,7 +194,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     applyServerCart(result.cart);
 
     if (result.mergeWarnings?.length) {
-      setError(result.mergeWarnings.map((warning) => warning.message).join(" "));
+      setError(
+        result.mergeWarnings.map((warning) => warning.message).join(" "),
+      );
     }
   }, [applyServerCart, refreshCart]);
 
@@ -268,7 +281,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = useCallback(
     async (product: Product, weight?: string, qty = 1) => {
-      const targetWeight = weight || product.defaultWeight || product.weightOptions[0];
+      const targetWeight =
+        weight || product.defaultWeight || product.weightOptions[0];
       if (!targetWeight) {
         throw new Error("Please select a pack size before adding to cart");
       }
@@ -279,7 +293,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           const existingIndex = guestItems.findIndex(
             (item) =>
               item.productId === product.id &&
-              item.weight.trim().toLowerCase() === targetWeight.trim().toLowerCase(),
+              item.weight.trim().toLowerCase() ===
+                targetWeight.trim().toLowerCase(),
           );
 
           if (existingIndex > -1) {
@@ -320,7 +335,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         const previousItems = cartItems;
         setCartItems((current) =>
           current.filter(
-            (item) => !(item.product.id === productId && item.selectedWeight === weight),
+            (item) =>
+              !(
+                item.product.id === productId && item.selectedWeight === weight
+              ),
           ),
         );
 
@@ -328,7 +346,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           await withMutationLock(async () => {
             if (!isAuthenticated) {
               const guestItems = readGuestCart().filter(
-                (item) => !(item.productId === productId && item.weight === weight),
+                (item) =>
+                  !(item.productId === productId && item.weight === weight),
               );
               writeGuestCart(guestItems);
               applyGuestCart(guestItems);
@@ -336,7 +355,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             }
 
             const targetItem = previousItems.find(
-              (item) => item.product.id === productId && item.selectedWeight === weight,
+              (item) =>
+                item.product.id === productId && item.selectedWeight === weight,
             );
 
             if (!targetItem?.id) {
@@ -376,7 +396,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           }
 
           const targetItem = previousItems.find(
-            (item) => item.product.id === productId && item.selectedWeight === weight,
+            (item) =>
+              item.product.id === productId && item.selectedWeight === weight,
           );
 
           if (!targetItem?.id) {
@@ -390,7 +411,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setCartItems(previousItems);
       }
     },
-    [applyGuestCart, applyServerCart, cartItems, isAuthenticated, withMutationLock],
+    [
+      applyGuestCart,
+      applyServerCart,
+      cartItems,
+      isAuthenticated,
+      withMutationLock,
+    ],
   );
 
   const removeItem = useCallback(
@@ -398,7 +425,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       const previousItems = cartItems;
       setCartItems((current) =>
         current.filter(
-          (item) => !(item.product.id === productId && item.selectedWeight === weight),
+          (item) =>
+            !(item.product.id === productId && item.selectedWeight === weight),
         ),
       );
 
@@ -406,7 +434,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         await withMutationLock(async () => {
           if (!isAuthenticated) {
             const guestItems = readGuestCart().filter(
-              (item) => !(item.productId === productId && item.weight === weight),
+              (item) =>
+                !(item.productId === productId && item.weight === weight),
             );
             writeGuestCart(guestItems);
             applyGuestCart(guestItems);
@@ -414,7 +443,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           }
 
           const targetItem = previousItems.find(
-            (item) => item.product.id === productId && item.selectedWeight === weight,
+            (item) =>
+              item.product.id === productId && item.selectedWeight === weight,
           );
 
           if (!targetItem?.id) {
@@ -428,7 +458,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setCartItems(previousItems);
       }
     },
-    [applyGuestCart, applyServerCart, cartItems, isAuthenticated, withMutationLock],
+    [
+      applyGuestCart,
+      applyServerCart,
+      cartItems,
+      isAuthenticated,
+      withMutationLock,
+    ],
   );
 
   const clearCart = useCallback(async () => {
@@ -440,11 +476,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const cart = await clearCartApi();
-      applyServerCart(
-        mapCartSummaryToItems(cart),
-        cart.subtotal,
-        cart.totalItems,
-      );
+      applyServerCart(cart);
     });
   }, [applyGuestCart, applyServerCart, isAuthenticated, withMutationLock]);
 
