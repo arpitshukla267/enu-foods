@@ -51,7 +51,7 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F5EF] pt-28 pb-20 text-left">
+    <div className="min-h-screen bg-[#F7F5EF] pt-36 pb-20 text-left">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         {error && (
           <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 flex items-center justify-between gap-3">

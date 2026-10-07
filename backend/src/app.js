@@ -32,6 +32,8 @@ const allowedOrigins = [
   "http://localhost:3002",
   "https://enu-foods-admin.vercel.app",
   "https://enu-foods.vercel.app",
+  "https://admin.aykaexports.com",
+  "https://aykaexports.com",
 ];
 
 app.use(
