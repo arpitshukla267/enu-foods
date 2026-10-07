@@ -1,5 +1,5 @@
 import React from 'react';
-import { Leaf, Phone, Mail, MapPin, Instagram, Facebook, Youtube, Twitter } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Facebook, Youtube, Twitter } from 'lucide-react';
 import { CATEGORIES, RECIPES } from '../../data/mockData';
 import { NavigationPage } from '../../types';
 import { useSettings } from '../../context/SettingsContext';
@@ -21,23 +21,23 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               onClick={() => onNavigate("home")}
               className="flex items-center gap-3 text-left focus:outline-none"
             >
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D6A146] to-[#C86D39] p-0.5">
-                <div className="w-full h-full bg-[#284C38] rounded-full flex items-center justify-center">
-                  <Leaf className="w-5 h-5 text-[#D6A146]" />
-                </div>
-              </div>
+              <img
+                src="/Ayka_logo.webp"
+                alt="Ayka Exports"
+                className="w-14 h-14 object-contain"
+              />
               <div>
                 <div className="font-heading text-2xl font-bold tracking-wide text-white">
-                  ENU <span className="text-[#D6A146] font-light">FOODS</span>
+                  Ayka <span className="text-[#D6A146] font-light">Exports</span>
                 </div>
-                <div className="text-[10px] tracking-widest uppercase text-[#D6A146] font-body">
+                {/* <div className="text-[10px] tracking-widest uppercase text-[#D6A146] font-body">
                   Pure Masala Spices
-                </div>
+                </div> */}
               </div>
             </button>
 
             <p className="text-sm text-gray-400 font-light leading-relaxed max-w-sm">
-              ENU Foods is a premier Indian spice manufacturer crafting 100%
+              Ayka Exports is a premier Indian spice manufacturer crafting 100%
               natural, cold-ground masalas. Ground below 35°C without added
               colors, starch fillers, or synthetic chemicals.
             </p>
@@ -186,7 +186,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             © {new Date().getFullYear()}{" "}
             <strong className="text-white font-medium">
-              {settings.storeName || "ENU Foods"}
+              {settings.storeName || "Ayka Exports"}
             </strong>
             . All rights reserved.
           </div>

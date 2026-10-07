@@ -58,16 +58,16 @@ export const INITIAL_CATEGORIES: Category[] = [
 export const INITIAL_PRODUCTS: Product[] = [
   {
     id: 'prod-garam-masala',
-    name: 'ENU Royal Garam Masala',
+    name: 'Ayka Exports Royal Garam Masala',
     slug: 'enu-royal-garam-masala',
     categoryId: 'cat-blends',
     categoryName: 'Specialty Blends',
     subcategoryId: 'sub-curry-blends',
     subcategoryName: 'Curry & Gravy Blends',
     weightOptions: [
-      { id: 'var-gm-100', weight: '100g', price: 185, originalPrice: 220, stock: 48, sku: 'ENU-GM-100', isDefault: true },
-      { id: 'var-gm-200', weight: '200g', price: 340, originalPrice: 410, stock: 24, sku: 'ENU-GM-200', isDefault: false },
-      { id: 'var-gm-500', weight: '500g', price: 780, originalPrice: 950, stock: 12, sku: 'ENU-GM-500', isDefault: false }
+      { id: 'var-gm-100', weight: '100g', price: 185, originalPrice: 220, stock: 48, sku: 'AYKA-GM-100', isDefault: true },
+      { id: 'var-gm-200', weight: '200g', price: 340, originalPrice: 410, stock: 24, sku: 'AYKA-GM-200', isDefault: false },
+      { id: 'var-gm-500', weight: '500g', price: 780, originalPrice: 950, stock: 12, sku: 'AYKA-GM-500', isDefault: false }
     ],
     defaultWeight: '100g',
     price: 185,
@@ -97,16 +97,16 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-turmeric-powder',
-    name: 'ENU Lakadong High-Curcumin Turmeric',
+    name: 'Ayka Exports Lakadong High-Curcumin Turmeric',
     slug: 'enu-lakadong-turmeric-powder',
     categoryId: 'cat-singles',
     categoryName: 'Pure Ground Spices',
     subcategoryId: 'sub-turmeric',
     subcategoryName: 'Heritage Turmerics',
     weightOptions: [
-      { id: 'var-tur-100', weight: '100g', price: 145, originalPrice: 175, stock: 85, sku: 'ENU-TUR-100', isDefault: false },
-      { id: 'var-tur-200', weight: '200g', price: 260, originalPrice: 320, stock: 52, sku: 'ENU-TUR-200', isDefault: true },
-      { id: 'var-tur-500', weight: '500g', price: 590, originalPrice: 720, stock: 19, sku: 'ENU-TUR-500', isDefault: false }
+      { id: 'var-tur-100', weight: '100g', price: 145, originalPrice: 175, stock: 85, sku: 'AYKA-TUR-100', isDefault: false },
+      { id: 'var-tur-200', weight: '200g', price: 260, originalPrice: 320, stock: 52, sku: 'AYKA-TUR-200', isDefault: true },
+      { id: 'var-tur-500', weight: '500g', price: 590, originalPrice: 720, stock: 19, sku: 'AYKA-TUR-500', isDefault: false }
     ],
     defaultWeight: '200g',
     price: 260,
@@ -135,16 +135,16 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-red-chilli',
-    name: 'ENU Kashmiri & Guntur Hand-Pounded Chilli',
+    name: 'Ayka Exports Kashmiri & Guntur Hand-Pounded Chilli',
     slug: 'enu-kashmiri-guntur-chilli-powder',
     categoryId: 'cat-singles',
     categoryName: 'Pure Ground Spices',
     subcategoryId: 'sub-chillies',
     subcategoryName: 'Regional Chillies',
     weightOptions: [
-      { id: 'var-rc-100', weight: '100g', price: 160, originalPrice: 190, stock: 64, sku: 'ENU-RC-100', isDefault: false },
-      { id: 'var-rc-200', weight: '200g', price: 295, originalPrice: 350, stock: 41, sku: 'ENU-RC-200', isDefault: true },
-      { id: 'var-rc-500', weight: '500g', price: 650, originalPrice: 790, stock: 8, sku: 'ENU-RC-500', isDefault: false }
+      { id: 'var-rc-100', weight: '100g', price: 160, originalPrice: 190, stock: 64, sku: 'AYKA-RC-100', isDefault: false },
+      { id: 'var-rc-200', weight: '200g', price: 295, originalPrice: 350, stock: 41, sku: 'AYKA-RC-200', isDefault: true },
+      { id: 'var-rc-500', weight: '500g', price: 650, originalPrice: 790, stock: 8, sku: 'AYKA-RC-500', isDefault: false }
     ],
     defaultWeight: '200g',
     price: 295,
@@ -173,15 +173,15 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-sambhar-masala',
-    name: 'ENU Traditional Udupi Sambhar Masala',
+    name: 'Ayka Exports Traditional Udupi Sambhar Masala',
     slug: 'enu-traditional-udupi-sambhar-masala',
     categoryId: 'cat-south-indian',
     categoryName: 'South Indian Specialties',
     subcategoryId: 'sub-sambhar-rasam',
     subcategoryName: 'Sambhar & Rasam Podi',
     weightOptions: [
-      { id: 'var-sm-100', weight: '100g', price: 170, originalPrice: 200, stock: 35, sku: 'ENU-SM-100', isDefault: true },
-      { id: 'var-sm-200', weight: '200g', price: 310, originalPrice: 380, stock: 18, sku: 'ENU-SM-200', isDefault: false }
+      { id: 'var-sm-100', weight: '100g', price: 170, originalPrice: 200, stock: 35, sku: 'AYKA-SM-100', isDefault: true },
+      { id: 'var-sm-200', weight: '200g', price: 310, originalPrice: 380, stock: 18, sku: 'AYKA-SM-200', isDefault: false }
     ],
     defaultWeight: '100g',
     price: 170,
@@ -208,16 +208,16 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-kitchen-king',
-    name: 'ENU Signature Kitchen King Masala',
+    name: 'Ayka Exports Signature Kitchen King Masala',
     slug: 'enu-signature-kitchen-king-masala',
     categoryId: 'cat-blends',
     categoryName: 'Specialty Blends',
     subcategoryId: 'sub-curry-blends',
     subcategoryName: 'Curry & Gravy Blends',
     weightOptions: [
-      { id: 'var-kk-100', weight: '100g', price: 165, originalPrice: 195, stock: 40, sku: 'ENU-KK-100', isDefault: true },
-      { id: 'var-kk-200', weight: '200g', price: 300, originalPrice: 360, stock: 26, sku: 'ENU-KK-200', isDefault: false },
-      { id: 'var-kk-500', weight: '500g', price: 690, originalPrice: 840, stock: 6, sku: 'ENU-KK-500', isDefault: false }
+      { id: 'var-kk-100', weight: '100g', price: 165, originalPrice: 195, stock: 40, sku: 'AYKA-KK-100', isDefault: true },
+      { id: 'var-kk-200', weight: '200g', price: 300, originalPrice: 360, stock: 26, sku: 'AYKA-KK-200', isDefault: false },
+      { id: 'var-kk-500', weight: '500g', price: 690, originalPrice: 840, stock: 6, sku: 'AYKA-KK-500', isDefault: false }
     ],
     defaultWeight: '100g',
     price: 165,
@@ -244,15 +244,15 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-biryani-masala',
-    name: 'ENU Shahi Dum Biryani Masala',
+    name: 'Ayka Exports Shahi Dum Biryani Masala',
     slug: 'enu-shahi-dum-biryani-masala',
     categoryId: 'cat-blends',
     categoryName: 'Specialty Blends',
     subcategoryId: 'sub-biryani-blends',
     subcategoryName: 'Biryani & Rice Masalas',
     weightOptions: [
-      { id: 'var-bm-100', weight: '100g', price: 210, originalPrice: 250, stock: 55, sku: 'ENU-BM-100', isDefault: true },
-      { id: 'var-bm-200', weight: '200g', price: 390, originalPrice: 470, stock: 28, sku: 'ENU-BM-200', isDefault: false }
+      { id: 'var-bm-100', weight: '100g', price: 210, originalPrice: 250, stock: 55, sku: 'AYKA-BM-100', isDefault: true },
+      { id: 'var-bm-200', weight: '200g', price: 390, originalPrice: 470, stock: 28, sku: 'AYKA-BM-200', isDefault: false }
     ],
     defaultWeight: '100g',
     price: 210,
@@ -279,15 +279,15 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-pav-bhaji',
-    name: 'ENU Bombay Street-Style Pav Bhaji Masala',
+    name: 'Ayka Exports Bombay Street-Style Pav Bhaji Masala',
     slug: 'enu-bombay-pav-bhaji-masala',
     categoryId: 'cat-blends',
     categoryName: 'Specialty Blends',
     subcategoryId: 'sub-street-blends',
     subcategoryName: 'Street Food & Chaat',
     weightOptions: [
-      { id: 'var-pb-100', weight: '100g', price: 175, originalPrice: 205, stock: 32, sku: 'ENU-PB-100', isDefault: true },
-      { id: 'var-pb-200', weight: '200g', price: 320, originalPrice: 380, stock: 15, sku: 'ENU-PB-200', isDefault: false }
+      { id: 'var-pb-100', weight: '100g', price: 175, originalPrice: 205, stock: 32, sku: 'AYKA-PB-100', isDefault: true },
+      { id: 'var-pb-200', weight: '200g', price: 320, originalPrice: 380, stock: 15, sku: 'AYKA-PB-200', isDefault: false }
     ],
     defaultWeight: '100g',
     price: 175,
@@ -314,15 +314,15 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-kasuri-methi',
-    name: 'ENU Nagaur Hand-Cured Kasuri Methi',
+    name: 'Ayka Exports Nagaur Hand-Cured Kasuri Methi',
     slug: 'enu-nagaur-kasuri-methi',
     categoryId: 'cat-herbs',
     categoryName: 'Dried Herbs & Seasonings',
     subcategoryId: 'sub-nagaur-methi',
     subcategoryName: 'Hand-Picked Leaves',
     weightOptions: [
-      { id: 'var-km-50', weight: '50g Pack', price: 110, originalPrice: 130, stock: 75, sku: 'ENU-KM-50', isDefault: true },
-      { id: 'var-km-100', weight: '100g Pack', price: 195, originalPrice: 240, stock: 44, sku: 'ENU-KM-100', isDefault: false }
+      { id: 'var-km-50', weight: '50g Pack', price: 110, originalPrice: 130, stock: 75, sku: 'AYKA-KM-50', isDefault: true },
+      { id: 'var-km-100', weight: '100g Pack', price: 195, originalPrice: 240, stock: 44, sku: 'AYKA-KM-100', isDefault: false }
     ],
     defaultWeight: '50g Pack',
     price: 110,
@@ -349,16 +349,16 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-coriander-powder',
-    name: 'ENU Cold-Ground Ramganj Coriander Powder',
+    name: 'Ayka Exports Cold-Ground Ramganj Coriander Powder',
     slug: 'enu-ramganj-coriander-powder',
     categoryId: 'cat-singles',
     categoryName: 'Pure Ground Spices',
     subcategoryId: 'sub-coriander',
     subcategoryName: 'Aromatic Corianders',
     weightOptions: [
-      { id: 'var-cp-100', weight: '100g', price: 125, originalPrice: 150, stock: 70, sku: 'ENU-CP-100', isDefault: false },
-      { id: 'var-cp-200', weight: '200g', price: 230, originalPrice: 280, stock: 45, sku: 'ENU-CP-200', isDefault: true },
-      { id: 'var-cp-500', weight: '500g', price: 520, originalPrice: 640, stock: 14, sku: 'ENU-CP-500', isDefault: false }
+      { id: 'var-cp-100', weight: '100g', price: 125, originalPrice: 150, stock: 70, sku: 'AYKA-CP-100', isDefault: false },
+      { id: 'var-cp-200', weight: '200g', price: 230, originalPrice: 280, stock: 45, sku: 'AYKA-CP-200', isDefault: true },
+      { id: 'var-cp-500', weight: '500g', price: 520, originalPrice: 640, stock: 14, sku: 'AYKA-CP-500', isDefault: false }
     ],
     defaultWeight: '200g',
     price: 230,
@@ -385,15 +385,15 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-chaat-masala',
-    name: 'ENU Chunky Tangy Chaat Masala',
+    name: 'Ayka Exports Chunky Tangy Chaat Masala',
     slug: 'enu-chunky-chaat-masala',
     categoryId: 'cat-blends',
     categoryName: 'Specialty Blends',
     subcategoryId: 'sub-street-blends',
     subcategoryName: 'Street Food & Chaat',
     weightOptions: [
-      { id: 'var-cm-100', weight: '100g', price: 155, originalPrice: 180, stock: 50, sku: 'ENU-CM-100', isDefault: true },
-      { id: 'var-cm-200', weight: '200g', price: 280, originalPrice: 340, stock: 22, sku: 'ENU-CM-200', isDefault: false }
+      { id: 'var-cm-100', weight: '100g', price: 155, originalPrice: 180, stock: 50, sku: 'AYKA-CM-100', isDefault: true },
+      { id: 'var-cm-200', weight: '200g', price: 280, originalPrice: 340, stock: 22, sku: 'AYKA-CM-200', isDefault: false }
     ],
     defaultWeight: '100g',
     price: 155,
@@ -478,7 +478,7 @@ export const INITIAL_COMBOS: Combo[] = [
     category: 'Gourmet Blends',
     tag: 'Festive & Royal',
     badge: 'Chef Choice',
-    description: 'A curated kit of ENU Royal Garam Masala, Shahi Dum Biryani Masala with saffron, and Nagaur Kasuri Methi leaves.',
+    description: 'A curated kit of Ayka Exports Royal Garam Masala, Shahi Dum Biryani Masala with saffron, and Nagaur Kasuri Methi leaves.',
     fullStory: 'Curated for weekend banquets and celebratory family dinners. Combine the warming depths of our 14-spice Garam Masala with the saffron-scented Biryani Masala and finish with hand-cured Kasuri Methi.',
     image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80',
     discountPercent: 20,
@@ -586,8 +586,8 @@ export const INITIAL_USERS: User[] = [
       { id: 'addr-2', type: 'Work', street: 'Tower B, Tech Park, Outer Ring Road', city: 'Bengaluru', state: 'Karnataka', pincode: '560103', isDefault: false }
     ],
     activityHistory: [
-      { id: 'act-1', action: 'Placed Order #ENU-8842', timestamp: '2026-08-14T18:30:00.000Z', details: 'Ordered Daily Kitchen Heritage Trio + Kasuri Methi' },
-      { id: 'act-2', action: 'Reviewed ENU Garam Masala', timestamp: '2026-08-01T14:15:00.000Z', details: 'Rated 5 stars: Unbelievable aroma in Dum Aloo!' }
+      { id: 'act-1', action: 'Placed Order #AYKA-8842', timestamp: '2026-08-14T18:30:00.000Z', details: 'Ordered Daily Kitchen Heritage Trio + Kasuri Methi' },
+      { id: 'act-2', action: 'Reviewed Ayka Exports Garam Masala', timestamp: '2026-08-01T14:15:00.000Z', details: 'Rated 5 stars: Unbelievable aroma in Dum Aloo!' }
     ]
   },
   {
@@ -605,7 +605,7 @@ export const INITIAL_USERS: User[] = [
       { id: 'addr-3', type: 'Home', street: 'B-14, Maharani Bagh', city: 'New Delhi', state: 'Delhi', pincode: '110065', isDefault: true }
     ],
     activityHistory: [
-      { id: 'act-3', action: 'Placed Order #ENU-8835', timestamp: '2026-08-13T12:45:00.000Z', details: 'Ordered The Royal Feast Kit' }
+      { id: 'act-3', action: 'Placed Order #AYKA-8835', timestamp: '2026-08-13T12:45:00.000Z', details: 'Ordered The Royal Feast Kit' }
     ]
   },
   {
@@ -623,7 +623,7 @@ export const INITIAL_USERS: User[] = [
       { id: 'addr-4', type: 'Home', street: '304, Palm Springs, Juhu Tara Road', city: 'Mumbai', state: 'Maharashtra', pincode: '400049', isDefault: true }
     ],
     activityHistory: [
-      { id: 'act-4', action: 'Placed Order #ENU-8828', timestamp: '2026-08-12T15:20:00.000Z', details: 'Ordered Udupi Sambhar + Lakadong Turmeric' }
+      { id: 'act-4', action: 'Placed Order #AYKA-8828', timestamp: '2026-08-12T15:20:00.000Z', details: 'Ordered Udupi Sambhar + Lakadong Turmeric' }
     ]
   },
   {
@@ -641,7 +641,7 @@ export const INITIAL_USERS: User[] = [
       { id: 'addr-5', type: 'Home', street: 'Salt Lake Sector 2, Block FD', city: 'Kolkata', state: 'West Bengal', pincode: '700091', isDefault: true }
     ],
     activityHistory: [
-      { id: 'act-5', action: 'Placed Order #ENU-8812', timestamp: '2026-08-10T11:15:00.000Z', details: 'Ordered Garam Masala + Biryani Masala' }
+      { id: 'act-5', action: 'Placed Order #AYKA-8812', timestamp: '2026-08-10T11:15:00.000Z', details: 'Ordered Garam Masala + Biryani Masala' }
     ]
   },
   {
@@ -659,7 +659,7 @@ export const INITIAL_USERS: User[] = [
       { id: 'addr-6', type: 'Home', street: '12, 4th Main Road, RA Puram', city: 'Chennai', state: 'Tamil Nadu', pincode: '600028', isDefault: true }
     ],
     activityHistory: [
-      { id: 'act-6', action: 'Placed Order #ENU-8798', timestamp: '2026-08-08T19:00:00.000Z', details: 'Ordered 4x Sambhar Masala + Dhania' }
+      { id: 'act-6', action: 'Placed Order #AYKA-8798', timestamp: '2026-08-08T19:00:00.000Z', details: 'Ordered 4x Sambhar Masala + Dhania' }
     ]
   },
   {
@@ -685,7 +685,7 @@ export const INITIAL_USERS: User[] = [
 export const INITIAL_ORDERS: Order[] = [
   {
     id: 'ord-8842',
-    orderNumber: 'ENU-8842',
+    orderNumber: 'AYKA-8842',
     customer: {
       id: 'usr-1',
       name: 'Ananya Sharma',
@@ -694,9 +694,9 @@ export const INITIAL_ORDERS: Order[] = [
       address: { street: 'Flat 402, Green Glen Heights, Bellandur', city: 'Bengaluru', state: 'Karnataka', pincode: '560103', country: 'India' }
     },
     items: [
-      { productId: 'prod-turmeric-powder', productName: 'ENU Lakadong High-Curcumin Turmeric', image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 260, quantity: 1, subtotal: 260 },
-      { productId: 'prod-red-chilli', productName: 'ENU Kashmiri & Guntur Hand-Pounded Chilli', image: 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 295, quantity: 1, subtotal: 295 },
-      { productId: 'prod-kasuri-methi', productName: 'ENU Nagaur Hand-Cured Kasuri Methi', image: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=300&q=80', weight: '50g Pack', price: 110, quantity: 2, subtotal: 220 }
+      { productId: 'prod-turmeric-powder', productName: 'Ayka Exports Lakadong High-Curcumin Turmeric', image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 260, quantity: 1, subtotal: 260 },
+      { productId: 'prod-red-chilli', productName: 'Ayka Exports Kashmiri & Guntur Hand-Pounded Chilli', image: 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 295, quantity: 1, subtotal: 295 },
+      { productId: 'prod-kasuri-methi', productName: 'Ayka Exports Nagaur Hand-Cured Kasuri Methi', image: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=300&q=80', weight: '50g Pack', price: 110, quantity: 2, subtotal: 220 }
     ],
     subtotal: 775,
     discount: 50,
@@ -719,7 +719,7 @@ export const INITIAL_ORDERS: Order[] = [
   },
   {
     id: 'ord-8835',
-    orderNumber: 'ENU-8835',
+    orderNumber: 'AYKA-8835',
     customer: {
       id: 'usr-2',
       name: 'Vikramaditya Rathore',
@@ -728,8 +728,8 @@ export const INITIAL_ORDERS: Order[] = [
       address: { street: 'B-14, Maharani Bagh', city: 'New Delhi', state: 'Delhi', pincode: '110065', country: 'India' }
     },
     items: [
-      { productId: 'prod-biryani-masala', productName: 'ENU Shahi Dum Biryani Masala', image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 390, quantity: 2, subtotal: 780 },
-      { productId: 'prod-garam-masala', productName: 'ENU Royal Garam Masala', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 340, quantity: 1, subtotal: 340 }
+      { productId: 'prod-biryani-masala', productName: 'Ayka Exports Shahi Dum Biryani Masala', image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 390, quantity: 2, subtotal: 780 },
+      { productId: 'prod-garam-masala', productName: 'Ayka Exports Royal Garam Masala', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 340, quantity: 1, subtotal: 340 }
     ],
     subtotal: 1120,
     discount: 100,
@@ -752,7 +752,7 @@ export const INITIAL_ORDERS: Order[] = [
   },
   {
     id: 'ord-8828',
-    orderNumber: 'ENU-8828',
+    orderNumber: 'AYKA-8828',
     customer: {
       id: 'usr-3',
       name: 'Pooja Hegde',
@@ -761,8 +761,8 @@ export const INITIAL_ORDERS: Order[] = [
       address: { street: '304, Palm Springs, Juhu Tara Road', city: 'Mumbai', state: 'Maharashtra', pincode: '400049', country: 'India' }
     },
     items: [
-      { productId: 'prod-sambhar-masala', productName: 'ENU Traditional Udupi Sambhar Masala', image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 310, quantity: 2, subtotal: 620 },
-      { productId: 'prod-chaat-masala', productName: 'ENU Chunky Tangy Chaat Masala', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80', weight: '100g', price: 155, quantity: 2, subtotal: 310 }
+      { productId: 'prod-sambhar-masala', productName: 'Ayka Exports Traditional Udupi Sambhar Masala', image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 310, quantity: 2, subtotal: 620 },
+      { productId: 'prod-chaat-masala', productName: 'Ayka Exports Chunky Tangy Chaat Masala', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80', weight: '100g', price: 155, quantity: 2, subtotal: 310 }
     ],
     subtotal: 930,
     discount: 50,
@@ -786,7 +786,7 @@ export const INITIAL_ORDERS: Order[] = [
   },
   {
     id: 'ord-8812',
-    orderNumber: 'ENU-8812',
+    orderNumber: 'AYKA-8812',
     customer: {
       id: 'usr-4',
       name: 'Rajesh Mukherjee',
@@ -795,8 +795,8 @@ export const INITIAL_ORDERS: Order[] = [
       address: { street: 'Salt Lake Sector 2, Block FD', city: 'Kolkata', state: 'West Bengal', pincode: '700091', country: 'India' }
     },
     items: [
-      { productId: 'prod-pav-bhaji', productName: 'ENU Bombay Street-Style Pav Bhaji Masala', image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=300&q=80', weight: '100g', price: 175, quantity: 2, subtotal: 350 },
-      { productId: 'prod-kitchen-king', productName: 'ENU Signature Kitchen King Masala', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 300, quantity: 1, subtotal: 300 }
+      { productId: 'prod-pav-bhaji', productName: 'Ayka Exports Bombay Street-Style Pav Bhaji Masala', image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=300&q=80', weight: '100g', price: 175, quantity: 2, subtotal: 350 },
+      { productId: 'prod-kitchen-king', productName: 'Ayka Exports Signature Kitchen King Masala', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 300, quantity: 1, subtotal: 300 }
     ],
     subtotal: 650,
     discount: 0,
@@ -817,7 +817,7 @@ export const INITIAL_ORDERS: Order[] = [
   },
   {
     id: 'ord-8805',
-    orderNumber: 'ENU-8805',
+    orderNumber: 'AYKA-8805',
     customer: {
       id: 'usr-5',
       name: 'Meera Krishnan',
@@ -826,7 +826,7 @@ export const INITIAL_ORDERS: Order[] = [
       address: { street: '12, 4th Main Road, RA Puram', city: 'Chennai', state: 'Tamil Nadu', pincode: '600028', country: 'India' }
     },
     items: [
-      { productId: 'prod-sambhar-masala', productName: 'ENU Traditional Udupi Sambhar Masala', image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 310, quantity: 4, subtotal: 1240 }
+      { productId: 'prod-sambhar-masala', productName: 'Ayka Exports Traditional Udupi Sambhar Masala', image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=300&q=80', weight: '200g', price: 310, quantity: 4, subtotal: 1240 }
     ],
     subtotal: 1240,
     discount: 100,
@@ -846,7 +846,7 @@ export const INITIAL_ORDERS: Order[] = [
   },
   {
     id: 'ord-8850',
-    orderNumber: 'ENU-8850',
+    orderNumber: 'AYKA-8850',
     customer: {
       id: 'usr-1',
       name: 'Ananya Sharma',
@@ -855,7 +855,7 @@ export const INITIAL_ORDERS: Order[] = [
       address: { street: 'Flat 402, Green Glen Heights, Bellandur', city: 'Bengaluru', state: 'Karnataka', pincode: '560103', country: 'India' }
     },
     items: [
-      { productId: 'prod-garam-masala', productName: 'ENU Royal Garam Masala', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=300&q=80', weight: '500g', price: 780, quantity: 1, subtotal: 780 }
+      { productId: 'prod-garam-masala', productName: 'Ayka Exports Royal Garam Masala', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=300&q=80', weight: '500g', price: 780, quantity: 1, subtotal: 780 }
     ],
     subtotal: 780,
     discount: 0,
@@ -878,7 +878,7 @@ export const INITIAL_PAYMENTS: Payment[] = [
   {
     id: 'pay-901',
     orderId: 'ord-8842',
-    orderNumber: 'ENU-8842',
+    orderNumber: 'AYKA-8842',
     customerName: 'Ananya Sharma',
     customerEmail: 'ananya.sharma@gmail.com',
     amount: 761,
@@ -891,7 +891,7 @@ export const INITIAL_PAYMENTS: Payment[] = [
   {
     id: 'pay-902',
     orderId: 'ord-8835',
-    orderNumber: 'ENU-8835',
+    orderNumber: 'AYKA-8835',
     customerName: 'Vikramaditya Rathore',
     customerEmail: 'vikram.rathore@outlook.com',
     amount: 1071,
@@ -904,7 +904,7 @@ export const INITIAL_PAYMENTS: Payment[] = [
   {
     id: 'pay-903',
     orderId: 'ord-8828',
-    orderNumber: 'ENU-8828',
+    orderNumber: 'AYKA-8828',
     customerName: 'Pooja Hegde',
     customerEmail: 'pooja.hegde@yahoo.com',
     amount: 924,
@@ -917,7 +917,7 @@ export const INITIAL_PAYMENTS: Payment[] = [
   {
     id: 'pay-904',
     orderId: 'ord-8812',
-    orderNumber: 'ENU-8812',
+    orderNumber: 'AYKA-8812',
     customerName: 'Rajesh Mukherjee',
     customerEmail: 'rajesh.mukherjee@tcs.com',
     amount: 734,
@@ -930,7 +930,7 @@ export const INITIAL_PAYMENTS: Payment[] = [
   {
     id: 'pay-905',
     orderId: 'ord-8805',
-    orderNumber: 'ENU-8805',
+    orderNumber: 'AYKA-8805',
     customerName: 'Meera Krishnan',
     customerEmail: 'meera.krishnan@rediffmail.com',
     amount: 1197,
@@ -943,7 +943,7 @@ export const INITIAL_PAYMENTS: Payment[] = [
   {
     id: 'pay-906',
     orderId: 'ord-8850',
-    orderNumber: 'ENU-8850',
+    orderNumber: 'AYKA-8850',
     customerName: 'Ananya Sharma',
     customerEmail: 'ananya.sharma@gmail.com',
     amount: 819,

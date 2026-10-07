@@ -55,7 +55,7 @@ export const PrivacyPolicyPage: React.FC = () => {
           <section>
             <h2 className="font-heading text-lg font-semibold text-[#284C38] mb-2">Contact</h2>
             <p>
-              ENU Foods Spice Park, Plot 42, Organic Agro Hub, Gujarat 380001, India.
+              Ayka Exports Spice Park, Plot 42, Organic Agro Hub, Gujarat 380001, India.
               Phone: +91 1800-200-3688
             </p>
           </section>

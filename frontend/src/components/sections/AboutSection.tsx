@@ -112,7 +112,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, isStoryP
               <div className="relative overflow-hidden rounded-[1.75rem] shadow-xl">
                 <img
                   src={TRADITION_IMAGE}
-                  alt="Traditional Stone Grinding of ENU Spices"
+                  alt="Traditional Stone Grinding of Ayka Exports Spices"
                   className="h-[340px] w-full transform object-cover object-center transition-transform duration-700 hover:scale-105 sm:h-[420px] lg:h-[480px]"
                   referrerPolicy="no-referrer"
                 />
@@ -186,7 +186,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, isStoryP
                 <div className="relative overflow-hidden rounded-[0.75rem] shadow-xl">
                   <img
                     src={TRADITION_IMAGE}
-                    alt="Traditional Stone Grinding of ENU Spices"
+                    alt="Traditional Stone Grinding of Ayka Exports Spices"
                     className="h-[340px] w-full transform object-cover object-center transition-transform duration-700 hover:scale-105 sm:h-[420px] lg:h-[480px]"
                     referrerPolicy="no-referrer"
                   />
@@ -214,7 +214,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, isStoryP
               )}`}
             >
               At{" "}
-              <strong className="font-medium text-[#284C38]">ENU Foods</strong>,
+              <strong className="font-medium text-[#284C38]">Ayka Exports</strong>,
               we believe that real Indian food begins with pure, unadulterated
               spices. From the fertile farms of South India to the aromatic herb
               fields of Rajasthan, every spice seed in our collection is

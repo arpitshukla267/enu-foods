@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Sparkles, Leaf } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 interface StartupLoaderProps {
   onFinish?: () => void;
@@ -38,13 +38,12 @@ export const StartupLoader: React.FC<StartupLoaderProps> = ({ onFinish }) => {
       <div className="relative flex flex-col items-center text-center p-6 max-w-sm">
         
         {/* Animated Brand Emblem */}
-        <div className="w-20 h-20 rounded-full bg-[#D6A146]/20 border-2 border-[#D6A146] flex items-center justify-center mb-6 relative animate-pulse">
-          <Leaf className="w-10 h-10 text-[#D6A146] animate-bounce" />
-          <Sparkles className="w-5 h-5 text-[#D6A146] absolute -top-1 -right-1 animate-spin" style={{ animationDuration: '4s' }} />
+        <div className="w-20 h-20 flex items-center justify-center mb-6 relative animate-pulse">
+          <img src="/Ayka_logo.webp" alt="Ayka Exports" className="w-full h-full object-contain" />
         </div>
 
         <h1 className="font-heading text-3xl font-bold tracking-tight text-white mb-1">
-          ENU <span className="text-[#D6A146]">FOODS</span>
+          Ayka <span className="text-[#D6A146]">Exports</span>
         </h1>
         <p className="text-xs uppercase tracking-widest text-[#D6A146] font-btn font-semibold mb-8">
           Pure Masala Spices • Cold Ground

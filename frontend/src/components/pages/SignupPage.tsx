@@ -69,7 +69,7 @@ export const SignupPage: React.FC<SignupPageProps> = ({ onLogin, onNavigate }) =
             </div>
             <h1 className="font-heading text-2xl font-bold tracking-tight">Create Account</h1>
             <p className="font-body text-xs text-gray-300 font-light mt-1">
-              Join ENU Foods for gourmet spices and express delivery
+              Join Ayka Exports for gourmet spices and express delivery
             </p>
           </div>
         </div>

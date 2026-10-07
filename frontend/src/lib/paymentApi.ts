@@ -99,7 +99,7 @@ export const openRazorpayCheckout = async (options: {
     key: options.keyId,
     amount: options.amount,
     currency: options.currency,
-    name: options.name || "ENU Foods",
+    name: options.name || "Ayka Exports",
     description: options.description || "Order payment",
     order_id: options.orderId,
     prefill: options.prefill,

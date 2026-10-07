@@ -91,12 +91,14 @@ export const StorefrontPreview: React.FC<StorefrontPreviewProps> = ({
             {/* Customer Header */}
             <header className="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-[#E8E2D5] px-6 py-4 flex items-center justify-between shadow-2xs">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#173D2A] text-[#D99B26] flex items-center justify-center font-bold text-lg border border-[#D99B26]/30">
-                  E
-                </div>
+                <img
+                  src="/Ayka_logo.webp"
+                  alt="Ayka Exports"
+                  className="w-10 h-10 object-contain"
+                />
                 <div>
                   <span className="text-lg font-bold tracking-widest uppercase text-[#173D2A]">
-                    ENU FOODS
+                    AYKA EXPORTS
                   </span>
                   <span className="block text-[9px] font-semibold text-[#8F816B] tracking-wider uppercase">
                     Single Origin & Heritage Blends

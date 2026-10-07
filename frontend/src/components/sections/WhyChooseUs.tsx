@@ -34,7 +34,7 @@ export const WhyChooseUs: React.FC = () => {
             Pure By Nature
           </span> */}
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1D] mt-1">
-            Why <span className="text-[#284C38]/90">ENU Foods</span> Belongs In
+            Why <span className="text-[#284C38]/90">Ayka Exports</span> Belongs In
             Your Kitchen
           </h2>
           <p className="font-body text-gray-600 mt-4 text-base font-light">

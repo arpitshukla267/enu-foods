@@ -59,29 +59,30 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <aside className={`${
-      isDrawer 
-        ? 'flex flex-col w-full h-full bg-[#173D2A] text-[#F9F7F2]' 
-        : 'hidden lg:flex flex-col w-64 bg-[#173D2A] text-[#F9F7F2] border-r border-[#0F281B] select-none h-screen sticky top-0 shrink-0'
-    }`}>
+    <aside
+      className={`${
+        isDrawer
+          ? "flex flex-col w-full h-full bg-[#173D2A] text-[#F9F7F2]"
+          : "hidden lg:flex flex-col w-64 bg-[#173D2A] text-[#F9F7F2] border-r border-[#0F281B] select-none h-screen sticky top-0 shrink-0"
+      }`}
+    >
       {/* Brand Header */}
-      <div className="p-6 border-b border-[#245A3F] flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#D99B26] flex items-center justify-center text-[#173D2A] font-medium text-xl shadow-md border border-[#E2B04A]">
-            <span className="font-brand-logo">E</span>
-          </div>
+      <div className="p-4 border-b border-[#245A3F] flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <img
+            src="/Ayka_logo.webp"
+            alt="Ayka Exports"
+            className="w-16 h-16 object-contain"
+          />
           <div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-brand-logo text-lg font-semibold tracking-widest text-[#F9F7F2]">
-                ENU
+            <div className="flex flex-col items-center">
+              <span className="font-brand-logo text-lg font-semibold text-[#F9F7F2]">
+                Ayka Exports
               </span>
-              <span className="text-xs uppercase px-1.5 py-0.5 rounded-sm bg-[#D99B26]/20 text-[#D99B26] font-medium border border-[#D99B26]/40">
-                FOODS
+              <span className="font-brand-logo text-sm font-normal text-[#F9F7F2]">
+                Admin Panel
               </span>
             </div>
-            <p className="text-[11px] text-[#A6C5B3] font-medium tracking-wide uppercase mt-0.5">
-              Operations CMS
-            </p>
           </div>
         </div>
       </div>
@@ -101,22 +102,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onClick={() => setActiveTab(item.id)}
               className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 isActive
-                  ? 'bg-[#D99B26] text-[#173D2A] shadow-md font-medium'
-                  : 'text-[#E2EBE5] hover:bg-[#245A3F] hover:text-[#FFFFFF]'
+                  ? "bg-[#D99B26] text-[#173D2A] shadow-md font-medium"
+                  : "text-[#E2EBE5] hover:bg-[#245A3F] hover:text-[#FFFFFF]"
               }`}
             >
               <div className="flex items-center gap-3">
-                <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#173D2A]' : 'text-[#A6C5B3]'}`} />
+                <Icon
+                  className={`w-4 h-4 shrink-0 ${isActive ? "text-[#173D2A]" : "text-[#A6C5B3]"}`}
+                />
                 <span>{item.label}</span>
               </div>
-              
+
               <div className="flex items-center gap-1.5">
                 {item.badge && (
-                  <span className={`text-[11px] px-2 py-0.5 rounded-full font-medium uppercase ${item.badgeColor}`}>
+                  <span
+                    className={`text-[11px] px-2 py-0.5 rounded-full font-medium uppercase ${item.badgeColor}`}
+                  >
                     {item.badge}
                   </span>
                 )}
-                {isActive && <ChevronRight className="w-3.5 h-3.5 text-[#173D2A]" />}
+                {isActive && (
+                  <ChevronRight className="w-3.5 h-3.5 text-[#173D2A]" />
+                )}
               </div>
             </button>
           );
@@ -125,7 +132,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Storefront Link & Admin Info */}
       <div className="p-4 border-t border-[#245A3F] bg-[#112E20]/60 space-y-3">
-        {onOpenStorePreview && (
+        {/* {onOpenStorePreview && (
           <button
             onClick={onOpenStorePreview}
             className="w-full flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-medium text-[#173D2A] bg-[#D99B26] hover:bg-[#E2B04A] rounded-xl shadow-xs transition-colors"
@@ -133,7 +140,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <Store className="w-4 h-4 text-[#173D2A]" />
             <span>Preview Live Storefront</span>
           </button>
-        )}
+        )} */}
 
         <div className="flex items-center gap-3 pt-1">
           <div className="w-8 h-8 rounded-full bg-[#245A3F] border border-[#3E805E] flex items-center justify-center text-xs font-medium text-[#D99B26]">

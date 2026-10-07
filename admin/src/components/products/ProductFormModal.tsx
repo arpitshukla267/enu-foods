@@ -363,7 +363,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                       type="text"
                       value={name}
                       onChange={(event) => handleNameChange(event.target.value)}
-                      placeholder="e.g. ENU Royal Garam Masala"
+                      placeholder="e.g. Ayka Exports Royal Garam Masala"
                       className={fieldClass(Boolean(errors.name), 'w-full mt-1 px-3 py-2.5 text-sm text-[#1A211D]')}
                     />
                     {errors.name && <p className="text-xs text-[#9E382B] mt-1 font-medium">{errors.name}</p>}

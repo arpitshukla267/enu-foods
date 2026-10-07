@@ -31,7 +31,7 @@ export const LoginView: React.FC = () => {
     <div className="min-h-screen bg-[#F9F7F2] flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-2xl border border-[#E8E2D5] shadow-lg overflow-hidden">
         <div className="px-8 py-6 bg-[#173D2A] text-white">
-          <h1 className="text-2xl font-semibold font-serif-brand">ENU Foods Admin</h1>
+          <h1 className="text-2xl font-semibold font-serif-brand">Ayka Exports Admin</h1>
           <p className="text-sm text-[#A6C5B3] mt-1">
             Sign in with your admin account to manage the store.
           </p>

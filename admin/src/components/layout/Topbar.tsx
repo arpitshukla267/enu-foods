@@ -144,7 +144,7 @@ export const Topbar: React.FC<TopbarProps> = ({
                 </span>
                 <div className="flex items-center gap-1.5">
                   <span className="text-[11px] font-bold text-[#8F816B] uppercase tracking-wider hidden sm:inline">
-                    ENU Operations 
+                    Ayka Exports Operations
                   </span>
                 </div>
                 <p className="text-[11px] text-[#736854] hidden md:block mt-0.5">

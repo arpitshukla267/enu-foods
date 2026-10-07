@@ -118,7 +118,7 @@ export const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({ onNavigate }
             </h1>
             <p className="font-body text-sm text-gray-500 font-light mt-1">
               {totalOrders > 0
-                ? `${totalOrders} order${totalOrders === 1 ? "" : "s"} placed with ENU Foods`
+                ? `${totalOrders} order${totalOrders === 1 ? "" : "s"} placed with Ayka Exports`
                 : "Track your spice orders and delivery status"}
             </p>
           </div>

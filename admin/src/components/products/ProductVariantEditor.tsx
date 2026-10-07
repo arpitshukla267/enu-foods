@@ -271,7 +271,7 @@ export const ProductVariantEditor: React.FC<ProductVariantEditorProps> = ({
                   value={variant.sku || ''}
                   readOnly={autoGenerateSku}
                   onChange={(event) => handleUpdateField(variant.id, 'sku', event.target.value)}
-                  placeholder="ENU-PRODUCT-100G"
+                  placeholder="AYKA-PRODUCT-100G"
                   className={`w-full mt-0.5 px-2 py-1 text-xs text-[#5C5343] border border-[#DCD4C0] rounded-lg focus:outline-none focus:border-[#173D2A] ${
                     autoGenerateSku ? 'bg-[#F9F7F2] cursor-default' : 'bg-white'
                   }`}

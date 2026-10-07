@@ -32,7 +32,7 @@ const STORAGE_KEYS = {
 };
 
 const DEFAULT_SETTINGS: StoreSettings = {
-  storeName: 'ENU Foods',
+  storeName: 'Ayka Exports',
   currency: '₹',
   supportEmail: 'care@enufoods.com',
   supportPhone: '+91 98765 43210',

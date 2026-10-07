@@ -146,7 +146,7 @@ export const RecipesPage: React.FC<RecipesPageProps> = ({
                           key={spice}
                           className="text-[9px] sm:text-[10px] bg-[#F7F5EF] text-[#284C38] border border-[#284C38]/15 px-1.5 py-0.5 rounded font-medium truncate max-w-full"
                         >
-                          {spice.replace("ENU ", "")}
+                          {spice.replace("Ayka Exports ", "")}
                         </span>
                       ))}
                       {recipe.enuSpicesUsed.length > 2 && (

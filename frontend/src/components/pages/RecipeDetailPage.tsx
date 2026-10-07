@@ -115,7 +115,7 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
             <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1D] via-[#1D1D1D]/30 to-transparent" />
 
             <div className="absolute top-5 left-5 bg-[#1E3A2B]/90 backdrop-blur-md text-[#D6A146] px-4 py-2 rounded-full border border-[#D6A146]/40 flex items-center gap-2 text-xs font-semibold font-btn">
-              <span>ENU Signature Recipe</span>
+              <span>Ayka Exports Signature Recipe</span>
             </div>
 
             <div className="absolute bottom-6 left-5 right-5 sm:left-8 sm:right-8 lg:left-10 lg:right-10 text-white">
@@ -185,7 +185,7 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
                 <div className="bg-[#284C38]/10 p-5 rounded-2xl border border-[#284C38]/20 mb-7">
                   <span className="text-xs font-bold text-[#284C38] uppercase font-btn flex items-center gap-2 mb-3">
                     <Sparkles className="w-4 h-4 text-[#D6A146]" />
-                    ENU Spices Required
+                    Ayka Exports Spices Required
                   </span>
 
                   <div className="flex flex-wrap gap-2">
@@ -200,7 +200,7 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
                   </div>
 
                   <p className="text-[11px] text-gray-600 mt-3 font-body">
-                    Use these ENU spices for the best flavour and authentic result.
+                    Use these Ayka Exports spices for the best flavour and authentic result.
                   </p>
                 </div>
 
@@ -261,7 +261,7 @@ export const RecipeDetailPage: React.FC<RecipeDetailPageProps> = ({
                     Bring the authentic flavour home
                   </h3>
                   <p className="text-sm text-white/70 font-body mt-1">
-                    Cook this recipe with ENU Spices.
+                    Cook this recipe with Ayka Exports Spices.
                   </p>
                 </div>
 

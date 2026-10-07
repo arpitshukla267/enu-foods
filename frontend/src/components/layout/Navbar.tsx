@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, ChevronDown, Leaf, PhoneCall, ShoppingBag, User, LogOut, Loader2 } from 'lucide-react';
+import { Search, ChevronDown, PhoneCall, ShoppingBag, User, LogOut, Loader2 } from 'lucide-react';
 import { NavigationPage } from '../../types';
 import { useCategories } from '../../context/CategoryContext';
 import { useSettings } from '../../context/SettingsContext';
@@ -140,18 +140,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => handleNavClick("home")}
             className="flex items-center gap-3 group text-left focus:outline-none"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-[#D6A146] to-[#C86D39] p-0.5 shadow-md group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-[#284C38] rounded-full flex items-center justify-center">
-                <Leaf className="w-5 h-5 text-[#D6A146]" />
-              </div>
-            </div>
+            <img
+              src="/Ayka_logo.webp"
+              alt="Ayka Exports"
+              className="w-12 h-12 sm:w-14 sm:h-14 scale-125 object-contain group-hover:scale-105 transition-transform"
+            />
             <div>
-              <div className=" text-2xl sm:text-3xl font-semibold tracking-wide text-white flex items-center gap-1">
-                ENU <span className="text-[#D6A146] font-light">FOODS</span>
-              </div>
-              <div className="text-[10px] tracking-widest uppercase text-[#D6A146] font-body font-medium -mt-1">
+              {/* <div className=" text-2xl sm:text-3xl font-semibold tracking-wide text-white flex items-center gap-1">
+                Ayka <span className="text-[#D6A146] font-light">Exports</span>
+              </div> */}
+              {/* <div className="text-[10px] tracking-widest uppercase text-[#D6A146] font-body font-medium -mt-1">
                 Pure Masala Spices
-              </div>
+              </div> */}
             </div>
           </button>
 
@@ -255,7 +255,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         Featured Blend
                       </div>
                       <div className="font-heading text-lg font-bold text-white mb-1">
-                        ENU Sambhar Masala
+                        Ayka Exports Sambhar Masala
                       </div>
                       <p className="text-xs text-white/70 line-clamp-3">
                         Traditional South Indian blend ground cold for volatile

@@ -28,7 +28,7 @@ export const ContactPage: React.FC = () => {
             <ShieldCheck className="w-3.5 h-3.5" /> We Are Here To Help
           </span>
           <h1 className="font-heading text-4xl sm:text-5xl font-bold">
-            Get In Touch With ENU Foods
+            Get In Touch With Ayka Exports
           </h1>
           <p className="font-body text-white/80 mt-2 text-base font-light">
             Have questions about our spice purity, bulk distribution, or store availability? Connect with our team directly.
@@ -92,7 +92,7 @@ export const ContactPage: React.FC = () => {
                   <MapPin className="w-4 h-4" /> Global Manufacturing Unit
                 </span>
                 <h3 className="font-heading text-xl font-bold">
-                  ENU Agro Spice Park, India
+                  Ayka Exports Agro Spice Park, India
                 </h3>
                 <p className="text-xs text-white/80 font-body font-light">
                   Aseptic cold-milling plant equipped with European optical sorters and automated packaging lines.
@@ -132,7 +132,7 @@ export const ContactPage: React.FC = () => {
                   Message Received Successfully!
                 </h3>
                 <p className="font-body text-sm text-gray-700 font-light leading-relaxed max-w-md mx-auto">
-                  Thank you for reaching out to ENU Foods. Our spice relationship representative will contact you shortly on your provided details.
+                  Thank you for reaching out to Ayka Exports. Our spice relationship representative will contact you shortly on your provided details.
                 </p>
                 <button 
                   onClick={() => setIsSubmitted(false)}

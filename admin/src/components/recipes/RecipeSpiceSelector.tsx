@@ -154,7 +154,7 @@ export const RecipeSpiceSelector: React.FC<RecipeSpiceSelectorProps> = ({
           </div>
           <div>
             <label className="block text-xs font-bold text-[#1A211D] uppercase tracking-wide">
-              ENU Spices Used
+              Ayka Exports Spices Used
             </label>
             <p className="text-[11px] text-[#736854] mt-0.5">
               Search and pick products used in this recipe.

@@ -8,7 +8,7 @@ const findProduct = (id: string): Product => {
   }
   return {
     id,
-    name: id.replace("enu-", "ENU ").split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' '),
+    name: id.replace("enu-", "Ayka Exports ").split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' '),
     category: 'Spices',
     weightOptions: ['100g', '200g'],
     defaultWeight: '100g',
@@ -48,7 +48,7 @@ export const COMBOS: ComboItem[] = [
       "Zero preservatives, starch fillers, or MSG",
     ],
     chefTip:
-      "For restaurant-style Sambhar, bloom 1 tbsp ENU Sambhar Masala in hot ghee with mustard seeds and curry leaves before stirring it into your boiled dal and tamarind extract.",
+      "For restaurant-style Sambhar, bloom 1 tbsp Ayka Exports Sambhar Masala in hot ghee with mustard seeds and curry leaves before stirring it into your boiled dal and tamarind extract.",
     idealRecipes: ["classic-south-indian-sambhar", "chettinad-vegetable-curry"],
     items: [
       {
@@ -98,7 +98,7 @@ export const COMBOS: ComboItem[] = [
       "Instant restaurant-style smooth gravy texture",
     ],
     chefTip:
-      "Always rub the ENU Kasuri Methi gently between your palms to release the volatile oils before sprinkling it over simmering gravies in the last 2 minutes.",
+      "Always rub the Ayka Exports Kasuri Methi gently between your palms to release the volatile oils before sprinkling it over simmering gravies in the last 2 minutes.",
     idealRecipes: ["kadai-paneer-delight", "amritsari-pindi-chole", "royal-vegetable-biryani"],
     items: [
       {

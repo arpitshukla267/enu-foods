@@ -8,7 +8,7 @@ export const slugifyForSku = (value: string): string =>
 export const generateVariantSku = (productName: string, weight: string): string => {
   const namePart = slugifyForSku(productName) || "PRODUCT";
   const weightPart = slugifyForSku(weight) || "VARIANT";
-  return `ENU-${namePart}-${weightPart}`;
+  return `AYKA-${namePart}-${weightPart}`;
 };
 
 export const normalizeWeightLabel = (weight: string): string => weight.trim().toLowerCase();

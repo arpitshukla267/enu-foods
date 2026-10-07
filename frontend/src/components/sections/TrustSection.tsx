@@ -31,7 +31,7 @@ export const TrustSection: React.FC = () => {
             Uncompromising Standards
           </span>
           <h2 className="text-3xl sm:text-4xl font-semibold text-[#1D1D1D] mt-1">
-            Why <span className="text-[#284C38]">ENU Foods</span> Is Trusted By
+            Why <span className="text-[#284C38]">Ayka Exports</span> Is Trusted By
             Every Household
           </h2>
         </div>

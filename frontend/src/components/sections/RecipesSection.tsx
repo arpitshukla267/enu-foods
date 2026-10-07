@@ -45,7 +45,7 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#1D1D1D] leading-tight">
               Authentic Recipes Crafted With{" "}
               <br className="hidden sm:inline" />
-              <span className="text-[#284C38]/90">ENU Spices</span>
+              <span className="text-[#284C38]/90">Ayka Exports Spices</span>
             </h2>
           </div>
 
@@ -104,7 +104,7 @@ const RecipeCard: React.FC<{
     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/5" />
 
     <div className="absolute max-w-fit md:top-4 top-3 left-2 md:left-4 bg-[#1E3A2B]/90 backdrop-blur-md text-[#D6A146] text-[10px] font-semibold px-3 py-1 rounded-full font-btn border border-[#D6A146]/40 flex items-center gap-1.5 shadow-md">
-      <span>{recipe.enuSpicesUsed[0] || "ENU Spices"}</span>
+      <span>{recipe.enuSpicesUsed[0] || "Ayka Exports Spices"}</span>
     </div>
 
     {large && (

@@ -19,7 +19,7 @@ export const TermsOfServicePage: React.FC = () => {
           <section>
             <h2 className="font-heading text-lg font-semibold text-[#284C38] mb-2">Acceptance of Terms</h2>
             <p>
-              By accessing or using the ENU Foods website and placing orders, you agree to be bound by these
+              By accessing or using the Ayka Exports website and placing orders, you agree to be bound by these
               Terms of Service. If you do not agree, please do not use our services.
             </p>
           </section>
@@ -36,7 +36,7 @@ export const TermsOfServicePage: React.FC = () => {
           <section>
             <h2 className="font-heading text-lg font-semibold text-[#284C38] mb-2">Orders &amp; Delivery</h2>
             <p>
-              Orders are confirmed upon successful payment. Delivery timelines vary by location. ENU Foods is
+              Orders are confirmed upon successful payment. Delivery timelines vary by location. Ayka Exports is
               not liable for delays caused by courier partners or force majeure events.
             </p>
           </section>

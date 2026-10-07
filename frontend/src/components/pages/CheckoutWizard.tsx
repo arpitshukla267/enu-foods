@@ -786,7 +786,7 @@ export const CheckoutWizard: React.FC<CheckoutWizardProps> = ({
                         <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                         <div className="text-xs font-body text-gray-600 font-semibold leading-relaxed text-left">
                           <strong className="text-gray-800 font-semibold block">
-                            ENU Foods Security Policy
+                            Ayka Exports Security Policy
                           </strong>
                           Your transaction is secure and encrypted. We do not
                           store your credit card details or bank passwords on
@@ -1072,7 +1072,7 @@ export const CheckoutWizard: React.FC<CheckoutWizardProps> = ({
               <div className="flex items-center gap-2 border-b border-white/10 pb-2">
                 {/* <Tag className="w-4 h-4 text-[#D6A146]" /> */}
                 <span className="text-xs font-bold tracking-wider uppercase font-btn text-[#D6A146]">
-                  ENU Foods Promise
+                  Ayka Exports Promise
                 </span>
               </div>
               <div className="space-y-3 text-[11px] font-body text-gray-300">

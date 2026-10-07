@@ -84,7 +84,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onNavigate }) => {
             </div>
             {subscribed && (
               <p className="text-xs text-[#D6A146] mt-2 flex items-center justify-center gap-1 font-body">
-                <Check className="w-3.5 h-3.5" /> Thank you for subscribing to ENU Foods!
+                <Check className="w-3.5 h-3.5" /> Thank you for subscribing to Ayka Exports!
               </p>
             )}
           </form>

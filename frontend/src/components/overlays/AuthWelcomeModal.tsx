@@ -174,8 +174,8 @@ export const AuthWelcomeModal: React.FC<AuthWelcomeModalProps> = ({
             </h2>
             <p className="text-[13px] text-gray-500 mt-1">
               {tab === "login"
-                ? "Welcome back to ENU Foods."
-                : "Join ENU Foods to track orders and save favourites."}
+                ? "Welcome back to Ayka Exports."
+                : "Join Ayka Exports to track orders and save favourites."}
             </p>
           </div>
           <button
@@ -357,7 +357,7 @@ export const AuthWelcomeModal: React.FC<AuthWelcomeModalProps> = ({
               </div>
 
               <p className="text-[11px] text-gray-400 leading-relaxed">
-                By creating an account, you agree to ENU Foods'{" "}
+                By creating an account, you agree to Ayka Exports'{" "}
                 <button
                   type="button"
                   onClick={() => {

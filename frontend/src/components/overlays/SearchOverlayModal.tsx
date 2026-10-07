@@ -248,7 +248,7 @@ export const SearchOverlayModal: React.FC<SearchOverlayModalProps> = ({
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search ENU Spices (e.g., Sambhar, Garam Masala, Turmeric)..."
+            placeholder="Search Ayka Exports Spices (e.g., Sambhar, Garam Masala, Turmeric)..."
             className="w-full bg-transparent text-lg text-[#1D1D1D] placeholder-gray-400 focus:outline-none"
             aria-label="Search products"
           />
@@ -452,7 +452,7 @@ export const SearchOverlayModal: React.FC<SearchOverlayModalProps> = ({
 
               {showNoMatches && (
                 <div className="text-center py-8 text-gray-500 font-body text-sm space-y-3">
-                  <p>No matching ENU spices or recipes found for &quot;{trimmedQuery}&quot;.</p>
+                  <p>No matching Ayka Exports spices or recipes found for &quot;{trimmedQuery}&quot;.</p>
                   <button
                     type="button"
                     onClick={() => submitSearch(trimmedQuery)}
