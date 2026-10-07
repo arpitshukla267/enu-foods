@@ -198,36 +198,21 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               {/* Mega Menu Overlay */}
               {isMegaMenuOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[720px] bg-[#1E3A2B] border border-[#D6A146]/30 rounded-xl shadow-2xl p-6 mt-1 backdrop-blur-xl grid grid-cols-3 gap-6 z-50 text-white">
-                  <div className="col-span-2 border-r border-white/10 pr-6">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[520px] bg-[#1E3A2B] border border-[#D6A146]/30 rounded-xl shadow-2xl p-6 mt-1 backdrop-blur-xl grid grid-cols-1 gap-6 z-50 text-white">
+                  <div className="col-span-1 pr-6">
                     <div className="flex items-center justify-between mb-3">
                       <span className="font-heading text-lg font-semibold text-[#D6A146]">
                         Spice Categories
                       </span>
-                      {/* <div className="flex items-center gap-2.5">
-                        <button
-                          onClick={() => handleNavClick("bestsellers")}
-                          className="text-xs text-[#D6A146] hover:underline font-medium"
-                        >
-                          Bestsellers
-                        </button>
-                        <span className="text-white/30 text-xs">·</span>
-                        <button
-                          onClick={() => handleNavClick("new-arrivals")}
-                          className="text-xs text-[#D6A146] hover:underline font-medium"
-                        >
-                          New Arrivals
-                        </button>
-                      </div> */}
                     </div>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                       {categoriesLoading ? (
-                        <div className="col-span-2 flex items-center gap-2 px-3 py-4 text-white/70 text-xs">
+                        <div className="col-span-1 flex items-center gap-2 px-3 py-4 text-white/70 text-xs">
                           <Loader2 className="w-4 h-4 animate-spin" />
                           Loading categories...
                         </div>
                       ) : navCategories.length === 0 ? (
-                        <div className="col-span-2 px-3 py-4 text-white/60 text-xs">
+                        <div className="col-span-1 px-3 py-4 text-white/60 text-xs">
                           Categories will appear here once added in admin.
                         </div>
                       ) : (
@@ -248,7 +233,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       )}
                     </div>
                   </div>
-
+{/* 
                   <div className="col-span-1 bg-[#284C38]/60 p-4 rounded-lg border border-[#D6A146]/20 flex flex-col justify-between">
                     <div>
                       <div className="text-xs font-bold text-[#D6A146] uppercase tracking-wider mb-1 font-btn">
@@ -274,7 +259,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     >
                       Explore Pack Details
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>

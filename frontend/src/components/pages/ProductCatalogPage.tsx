@@ -174,7 +174,7 @@ export const ProductCatalogPage: React.FC<ProductCatalogPageProps> = ({
       </div>
 
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mt-4 sm:mt-8">
-        <div className="sm:sticky sm:top-28 z-20 -mx-3 sm:mx-0 px-3 sm:px-0 pt-2 sm:pt-0 pb-2 sm:pb-0 bg-[#F7F5EF] sm:bg-[#F7F5EF]/95 sm:backdrop-blur-md">
+        <div className="sm:sticky sm:top-30 z-20 -mx-3 sm:mx-0 px-3 sm:px-0 pt-2 sm:pt-0 pb-2 sm:pb-0 bg-[#F7F5EF] sm:bg-[#F7F5EF]/95 sm:backdrop-blur-md">
           <div className="hidden md:block bg-white rounded-2xl p-3 sm:p-6 shadow-md border border-[#D6A146]/20 mb-4 sm:mb-8 space-y-3 sm:space-y-4">
             <div className="flex flex-row gap-2 sm:gap-4 items-center justify-between">
               <div className="relative flex-1 sm:w-96">

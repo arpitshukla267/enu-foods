@@ -50,6 +50,15 @@ import { NewArrivalsPage } from "./components/pages/NewArrivalsPage";
 import { useAuth } from "./context/AuthContext";
 import { useCart } from "./context/CartContext";
 
+/*
+ * Detects "session / token expired" style errors coming back from the API.
+ * Add more patterns here if your backend uses different wording.
+ */
+const isAuthExpiredError = (message?: string | null): boolean =>
+  !!message &&
+  /(token.*expired|expired.*token|jwt expired|invalid token|unauthori[sz]ed|session expired)/i.test(
+    message,
+  );
 
 export default function App() {
   const router = useRouter();
@@ -119,14 +128,14 @@ export default function App() {
 
   useEffect(() => {
     if (isLoading || authLoading) return;
-  
+
     const dismissed = localStorage.getItem("enu_auth_modal_dismissed");
-  
+
     if (!dismissed && !isAuthenticated) {
       const timer = setTimeout(() => {
         setIsAuthModalOpen(true);
       }, 800);
-  
+
       return () => clearTimeout(timer);
     }
   }, [isLoading, authLoading, isAuthenticated]);
@@ -137,6 +146,40 @@ export default function App() {
     openAuthModal();
     handleNavigate("home");
   };
+
+  // =========================================================
+  // TOKEN EXPIRED -> SHOW LOGIN MODAL DIRECTLY
+  // =========================================================
+
+  /*
+   * Makes sure we handle one expiry only once, instead of re-opening
+   * the modal on every re-render while the error is still set.
+   */
+  const authExpiredHandledRef = useRef(false);
+
+  useEffect(() => {
+    if (!isAuthExpiredError(cartError)) {
+      authExpiredHandledRef.current = false;
+      return;
+    }
+
+    if (authExpiredHandledRef.current) return;
+    authExpiredHandledRef.current = true;
+
+    // 1. Close the cart drawer and leave the /cart route
+    setIsCartOpen(false);
+    if (pathname?.endsWith("/cart")) {
+      const basePath = pathname === "/cart" ? "/" : pathname.slice(0, -5);
+      router.replace(basePath, { scroll: false });
+    }
+
+    // 2. Clear the stale session so the UI no longer looks logged in
+    logout();
+
+    // 3. Show the login / welcome modal right away
+    setIsAuthModalOpen(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartError]);
 
   // =========================================================
   // CART ROUTE HISTORY
@@ -163,17 +206,17 @@ export default function App() {
   }
 
   let currentPage: NavigationPage = "home";
-  
+
   let activeProductId: string | undefined = undefined;
   let activeRecipeId: string | undefined = undefined;
   let activeComboId: string | undefined = undefined;
   let activeOrderId: string | undefined = undefined;
-  
+
   const productMatch = routingPathname.match(/^\/products\/([^/]+)/);
   const recipeMatch = routingPathname.match(/^\/recipes\/([^/]+)/);
   const comboMatch = routingPathname.match(/^\/combos\/([^/]+)/);
   const orderMatch = routingPathname.match(/^\/orders\/([^/]+)/);
-  
+
   if (productMatch) {
     currentPage = "product-detail";
     activeProductId = productMatch[1];
@@ -268,7 +311,7 @@ export default function App() {
       const targetPath = pathname === "/" ? "/cart" : `${pathname}/cart`;
       router.push(targetPath, { scroll: false });
     }
-  
+
     setIsCartOpen(true);
   };
 
@@ -278,12 +321,12 @@ export default function App() {
 
   const closeCart = () => {
     setIsCartOpen(false);
-  
+
     if (pathname?.endsWith("/cart")) {
       if (previousPathRef.current) {
         const previousPath = previousPathRef.current;
         previousPathRef.current = null;
-  
+
         router.push(previousPath, { scroll: false });
       } else {
         const targetPath = pathname === "/cart" ? "/" : pathname.slice(0, -5);
@@ -484,7 +527,6 @@ export default function App() {
             <div className="relative z-10 bg-[#F7F5EF]">
               <ProductCategories
                 onSelectCategory={(categorySlug) => {
-                  setSelectedCategoryFilter(categorySlug);
                   router.push(
                     `/products?category=${encodeURIComponent(categorySlug)}`,
                   );
@@ -524,7 +566,6 @@ export default function App() {
               <Certifications />
 
               <Testimonials />
-
             </div>
           </>
         )}
@@ -534,9 +575,7 @@ export default function App() {
         =================================================== */}
 
         {currentPage === "products" && (
-          <ProductCatalogPage
-            onAddToCart={handleAddToCartWithDrawer}
-          />
+          <ProductCatalogPage onAddToCart={handleAddToCartWithDrawer} />
         )}
 
         {/* ===================================================
@@ -679,7 +718,10 @@ export default function App() {
         )}
 
         {currentPage === "order-detail" && activeOrderId && (
-          <OrderDetailPage orderId={activeOrderId} onNavigate={handleNavigate} />
+          <OrderDetailPage
+            orderId={activeOrderId}
+            onNavigate={handleNavigate}
+          />
         )}
 
         {currentPage === "privacy" && <PrivacyPolicyPage />}
@@ -756,7 +798,7 @@ export default function App() {
         isMutating={cartMutating}
         isCouponLoading={isCouponLoading}
         couponError={couponError}
-        error={cartError}
+        error={isAuthExpiredError(cartError) ? null : cartError}
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onAddToCart={handleAddToCartWithDrawer}

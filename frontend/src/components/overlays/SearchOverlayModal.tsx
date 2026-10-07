@@ -249,7 +249,7 @@ export const SearchOverlayModal: React.FC<SearchOverlayModalProps> = ({
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search Ayka Exports Spices (e.g., Sambhar, Garam Masala, Turmeric)..."
-            className="w-full bg-transparent text-lg text-[#1D1D1D] placeholder-gray-400 focus:outline-none"
+            className="w-full bg-transparent text-sm text-[#1D1D1D] placeholder-gray-400 focus:outline-none"
             aria-label="Search products"
           />
           <button
@@ -306,7 +306,7 @@ export const SearchOverlayModal: React.FC<SearchOverlayModalProps> = ({
                         className="w-full p-3 rounded-2xl hover:bg-[#F7F5EF] flex items-center justify-between cursor-pointer border border-transparent hover:border-[#D6A146]/30 transition-all group text-left"
                       >
                         <div>
-                          <div className="font-heading font-bold text-base text-[#1D1D1D] group-hover:text-[#284C38]">
+                          <div className="font-heading font-medium text-base text-[#1D1D1D] group-hover:text-[#284C38]">
                             {category.name}
                           </div>
                           <div className="text-xs text-gray-500 font-body">
@@ -333,7 +333,7 @@ export const SearchOverlayModal: React.FC<SearchOverlayModalProps> = ({
                       <button
                         type="button"
                         onClick={() => submitSearch(debouncedQuery)}
-                        className="text-[11px] font-bold text-[#C86D39] hover:underline font-btn"
+                        className="text-[11px] font-medium text-[#C86D39] hover:underline font-btn"
                       >
                         View all {totalMatches ?? matchedProducts.length} results
                       </button>
@@ -386,11 +386,11 @@ export const SearchOverlayModal: React.FC<SearchOverlayModalProps> = ({
                               />
                               <div className="min-w-0">
                                 <div className="flex items-center gap-2 min-w-0">
-                                  <div className="font-heading font-bold text-base text-[#1D1D1D] group-hover:text-[#284C38] truncate">
+                                  <div className="font-heading font-medium text-base text-[#1D1D1D] group-hover:text-[#284C38] truncate">
                                     {product.name}
                                   </div>
                                   {badge && (
-                                    <span className="text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-[#284C38] text-[#D6A146] shrink-0">
+                                    <span className="text-[10px] font-light uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-[#284C38] text-[#ffffff] shrink-0">
                                       {badge}
                                     </span>
                                   )}
@@ -435,7 +435,7 @@ export const SearchOverlayModal: React.FC<SearchOverlayModalProps> = ({
                             referrerPolicy="no-referrer"
                           />
                           <div>
-                            <div className="font-heading font-bold text-base text-[#1D1D1D] group-hover:text-[#284C38]">
+                            <div className="font-heading font-medium text-base text-[#1D1D1D] group-hover:text-[#284C38]">
                               {recipe.title}
                             </div>
                             <div className="text-xs text-gray-500 font-body">
@@ -456,7 +456,7 @@ export const SearchOverlayModal: React.FC<SearchOverlayModalProps> = ({
                   <button
                     type="button"
                     onClick={() => submitSearch(trimmedQuery)}
-                    className="text-xs font-bold text-[#284C38] hover:underline font-btn"
+                    className="text-xs font-medium text-[#284C38] hover:underline"
                   >
                     Search catalog for &quot;{trimmedQuery}&quot;
                   </button>
@@ -468,7 +468,7 @@ export const SearchOverlayModal: React.FC<SearchOverlayModalProps> = ({
                   <button
                     type="button"
                     onClick={() => submitSearch(trimmedQuery)}
-                    className="w-full py-3 rounded-xl bg-[#284C38] hover:bg-[#1E3A2B] text-white text-sm font-bold font-btn transition-colors"
+                    className="w-full py-3 rounded-xl bg-[#284C38] hover:bg-[#1E3A2B] text-white text-sm font-medium transition-colors"
                   >
                     Search catalog for &quot;{trimmedQuery}&quot;
                   </button>
